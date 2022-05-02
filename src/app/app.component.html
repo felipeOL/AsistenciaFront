@@ -1,6 +1,7 @@
 <ng-container *ngIf="fullscreenRoute; then thenTemplate; else elseTemplate" ></ng-container>
 <ng-template #thenTemplate>
   <div class="wrapper">
+    <app-navbar></app-navbar>
     <router-outlet></router-outlet>
   </div>
 </ng-template>
