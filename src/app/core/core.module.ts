@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardAdministrationComponent } from './components/administration/dashboard-administration/dashboard-administration.component';
-import { DashboardStudentComponent } from './student/dashboard-student/dashboard-student.component';
-import { DashboardTeacherComponent } from './teacher/dashboard-teacher/dashboard-teacher.component';
+import {DashboardStudentComponent} from "./components/student/dashboard-student/dashboard-student.component";
+import { DashboardTeacherComponent } from './components/teacher/dashboard-teacher/dashboard-teacher.component';
 
 
 
@@ -10,7 +10,7 @@ import { DashboardTeacherComponent } from './teacher/dashboard-teacher/dashboard
   declarations: [
     DashboardAdministrationComponent,
     DashboardStudentComponent,
-    DashboardTeacherComponent
+    DashboardTeacherComponent,
   ],
   imports: [
     CommonModule
