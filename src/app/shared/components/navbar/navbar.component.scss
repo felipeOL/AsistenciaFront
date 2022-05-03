@@ -1,11 +1,21 @@
-.example-spacer {
-  flex: 1 1 auto;
-}
 .nav-bar-space
 {
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  background-size: cover !important;
+  background-position: center ;
+  background-repeat: no-repeat ;
+  background-attachment: fixed ;
+  background-size: cover ;
   background-color: brown;
+  height: 10%;
+}
+.div-imagen {
+  height: 90%
+}
+
+.imagen {
+  /* de esta ajustamos la imagen*/
+  height: auto;
+  width: auto;
+  max-height: 90px;
+  max-width: 250px;
+  /* buscar una mejor forma XD */
 }

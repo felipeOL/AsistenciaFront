@@ -6,4 +6,11 @@ import { Injectable } from '@angular/core';
 export class AuthenticationService {
 
   constructor() { }
+
+  public login( email: string, password: string): string
+  {
+      return "jaja saludos"
+  }
+
+
 }
