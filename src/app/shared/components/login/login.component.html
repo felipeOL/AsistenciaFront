@@ -21,7 +21,7 @@
         <a href=#><small>¿Olvidaste tu contraseña?</small></a>
         <br/>
         <div id="buttons">
-          <button mat-flat-button color="primary" type="submit"  [disabled]="loginForm.invalid">Ingresar</button>
+          <button mat-flat-button color="primary" type="submit"  (click)="login()" [disabled]="loginForm.invalid">Ingresar</button>
         </div>
         <br/>
         <mat-divider></mat-divider>

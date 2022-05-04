@@ -25,5 +25,6 @@ export class LoginComponent implements OnInit {
   {
     let respuestas: String
     respuestas=this.authservice.login(this.loginForm.value.email,this.loginForm.value.password)
+    console.log(respuestas)
   }
 }
