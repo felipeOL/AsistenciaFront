@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from "./shared/shared.module";
 import {CoreModule} from "./core/core.module";
 import {MaterialModule} from "./material/material.module";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {AuthenticationService} from "./services/authentication.service";
 
 @NgModule({
@@ -21,6 +21,7 @@ import {AuthenticationService} from "./services/authentication.service";
     SharedModule,
     CoreModule,
     MaterialModule,
+    HttpClientModule,
   ],
   providers: [ ],
   bootstrap: [AppComponent]
