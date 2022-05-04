@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {UserResponseModel} from "../Models/userResponse.model";
 
 export interface cuerpoLogin
 {
@@ -18,12 +19,15 @@ export class AuthenticationService
     private httpclient: HttpClient
   ) { }
 
-  public login( email: string, password: string): string
+  // @ts-ignore
+  public login( email: string, password: string): UserResponseModel
   {
     let body: cuerpoLogin = {rut:email, password: password}
     // @ts-ignore
-    this.httpclient.post(this.url,body,{})
-    return "jaja saludos"
+    this.httpclient.post(this.url,body,{}).subscribe((respuesta:UserResponseModel) =>{
+      let userResponse: UserResponseModel = {roles: respuesta.roles, token: respuesta.token}
+      return userResponse
+    })
   }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../../services/authentication.service";
+import {UserResponseModel} from "../../../Models/userResponse.model";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
     private authservice: AuthenticationService
   ) { }
   loginForm = this.formBuilder.group({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required]),
     password: ['', Validators.required]
   })
 
@@ -23,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   public login(): void
   {
-    let respuestas: String
+    let respuestas: UserResponseModel
     respuestas=this.authservice.login(this.loginForm.value.email,this.loginForm.value.password)
-    console.log(respuestas)
+    console.dir(respuestas)
   }
 }
