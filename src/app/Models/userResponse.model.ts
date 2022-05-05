@@ -1,5 +1,5 @@
-export interface UserResponseModel
+export interface UserResponse
 {
-  roles: string,
-  token: string
+  roles?: string,
+  token?: string
 }
