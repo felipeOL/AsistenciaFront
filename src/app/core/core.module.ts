@@ -6,6 +6,8 @@ import { DashboardTeacherComponent } from './components/teacher/dashboard-teache
 import { CoursesComponent } from './components/teacher/courses/courses.component';
 import { SchedulesComponent } from './components/teacher/schedules/schedules.component';
 import { AssistanceComponent } from './components/teacher/assistance/assistance.component';
+import { StudentSchedulesComponent } from './components/student/student-schedules/student-schedules.component';
+import { StudentAssistanceComponent } from './components/student/student-assistance/student-assistance.component';
 
 
 
@@ -17,6 +19,8 @@ import { AssistanceComponent } from './components/teacher/assistance/assistance.
     CoursesComponent,
     SchedulesComponent,
     AssistanceComponent,
+    StudentSchedulesComponent,
+    StudentAssistanceComponent,
   ],
   imports: [
     CommonModule

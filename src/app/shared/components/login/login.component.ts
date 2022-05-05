@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.authservice.setUser(response);
       console.dir(response.roles)
       if(response.roles == "Teacher"){
-        this.router.navigate(['/  teacher-assistance']);
+        this.router.navigate(['/teacher-assistance']);
       }else if(response.roles == "Student"){
         this.router.navigate(['/student-dashboard']);
       }else if(response.roles == "Administrator"){

@@ -9,6 +9,8 @@ import {
 import {CoursesComponent} from "./core/components/teacher/courses/courses.component";
 import {SchedulesComponent} from "./core/components/teacher/schedules/schedules.component";
 import {AssistanceComponent} from "./core/components/teacher/assistance/assistance.component";
+import {StudentSchedulesComponent} from "./core/components/student/student-schedules/student-schedules.component";
+import {StudentAssistanceComponent} from "./core/components/student/student-assistance/student-assistance.component";
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path:"teacher-courses",component:CoursesComponent},
   {path:"teacher-schedules",component:SchedulesComponent},
   {path:"teacher-assistance",component:AssistanceComponent},
+  {path:"student-schedules",component:StudentSchedulesComponent},
+  {path:"student-assistance",component:StudentAssistanceComponent},
 
   {path:"**",component:LoginComponent},
 ];
