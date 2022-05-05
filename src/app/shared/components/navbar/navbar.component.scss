@@ -6,6 +6,7 @@
   background-size: cover ;
   background-color: brown;
   height: 10%;
+  justify-content: space-between;
 }
 .div-imagen {
   height: 90%
@@ -18,4 +19,28 @@
   max-height: 90px;
   max-width: 250px;
   /* buscar una mejor forma XD */
+}
+
+.items{
+  display:flex;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.separador{
+  color:white;
+}
+
+.menuItem{
+  text-decoration: none;
+  color: inherit;
+}
+
+.active-list-item{
+  color: white;
+}
+
+.item{
+  margin-right: 10px;
+  margin-left: 10px;
 }
