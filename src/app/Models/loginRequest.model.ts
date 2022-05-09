@@ -1,4 +1,4 @@
 export interface LoginRequest{
-  rut?: String,
-  password?: String,
+  email?: String,
+  contraseña?: String,
 }

@@ -5,6 +5,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {AuthenticationService} from "../services/authentication.service";
 import {RouterModule} from "@angular/router";
 import {MaterialModule} from "../material/material.module";
+import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 
 
 
@@ -12,7 +13,8 @@ import {MaterialModule} from "../material/material.module";
 @NgModule({
     declarations: [
         LoginComponent,
-        NavbarComponent
+        NavbarComponent,
+        ErrorDialogComponent
     ],
     exports: [
         NavbarComponent
