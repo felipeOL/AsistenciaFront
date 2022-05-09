@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {
+  FormularioCrearCuentaComponent
+} from "../administrar-cuentas/formulario-crear-cuenta/formulario-crear-cuenta.component";
 
 @Component({
   selector: 'app-dashboard-administration',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardAdministrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private crearCuentaDialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public crearCuenta()
+  {
+    const dialogConfig = new MatDialogConfig()
+    this.crearCuentaDialog.open(FormularioCrearCuentaComponent)
   }
 
 }
