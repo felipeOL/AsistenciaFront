@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {UserResponse} from "../Models/userResponse.model";
-import {Observable, of} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {LoginRequest} from "../Models/loginRequest.model";
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AuthenticationService
     roles : '',
     token : '',
   }
-  public url:String = "https://localhost:7119/api/usuario/";
+  public url:String = "http://localhost:5000/api/usuario/login";
 
   constructor(
     private httpclient: HttpClient
@@ -24,13 +24,21 @@ export class AuthenticationService
   // @ts-ignore
   public login( email: string, password: string): Observable<UserResponse>
   {
-    let body: LoginRequest = {rut:email, password: password}
-    return this.httpclient.post<UserResponse>(this.url+"login",body,{})
+    let body: LoginRequest = {email:email, contraseña: password}
+    // @ts-ignore
+    return this.httpclient.post<UserResponse>(this.url,body,{}).pipe(
+      catchError(err => this.getlogineror(err)))
+
   }
 
   setUser(user:UserResponse){
     this.usuario = user;
     console.dir(this.usuario);
+  }
+
+  private getlogineror(error: HttpErrorResponse):string {
+    return "a"
+
   }
 
 
