@@ -1,1 +1,22 @@
-<p>navbar works!</p>
+<mat-toolbar class="nav-bar-space">
+  <div class="div-imagen">
+    <img src="assets/UTALCA+FI%20blanco%20300x110.png" class="imagen">
+  </div>
+  <div class="items" *ngIf="!hide">
+    <ng-container *ngFor="let menuItem of menuItems">
+      <div routerLinkActive="active">
+        <a [routerLink]="menuItem.path" class="menuItem" routerLinkActive="active-list-item">
+          <p class="item"> {{menuItem.title}} </p>
+        </a>
+      </div>
+    </ng-container>
+    <div *ngIf="!hide">
+      <button mat-mini-fab color="warn" (click)="exit()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+<div>
+  <router-outlet></router-outlet>
+</div>
