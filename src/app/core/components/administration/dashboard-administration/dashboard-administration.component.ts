@@ -12,7 +12,7 @@ import {
 export class DashboardAdministrationComponent implements OnInit {
 
   constructor(
-    private crearCuentaDialog: MatDialog
+    private crearCuentaDialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -21,7 +21,10 @@ export class DashboardAdministrationComponent implements OnInit {
   public crearCuenta()
   {
     const dialogConfig = new MatDialogConfig()
-    this.crearCuentaDialog.open(FormularioCrearCuentaComponent)
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width="40%";
+    this.crearCuentaDialog.open(FormularioCrearCuentaComponent, dialogConfig)
   }
 
 }

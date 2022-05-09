@@ -1,6 +1,6 @@
 export interface CrearCuentaModel
 {
-  emai: string,
+  email: string,
   nombre: string,
   contraseña: string,
   rut: string,

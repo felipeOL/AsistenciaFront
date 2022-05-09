@@ -8,10 +8,20 @@ import {CrearCuentaModel} from "../Models/crearCuenta.model";
 })
 export class CuentasService {
 
-  constructor() { }
+  private urlCrearCuenta ="http://localhost:5000/api/usuario/registrar"
+  constructor(
+    private httpclient: HttpClient
+  ) { }
 
-  public registrarCuenta(nuevacuenta : CrearCuentaModel): string
+  public registrarCuenta(nuevacuenta : CrearCuentaModel): Observable<any>
   {
-    return "a"
+    return this.httpclient.post(this.urlCrearCuenta,nuevacuenta,{}).pipe(
+      catchError(err => this.getlogineror(err))
+    )
+  }
+
+  private getlogineror(error: HttpErrorResponse):string {
+    return "e"
+
   }
 }
