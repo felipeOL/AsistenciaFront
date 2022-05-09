@@ -8,6 +8,15 @@ import { SchedulesComponent } from './components/teacher/schedules/schedules.com
 import { AssistanceComponent } from './components/teacher/assistance/assistance.component';
 import { StudentSchedulesComponent } from './components/student/student-schedules/student-schedules.component';
 import { StudentAssistanceComponent } from './components/student/student-assistance/student-assistance.component';
+import {administrationApi} from "./components/api/administration.api";
+import {studentApi} from "./components/api/student.api";
+import {teacherApi} from "./components/api/teacher.api";
+import {administrationFacade} from "./components/facade/administration.facade";
+import {administrationState} from "./components/state/administration.state";
+import {studentState} from "./components/state/student.state";
+import {teacherState} from "./components/state/teacher.state";
+import {studentFacade} from "./components/facade/student.facade";
+import {teacherFacade} from "./components/facade/teacher.facade";
 
 
 
@@ -24,6 +33,17 @@ import { StudentAssistanceComponent } from './components/student/student-assista
   ],
   imports: [
     CommonModule
+  ],
+  providers:[
+    administrationApi,
+    studentApi,
+    teacherApi,
+    administrationState,
+    studentState,
+    teacherState,
+    administrationFacade,
+    studentFacade,
+    teacherFacade,
   ]
 })
 export class CoreModule { }
