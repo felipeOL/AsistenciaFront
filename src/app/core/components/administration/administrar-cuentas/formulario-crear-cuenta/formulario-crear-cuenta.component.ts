@@ -55,6 +55,9 @@ export class FormularioCrearCuentaComponent implements OnInit {
             }
         })
       }
+      else{
+        this.dialogref.close();
+      }
     })
   }
 
