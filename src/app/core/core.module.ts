@@ -22,6 +22,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { FormularioCrearCuentaComponent } from './components/administration/administrar-cuentas/formulario-crear-cuenta/formulario-crear-cuenta.component';
 import {MaterialModule} from "../material/material.module";
 import {MatSelectModule} from "@angular/material/select";
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -38,12 +39,13 @@ import {MatSelectModule} from "@angular/material/select";
     TablaCuentasComponent,
     FormularioCrearCuentaComponent,
   ],
-  imports: [
-    CommonModule,
-    MatButtonToggleModule,
-    MaterialModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonToggleModule,
+        MaterialModule,
+        MatSelectModule,
+        MatTableModule
+    ],
   providers:[
     administrationApi,
     studentApi,

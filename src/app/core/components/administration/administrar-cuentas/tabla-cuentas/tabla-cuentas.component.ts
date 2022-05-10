@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CuentasService} from "../../../../../services/cuentas.service";
+import {GetUsersModel} from "../../../../../Models/getUsers.model";
 
 @Component({
   selector: 'app-tabla-cuentas',
@@ -8,16 +9,23 @@ import {CuentasService} from "../../../../../services/cuentas.service";
 })
 export class TablaCuentasComponent implements OnInit {
 
+  public displayedColumns = ['email', 'nombre', 'rut', 'rol'];
+  cuentas: GetUsersModel[] =[];
   constructor(
     private cuentasService: CuentasService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+    this.getAllCuentas()
   }
 
   getAllCuentas():void
   {
-    this.cuentasService.getAllCuentas()
+
+    this.cuentasService.getAllCuentas().subscribe( datos => {
+     console.log(datos)
+    })
   }
 
 }

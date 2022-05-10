@@ -40,7 +40,7 @@ export class CuentasService {
     let newArreglo:GetUsersModel[] =[]
     let usuario = this.authservice.getUser()
     console.log(usuario)
-    let response = this.httpclient.get<GetUsersModel[]>(this.urlTodosLosUsuarios, {
+    this.httpclient.get<GetUsersModel[]>(this.urlTodosLosUsuarios, {
       headers: {
         accept: 'application/json',
         Authorization:'Bearer '+usuario.token
