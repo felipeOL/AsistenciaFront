@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CuentasService} from "../../../../../services/cuentas.service";
 import {GetUsersModel} from "../../../../../Models/getUsers.model";
+import {Observable} from "rxjs";
+import {CrearCuentaModel} from "../../../../../Models/crearCuenta.model";
+import {administrationFacade} from "../../../facade/administration.facade";
 
 @Component({
   selector: 'app-tabla-cuentas',
@@ -9,23 +12,18 @@ import {GetUsersModel} from "../../../../../Models/getUsers.model";
 })
 export class TablaCuentasComponent implements OnInit {
 
-  public displayedColumns = ['email', 'nombre', 'rut', 'rol'];
-  cuentas: GetUsersModel[] =[];
+  displayedColumns:string[] = ['email', 'nombre', 'rut', 'rol'];
+  dataSource$:Observable<CrearCuentaModel[]>
   constructor(
-    private cuentasService: CuentasService,
-  ) { }
+    private adminFacade:administrationFacade,
+  ) {
+    this.dataSource$ = this.adminFacade.cuentas$;
+    this.adminFacade.updateCuentas();
+  }
 
   ngOnInit(): void
   {
-    this.getAllCuentas()
-  }
 
-  getAllCuentas():void
-  {
-
-    this.cuentasService.getAllCuentas().subscribe( datos => {
-     console.log(datos)
-    })
   }
 
 }
