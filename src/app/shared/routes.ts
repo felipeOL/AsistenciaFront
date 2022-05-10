@@ -12,5 +12,6 @@ export const STUDENTROUTES: RouteInfo[] = [
 ]
 
 export const ADMINROUTES: RouteInfo[] = [
-  {path:'/admin-dashboard',title:'Dashboard',class:''},
+  {path:'/admin-courses',title:'Cursos',class:''},
+  {path:'/admin-accounts',title:'Cuentas',class:''},
 ]

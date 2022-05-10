@@ -4,20 +4,19 @@ import {AuthenticationService} from "../../../services/authentication.service";
 import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
 import {BehaviorSubject, catchError, Observable, of} from "rxjs";
 import {GetUsersModel} from "../../../Models/getUsers.model";
+import {AdminURL} from "../../../Util/adminURL.model";
+import {Course} from "../../../Models/course.model";
 
 @Injectable()
 
 export class administrationApi {
 
-  private urlCrearCuenta = "http://localhost:5000/api/usuario/registrar";
-  private urlTodosLosUsuarios = "http://localhost:5000/api/usuario/todos";
-
   constructor(private httpclient: HttpClient,
               private authservice: AuthenticationService,) {
   }
 
-  registrarCuenta(nuevacuenta: CrearCuentaModel): Observable<any> {
-    return this.httpclient.post(this.urlCrearCuenta, nuevacuenta, {}).pipe(
+  registrarCuenta(nuevacuenta: CrearCuentaModel){
+    return this.httpclient.post(AdminURL.ACCOUNT_CREATION, nuevacuenta, {}).pipe(
       catchError(err => "e")
     )
   }
@@ -26,7 +25,7 @@ export class administrationApi {
     let newArreglo:CrearCuentaModel[] =[];
     let usuario = this.authservice.getUser()
     console.log(usuario)
-    this.httpclient.get<CrearCuentaModel[]>(this.urlTodosLosUsuarios, {
+    this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
@@ -50,5 +49,19 @@ export class administrationApi {
   eliminarCuenta(cuenta:CrearCuentaModel){
 
   }
+
+  addCourse(course:Course){
+
+  }
+
+  getAllCourses(){
+
+  }
+
+  courseChange(course:Course){
+
+  }
+
+
 
 }

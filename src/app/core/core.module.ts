@@ -23,6 +23,8 @@ import { FormularioCrearCuentaComponent } from './components/administration/admi
 import {MaterialModule} from "../material/material.module";
 import {MatSelectModule} from "@angular/material/select";
 import {MatTableModule} from "@angular/material/table";
+import { AccountsComponent } from './components/administration/accounts/accounts.component';
+import { AdminCoursesComponent } from './components/administration/admin-courses/admin-courses.component';
 
 
 
@@ -38,6 +40,8 @@ import {MatTableModule} from "@angular/material/table";
     StudentAssistanceComponent,
     TablaCuentasComponent,
     FormularioCrearCuentaComponent,
+    AccountsComponent,
+    AdminCoursesComponent,
   ],
     imports: [
         CommonModule,
