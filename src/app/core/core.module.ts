@@ -29,20 +29,20 @@ import { AdminCoursesComponent } from './components/administration/admin-courses
 
 
 @NgModule({
-  declarations: [
-    DashboardAdministrationComponent,
-    DashboardStudentComponent,
-    DashboardTeacherComponent,
-    CoursesComponent,
-    SchedulesComponent,
-    AssistanceComponent,
-    StudentSchedulesComponent,
-    StudentAssistanceComponent,
-    TablaCuentasComponent,
-    FormularioCrearCuentaComponent,
-    AccountsComponent,
-    AdminCoursesComponent,
-  ],
+    declarations: [
+        DashboardAdministrationComponent,
+        DashboardStudentComponent,
+        DashboardTeacherComponent,
+        CoursesComponent,
+        SchedulesComponent,
+        AssistanceComponent,
+        StudentSchedulesComponent,
+        StudentAssistanceComponent,
+        TablaCuentasComponent,
+        FormularioCrearCuentaComponent,
+        AccountsComponent,
+        AdminCoursesComponent,
+    ],
     imports: [
         CommonModule,
         MatButtonToggleModule,
@@ -50,16 +50,19 @@ import { AdminCoursesComponent } from './components/administration/admin-courses
         MatSelectModule,
         MatTableModule
     ],
-  providers:[
-    administrationApi,
-    studentApi,
-    teacherApi,
-    administrationState,
-    studentState,
-    teacherState,
-    administrationFacade,
-    studentFacade,
-    teacherFacade,
-  ]
+    exports: [
+        AccountsComponent
+    ],
+    providers: [
+        administrationApi,
+        studentApi,
+        teacherApi,
+        administrationState,
+        studentState,
+        teacherState,
+        administrationFacade,
+        studentFacade,
+        teacherFacade,
+    ]
 })
 export class CoreModule { }

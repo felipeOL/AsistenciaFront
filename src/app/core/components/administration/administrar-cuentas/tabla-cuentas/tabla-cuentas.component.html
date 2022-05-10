@@ -1,4 +1,9 @@
-<div class="example-container mat-elevation-z8">
+<div>
+  <mat-button-toggle (click)="crearCuenta()">
+    Crear cuenta
+  </mat-button-toggle>
+</div>
+<div class="example-container">
   <ng-container *ngIf="dataSource$ | async as dataSource">
     <mat-table #table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
 

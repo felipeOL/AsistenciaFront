@@ -11,20 +11,9 @@ import {
 })
 export class AccountsComponent implements OnInit {
 
-  constructor(
-    private crearCuentaDialog: MatDialog,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  public crearCuenta()
-  {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
-    dialogConfig.width="40%";
-    this.crearCuentaDialog.open(FormularioCrearCuentaComponent, dialogConfig)
   }
 
 }

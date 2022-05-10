@@ -43,6 +43,7 @@ export class FormularioCrearCuentaComponent implements OnInit {
       rut: this.crearcuentaForm.value.rut.toString(),
       rol: parseInt(this.crearcuentaForm.value.rol)
     }
+    console.log(nuevaCuenta);
     this.cuentasService.registrarCuenta(nuevaCuenta).subscribe( response => {
       if(response == 'e')
       {

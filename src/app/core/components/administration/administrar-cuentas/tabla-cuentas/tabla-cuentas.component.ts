@@ -4,6 +4,8 @@ import {GetUsersModel} from "../../../../../Models/getUsers.model";
 import {Observable} from "rxjs";
 import {CrearCuentaModel} from "../../../../../Models/crearCuenta.model";
 import {administrationFacade} from "../../../facade/administration.facade";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {FormularioCrearCuentaComponent} from "../formulario-crear-cuenta/formulario-crear-cuenta.component";
 
 @Component({
   selector: 'app-tabla-cuentas',
@@ -16,6 +18,7 @@ export class TablaCuentasComponent implements OnInit {
   dataSource$:Observable<CrearCuentaModel[]>
   constructor(
     private adminFacade:administrationFacade,
+    private crearCuentaDialog: MatDialog,
   ) {
     this.dataSource$ = this.adminFacade.cuentas$;
     this.adminFacade.updateCuentas();
@@ -23,7 +26,22 @@ export class TablaCuentasComponent implements OnInit {
 
   ngOnInit(): void
   {
+    this.adminFacade.updateCuentas();
+  }
 
+  public crearCuenta()
+  {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width="40%";
+    const dialogVal = this.crearCuentaDialog.open(FormularioCrearCuentaComponent, dialogConfig)
+    dialogVal.afterClosed().subscribe(res =>
+    {
+      this.adminFacade.updateCuentas();
+      dialogVal.close();
+    }
+    )
   }
 
 }

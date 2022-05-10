@@ -28,7 +28,9 @@ export class administrationFacade{
   }
 
   updateCuentas(){
+    console.log("update cuentas")
     this.adminApi.obtenerCuentas().subscribe(cuenta => {
+      console.log("nueva cuenta:"+cuenta);
       this.adminState.setCuentas(cuenta);
     })
   }
