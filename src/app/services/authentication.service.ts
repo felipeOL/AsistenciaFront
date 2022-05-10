@@ -33,7 +33,11 @@ export class AuthenticationService
 
   setUser(user:UserResponse){
     this.usuario = user;
-    console.dir(this.usuario);
+  }
+
+  getUser():UserResponse
+  {
+    return this.usuario
   }
 
   private getlogineror(error: HttpErrorResponse):string {

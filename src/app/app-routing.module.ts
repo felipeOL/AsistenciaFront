@@ -11,6 +11,8 @@ import {SchedulesComponent} from "./core/components/teacher/schedules/schedules.
 import {AssistanceComponent} from "./core/components/teacher/assistance/assistance.component";
 import {StudentSchedulesComponent} from "./core/components/student/student-schedules/student-schedules.component";
 import {StudentAssistanceComponent} from "./core/components/student/student-assistance/student-assistance.component";
+import {AdminCoursesComponent} from "./core/components/administration/admin-courses/admin-courses.component";
+import {AccountsComponent} from "./core/components/administration/accounts/accounts.component";
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path:"teacher-assistance",component:AssistanceComponent},
   {path:"student-schedules",component:StudentSchedulesComponent},
   {path:"student-assistance",component:StudentAssistanceComponent},
+  {path:"admin-courses",component:AdminCoursesComponent},
+  {path:"admin-accounts",component:AccountsComponent},
 
   {path:"**",component:LoginComponent},
 ];
