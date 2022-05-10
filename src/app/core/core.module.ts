@@ -17,6 +17,11 @@ import {studentState} from "./components/state/student.state";
 import {teacherState} from "./components/state/teacher.state";
 import {studentFacade} from "./components/facade/student.facade";
 import {teacherFacade} from "./components/facade/teacher.facade";
+import { TablaCuentasComponent } from './components/administration/administrar-cuentas/tabla-cuentas/tabla-cuentas.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { FormularioCrearCuentaComponent } from './components/administration/administrar-cuentas/formulario-crear-cuenta/formulario-crear-cuenta.component';
+import {MaterialModule} from "../material/material.module";
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -30,9 +35,14 @@ import {teacherFacade} from "./components/facade/teacher.facade";
     AssistanceComponent,
     StudentSchedulesComponent,
     StudentAssistanceComponent,
+    TablaCuentasComponent,
+    FormularioCrearCuentaComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonToggleModule,
+    MaterialModule,
+    MatSelectModule
   ],
   providers:[
     administrationApi,

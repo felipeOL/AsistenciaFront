@@ -11,7 +11,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDialogModule} from '@angular/material/dialog';
 
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -24,7 +23,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatIconModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports:[
     CommonModule,
@@ -36,7 +35,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatIconModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }
