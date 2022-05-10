@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CuentasService} from "../../../../../services/cuentas.service";
 
 @Component({
   selector: 'app-tabla-cuentas',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablaCuentasComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private cuentasService: CuentasService,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  getAllCuentas():void
+  {
+    this.cuentasService.getAllCuentas()
   }
 
 }
