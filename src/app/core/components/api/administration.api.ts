@@ -21,6 +21,29 @@ export class administrationApi {
     )
   }
 
+  addCourse(course:Course){
+    return this.httpclient.post(AdminURL.COURSES_CREATION, course,{}).pipe(
+      catchError( err => "e")
+    )
+  }
+
+  getAllCourses(): Observable<Course[]>{
+    let courseList: Course[] = [];
+    let usuario = this.authservice.getUser();
+    this.httpclient.get<Course[]>(AdminURL.GET_ALL_COURSES, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+      }).subscribe(response => {
+        response.forEach(course => {
+          courseList.push(course);
+        })
+      }
+    )
+    return of(courseList);
+  }
+
   obtenerCuentas(): Observable<CrearCuentaModel[]> {
     let newArreglo:CrearCuentaModel[] =[];
     let usuario = this.authservice.getUser()
@@ -50,17 +73,9 @@ export class administrationApi {
 
   }
 
-  addCourse(course:Course){
+  deleteCourse(course:Course){}
 
-  }
-
-  getAllCourses(){
-
-  }
-
-  courseChange(course:Course){
-
-  }
+  courseChange(course:Course){}
 
 
 
