@@ -21,10 +21,36 @@ export class administrationApi {
     )
   }
 
+  addCourse(course:Course):Observable<Course>
+  {
+    let usuario = this.authservice.getUser();
+    return this.httpclient.post<Course>("http://localhost:5000/api/curso/crear", course, {
+      headers: {
+        Authorization: 'Bearer ' + usuario.token
+      }
+    })
+  }
+
+  getAllCourses(): Observable<Course[]>{
+    let courseList: Course[] = [];
+    let usuario = this.authservice.getUser();
+    this.httpclient.get<Course[]>(AdminURL.GET_ALL_COURSES, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+      }).subscribe(response => {
+        response.forEach(course => {
+          courseList.push(course);
+        })
+      }
+    )
+    return of(courseList);
+  }
+
   obtenerCuentas(): Observable<CrearCuentaModel[]> {
     let newArreglo:CrearCuentaModel[] =[];
     let usuario = this.authservice.getUser()
-    console.log(usuario)
     this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
       headers: {
         accept: 'application/json',
@@ -46,21 +72,39 @@ export class administrationApi {
     return of(newArreglo);
   }
 
+  obtenerCuentasProfesor(): Observable<CrearCuentaModel[]> {
+    let newArreglo:CrearCuentaModel[] =[];
+    let usuario = this.authservice.getUser()
+    this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe(
+      (data: any[]) => {
+        data.forEach((dato:any)=>{
+          const newCuentas: any = {
+            email : dato.email,
+            nombre : dato.nombre,
+            rut : dato.rut,
+            rol :dato.rol
+          }
+          if(newCuentas.rol == "Teacher"){
+            newArreglo.push(newCuentas)
+          }
+        })
+      }
+    )
+    return of(newArreglo);
+  }
+
   eliminarCuenta(cuenta:CrearCuentaModel){
 
   }
 
-  addCourse(course:Course){
+  deleteCourse(course:Course){}
 
-  }
-
-  getAllCourses(){
-
-  }
-
-  courseChange(course:Course){
-
-  }
+  courseChange(course:Course){}
 
 
 

@@ -25,6 +25,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatTableModule} from "@angular/material/table";
 import { AccountsComponent } from './components/administration/accounts/accounts.component';
 import { AdminCoursesComponent } from './components/administration/admin-courses/admin-courses.component';
+import { FormularioCrearCursosComponent } from './components/administration/formulario-crear-cursos/formulario-crear-cursos.component';
 
 
 
@@ -42,6 +43,7 @@ import { AdminCoursesComponent } from './components/administration/admin-courses
         FormularioCrearCuentaComponent,
         AccountsComponent,
         AdminCoursesComponent,
+        FormularioCrearCursosComponent,
     ],
     imports: [
         CommonModule,

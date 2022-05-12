@@ -1,8 +1,16 @@
-
-<h2>Formulario Crear Cuenta</h2>
 <div>
+  <mat-button-toggle class="close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </mat-button-toggle>
+
+</div>
+<div>
+  <h2 class="titulo">Formulario Crear Cuenta</h2>
+</div>
+<br/>
+<div class="centerDiv">
   <form [formGroup]="crearcuentaForm">
-    <div>
+    <div style="display: flex">
       <mat-form-field >
         <mat-label>Correo electrónico</mat-label>
         <input matInput name="email" id="email" type="email" placeholder="usuario@utalca.cl" formControlName="email">
@@ -39,14 +47,12 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div id="buttons">
-      <button mat-flat-button color="primary" type="submit"  (click)="crearCuenta()" [disabled]="crearcuentaForm.invalid">Crear Cuenta</button>
+    <div class="AcceptButton">
+      <button mat-flat-button color="primary" type="submit" (click)="crearCuenta()" [disabled]="crearcuentaForm.invalid">Crear Cuenta</button>
     </div>
     <br/>
   </form>
 </div>
-<div>
-  <mat-button-toggle (click)="closeDialog()"> close </mat-button-toggle>
-</div>
+
 
 
