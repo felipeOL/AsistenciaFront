@@ -1,5 +1,14 @@
-<h2>Formulario Crear Curso</h2>
 <div>
+  <mat-button-toggle class="close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </mat-button-toggle>
+
+</div>
+<div>
+  <h2 class="titulo">Formulario Crear Curso</h2>
+</div>
+<br/>
+<div class="centerDiv">
   <form [formGroup]="crearCursoForm">
     <div>
       <mat-form-field appearance="outline">
@@ -39,14 +48,11 @@
         <input matInput type="text" placeholder="bloque 1" formControlName="bloque">
       </mat-form-field>
     </div>
-    <div id="buttons">
+    <div class="AcceptButton">
       <button mat-flat-button color="primary" type="submit"  (click)="crearCurso()" [disabled]="crearCursoForm.invalid">Crear Curso</button>
     </div>
     <br/>
   </form>
-</div>
-<div>
-  <mat-button-toggle (click)="closeDialog()"> close </mat-button-toggle>
 </div>
 
 
