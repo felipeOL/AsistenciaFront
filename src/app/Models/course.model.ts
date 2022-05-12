@@ -1,5 +1,5 @@
 export interface Course{
-  id_profesor?:string;
+  idprofesor?:string;
   codigo?:string;
   nombre?:string;
   seccion?:string;

@@ -21,12 +21,13 @@ export class administrationApi {
     )
   }
 
-  addCourse(course:Course){
+  addCourse(course:Course):Observable<Course>
+  {
     console.log(course);
     let usuario = this.authservice.getUser();
     console.log(usuario);
     console.log(AdminURL.COURSES_CREATION);
-    return this.httpclient.post(AdminURL.COURSES_CREATION, course, {
+    return this.httpclient.post<Course>("http://localhost:5000/api/curso/crear", course, {
       headers: {
         Authorization: 'Bearer ' + usuario.token
       }

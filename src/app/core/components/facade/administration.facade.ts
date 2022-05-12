@@ -28,7 +28,7 @@ export class administrationFacade{
   }
 
   crearCurso(curso:Course){
-    this.adminApi.addCourse(curso);
+    console.log(this.adminApi.addCourse(curso));
     this.adminState.addCourses(curso);
   }
 

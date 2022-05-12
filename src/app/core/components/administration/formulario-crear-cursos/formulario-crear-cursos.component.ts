@@ -53,7 +53,7 @@ export class FormularioCrearCursosComponent implements OnInit {
   public crearCurso():void
   {
     let nuevoCurso : Course = {
-      id_profesor: this.crearCursoForm.value.id.toString(),
+      idprofesor: this.crearCursoForm.value.id.toString(),
       codigo:this.crearCursoForm.value.codigo.toString(),
       nombre:this.crearCursoForm.value.nombre.toString(),
       seccion:this.crearCursoForm.value.seccion.toString(),
