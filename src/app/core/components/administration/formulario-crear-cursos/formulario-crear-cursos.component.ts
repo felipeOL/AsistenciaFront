@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {CuentasService} from "../../../../services/cuentas.service";
 import {CrearCuentaModel} from "../../../../Models/crearCuenta.model";
 import {Course} from "../../../../Models/course.model";
 import {administrationFacade} from "../../facade/administration.facade";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
+import {AuthenticationService} from "../../../../services/authentication.service";
 
 @Component({
   selector: 'app-formulario-crear-cursos',
   templateUrl: './formulario-crear-cursos.component.html',
   styleUrls: ['./formulario-crear-cursos.component.scss']
 })
-export class FormularioCrearCursosComponent implements OnInit {
+export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
 
   profesorActual = "";
   profesores$: Observable<CrearCuentaModel[]>;
+  list:CrearCuentaModel[] = [];
 
   constructor(
     public dialogref: MatDialogRef<FormularioCrearCursosComponent>,
@@ -24,16 +26,16 @@ export class FormularioCrearCursosComponent implements OnInit {
     private dialog: MatDialog,
     private adminFacade: administrationFacade,
   ) {
+    this.adminFacade.updateCuentasProfesor();
     this.profesores$ = this.adminFacade.cuentas$;
-    this.adminFacade.updateCuentas();
-    console.log(this.profesores$);
-    this.adminFacade.cuentas$.subscribe(cuentas => {
-      cuentas.forEach( response => {
-      })
-    })
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    console.log("ngOnDestroy");
+    this.profesores$.subscribe().unsubscribe()
   }
 
   crearCursoForm = this.formBuilder.group({

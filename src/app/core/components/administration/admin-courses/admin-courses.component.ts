@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {CrearCuentaModel} from "../../../../Models/crearCuenta.model";
 import {administrationFacade} from "../../facade/administration.facade";
@@ -13,8 +13,8 @@ import {FormularioCrearCursosComponent} from "../formulario-crear-cursos/formula
   templateUrl: './admin-courses.component.html',
   styleUrls: ['./admin-courses.component.scss']
 })
-export class AdminCoursesComponent implements OnInit {
-  displayedColumns:string[] = ['codigo', 'nombre', 'sección', 'semestre','bloque'];
+export class AdminCoursesComponent implements OnInit,OnDestroy {
+  displayedColumns:string[] = ['codigo', 'nombre', 'sección', 'semestre','bloque','profesor'];
   dataSource$:Observable<CrearCuentaModel[]>
   constructor(
               private adminFacade:administrationFacade,
@@ -26,6 +26,11 @@ export class AdminCoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    console.log("Destruccion!");
+    this.dataSource$.subscribe().unsubscribe();
   }
 
   public crearCurso()

@@ -41,7 +41,7 @@ export class FormularioCrearCuentaComponent implements OnInit {
       nombre:this.crearcuentaForm.value.nombre.toString(),
       contraseña:this.crearcuentaForm.value.contraseña.toString(),
       rut: this.crearcuentaForm.value.rut.toString(),
-      rol: parseInt(this.crearcuentaForm.value.rol)
+      rol: parseInt(this.crearcuentaForm.value.rol),
     }
     console.log(nuevaCuenta);
     this.cuentasService.registrarCuenta(nuevaCuenta).subscribe( response => {

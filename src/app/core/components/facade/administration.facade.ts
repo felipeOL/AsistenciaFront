@@ -50,6 +50,12 @@ export class administrationFacade{
     })
   }
 
+  updateCuentasProfesor(){
+    this.adminApi.obtenerCuentasProfesor().subscribe(cuenta => {
+      this.adminState.setCuentas(cuenta);
+    })
+  }
+
   updateCourse(){
     this.adminApi.getAllCourses().subscribe(curso => {
       this.adminState.setCourses(curso);

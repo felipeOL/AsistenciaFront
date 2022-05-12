@@ -72,6 +72,32 @@ export class administrationApi {
     return of(newArreglo);
   }
 
+  obtenerCuentasProfesor(): Observable<CrearCuentaModel[]> {
+    let newArreglo:CrearCuentaModel[] =[];
+    let usuario = this.authservice.getUser()
+    this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe(
+      (data: any[]) => {
+        data.forEach((dato:any)=>{
+          const newCuentas: any = {
+            email : dato.email,
+            nombre : dato.nombre,
+            rut : dato.rut,
+            rol :dato.rol
+          }
+          if(newCuentas.rol == "Teacher"){
+            newArreglo.push(newCuentas)
+          }
+        })
+      }
+    )
+    return of(newArreglo);
+  }
+
   eliminarCuenta(cuenta:CrearCuentaModel){
 
   }

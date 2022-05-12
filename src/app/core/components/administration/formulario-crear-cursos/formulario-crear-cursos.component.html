@@ -14,7 +14,6 @@
       <mat-form-field appearance="outline">
         <mat-label>Profesor</mat-label>
         <mat-select formControlName="id" [ngModel]="profesorActual" (ngModelChange)="onChangeProfesor($event)">
-          <mat-option>None</mat-option>
           <div *ngIf="profesores$ | async as profesores">
           <mat-option *ngFor="let profesor of profesores" [value]="profesor.email">{{profesor.nombre}}</mat-option>
           </div>
