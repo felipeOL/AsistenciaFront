@@ -22,9 +22,15 @@ export class administrationApi {
   }
 
   addCourse(course:Course){
-    return this.httpclient.post(AdminURL.COURSES_CREATION, course,{}).pipe(
-      catchError( err => "e")
-    )
+    console.log(course);
+    let usuario = this.authservice.getUser();
+    console.log(usuario);
+    console.log(AdminURL.COURSES_CREATION);
+    return this.httpclient.post(AdminURL.COURSES_CREATION, course, {
+      headers: {
+        Authorization: 'Bearer ' + usuario.token
+      }
+    })
   }
 
   getAllCourses(): Observable<Course[]>{

@@ -37,6 +37,7 @@ export class FormularioCrearCursosComponent implements OnInit {
   }
 
   crearCursoForm = this.formBuilder.group({
+    id: ['',Validators.required],
     codigo: ['', Validators.required],
     nombre: ['', Validators.required],
     seccion: ['', Validators.required],
@@ -52,13 +53,15 @@ export class FormularioCrearCursosComponent implements OnInit {
   public crearCurso():void
   {
     let nuevoCurso : Course = {
+      id_profesor: this.crearCursoForm.value.id.toString(),
       codigo:this.crearCursoForm.value.codigo.toString(),
       nombre:this.crearCursoForm.value.nombre.toString(),
       seccion:this.crearCursoForm.value.seccion.toString(),
       semestre: this.crearCursoForm.value.semestre.toString(),
       bloque: this.crearCursoForm.value.bloque.toString(),
     }
-    this.adminFacade.crearCurso(nuevoCurso);
+    console.log(nuevoCurso);
+    console.log(this.adminFacade.crearCurso(nuevoCurso));
   }
 
   onChangeProfesor(event:any):void{
