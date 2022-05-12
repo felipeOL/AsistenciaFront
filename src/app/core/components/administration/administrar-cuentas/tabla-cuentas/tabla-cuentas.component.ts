@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CuentasService} from "../../../../../services/cuentas.service";
 import {GetUsersModel} from "../../../../../Models/getUsers.model";
 import {Observable} from "rxjs";
@@ -12,7 +12,7 @@ import {FormularioCrearCuentaComponent} from "../formulario-crear-cuenta/formula
   templateUrl: './tabla-cuentas.component.html',
   styleUrls: ['./tabla-cuentas.component.scss']
 })
-export class TablaCuentasComponent implements OnInit {
+export class TablaCuentasComponent implements OnInit,OnDestroy {
 
   displayedColumns:string[] = ['email', 'nombre', 'rut', 'rol'];
   dataSource$:Observable<CrearCuentaModel[]>
@@ -27,6 +27,11 @@ export class TablaCuentasComponent implements OnInit {
   ngOnInit(): void
   {
     this.adminFacade.updateCuentas();
+  }
+
+  ngOnDestroy() {
+    console.log("Bailando solo en la oscuridad, te vas a acostumbrar, a ver toda la vida pasar....");
+    this.dataSource$.subscribe().unsubscribe();
   }
 
   public crearCuenta()
