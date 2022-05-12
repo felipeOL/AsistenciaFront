@@ -14,7 +14,7 @@ import {FormularioCrearCursosComponent} from "../formulario-crear-cursos/formula
   styleUrls: ['./admin-courses.component.scss']
 })
 export class AdminCoursesComponent implements OnInit,OnDestroy {
-  displayedColumns:string[] = ['codigo', 'nombre', 'sección', 'semestre','bloque','profesor'];
+  displayedColumns:string[] = ['codigo', 'nombre', 'sección', 'semestre','bloque'];
   dataSource$:Observable<CrearCuentaModel[]>
   constructor(
               private adminFacade:administrationFacade,
@@ -30,7 +30,6 @@ export class AdminCoursesComponent implements OnInit,OnDestroy {
 
   ngOnDestroy() {
     console.log("Destruccion!");
-    this.dataSource$.subscribe().unsubscribe();
   }
 
   public crearCurso()
@@ -42,10 +41,11 @@ export class AdminCoursesComponent implements OnInit,OnDestroy {
     const dialogVal = this.crearCuentaDialog.open(FormularioCrearCursosComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>
       {
-        this.adminFacade.updateCuentas();
+        this.adminFacade.updateCourse();
         dialogVal.close();
       }
-    )
+    ).unsubscribe();
+
   }
 
 }
