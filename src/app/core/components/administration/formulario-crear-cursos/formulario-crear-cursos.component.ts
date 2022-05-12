@@ -60,8 +60,7 @@ export class FormularioCrearCursosComponent implements OnInit {
       semestre: this.crearCursoForm.value.semestre.toString(),
       bloque: this.crearCursoForm.value.bloque.toString(),
     }
-    console.log(nuevoCurso);
-    console.log(this.adminFacade.crearCurso(nuevoCurso));
+    this.adminFacade.crearCurso(nuevoCurso);
   }
 
   onChangeProfesor(event:any):void{

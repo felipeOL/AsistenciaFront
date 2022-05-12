@@ -23,10 +23,7 @@ export class administrationApi {
 
   addCourse(course:Course):Observable<Course>
   {
-    console.log(course);
     let usuario = this.authservice.getUser();
-    console.log(usuario);
-    console.log(AdminURL.COURSES_CREATION);
     return this.httpclient.post<Course>("http://localhost:5000/api/curso/crear", course, {
       headers: {
         Authorization: 'Bearer ' + usuario.token
@@ -54,7 +51,6 @@ export class administrationApi {
   obtenerCuentas(): Observable<CrearCuentaModel[]> {
     let newArreglo:CrearCuentaModel[] =[];
     let usuario = this.authservice.getUser()
-    console.log(usuario)
     this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
       headers: {
         accept: 'application/json',
