@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {CuentasService} from "../../../../services/cuentas.service";
 import {CrearCuentaModel} from "../../../../Models/crearCuenta.model";
-import {Course} from "../../../../Models/course.model";
+import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {administrationFacade} from "../../facade/administration.facade";
 import {Observable, of} from "rxjs";
 import {AuthenticationService} from "../../../../services/authentication.service";
@@ -55,7 +55,7 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
 
   public crearCurso():void
   {
-    let nuevoCurso : Course = {
+    let nuevoCurso : CrearCourseModel = {
       idprofesor: this.crearCursoForm.value.id.toString(),
       codigo:this.crearCursoForm.value.codigo.toString(),
       nombre:this.crearCursoForm.value.nombre.toString(),

@@ -5,7 +5,9 @@ import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
 import {BehaviorSubject, catchError, Observable, of} from "rxjs";
 import {GetUsersModel} from "../../../Models/getUsers.model";
 import {AdminURL} from "../../../Util/adminURL.model";
-import {Course} from "../../../Models/course.model";
+import {CrearCourseModel} from "../../../Models/CrearCourse.model";
+import {CourseResponseModel} from "../../../Models/CourseResponse.model";
+import {ProferoResposeModel} from "../../../Models/ProferoRespose.model";
 
 @Injectable()
 
@@ -21,27 +23,37 @@ export class administrationApi {
     )
   }
 
-  addCourse(course:Course):Observable<Course>
+  addCourse(course:CrearCourseModel):Observable<CrearCourseModel>
   {
     let usuario = this.authservice.getUser();
-    return this.httpclient.post<Course>("http://localhost:5000/api/curso/crear", course, {
+    return this.httpclient.post<CrearCourseModel>("http://localhost:5000/api/curso/crear", course, {
       headers: {
         Authorization: 'Bearer ' + usuario.token
       }
     })
   }
 
-  getAllCourses(): Observable<Course[]>{
-    let courseList: Course[] = [];
+  getAllCourses(): Observable<CourseResponseModel[]>{
+    let courseList: CourseResponseModel[] = [];
     let usuario = this.authservice.getUser();
-    this.httpclient.get<Course[]>(AdminURL.GET_ALL_COURSES, {
+    this.httpclient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
       }).subscribe(response => {
         response.forEach(course => {
-          courseList.push(course);
+            let nuevoCurso: CourseResponseModel = {
+              id: course.id,
+              codigo: course.codigo,
+              nombre: course.nombre,
+              seccion: course.seccion,
+              semestre: course.semestre,
+              bloque: course.bloque,
+              anio: course.anio,
+              profesor: course.profesor
+            }
+            courseList.push(nuevoCurso)
         })
       }
     )
@@ -102,9 +114,9 @@ export class administrationApi {
 
   }
 
-  deleteCourse(course:Course){}
+  deleteCourse(course:CrearCourseModel){}
 
-  courseChange(course:Course){}
+  courseChange(course:CrearCourseModel){}
 
 
 

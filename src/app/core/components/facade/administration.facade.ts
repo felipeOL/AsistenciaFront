@@ -4,7 +4,8 @@ import {administrationApi} from "../api/administration.api";
 import {Observable} from "rxjs";
 import {GetUsersModel} from "../../../Models/getUsers.model";
 import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
-import {Course} from "../../../Models/course.model";
+import {CrearCourseModel} from "../../../Models/CrearCourse.model";
+import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 
 @Injectable()
 
@@ -18,7 +19,7 @@ export class administrationFacade{
     return this.adminState.cuentas$();
   }
 
-  get courses$():Observable<Course[]>{
+  get courses$():Observable<CourseResponseModel[]>{
     return this.adminState.courses$();
   }
 
@@ -27,11 +28,11 @@ export class administrationFacade{
     this.adminState.addCuenta(cuenta);
   }
 
-  crearCurso(curso:Course): any{
+  crearCurso(curso:CrearCourseModel): any{
     let respose = this.adminApi.addCourse(curso).subscribe( algo => {
       console.log(algo)
     });
-    this.adminState.addCourses(curso);
+    this.updateCourse()
     return respose
   }
 
@@ -40,7 +41,7 @@ export class administrationFacade{
     this.adminState.removeCuenta(cuenta);
   }
 
-  eliminarCurso(curso:Course){
+  eliminarCurso(curso:CrearCourseModel){
     this.adminApi.deleteCourse(curso);
     this.adminState.removeCourses(curso);
   }

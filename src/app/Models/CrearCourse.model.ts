@@ -1,4 +1,4 @@
-export interface Course{
+export interface CrearCourseModel{
   idprofesor?:string;
   codigo?:string;
   nombre?:string;
