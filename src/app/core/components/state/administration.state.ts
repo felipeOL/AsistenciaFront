@@ -2,19 +2,20 @@ import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {GetUsersModel} from "../../../Models/getUsers.model";
 import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
-import {Course} from "../../../Models/course.model";
+import {CrearCourseModel} from "../../../Models/CrearCourse.model";
+import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 
 @Injectable()
 
 export class administrationState{
   private cuentasState$ = new BehaviorSubject<CrearCuentaModel[]>([]);
-  private coursesState$ = new BehaviorSubject<Course[]>([]);
+  private coursesState$ = new BehaviorSubject<CourseResponseModel[]>([]);
 
   cuentas$():Observable<CrearCuentaModel[]>{
     return this.cuentasState$.asObservable();
   }
 
-  courses$():Observable<Course[]>{
+  courses$():Observable<CourseResponseModel[]>{
     return this.coursesState$.asObservable();
   }
 
@@ -22,7 +23,7 @@ export class administrationState{
     this.cuentasState$.next([...this.cuentasState$.getValue(),cuenta])
   }
 
-  addCourses(courses:Course){
+  addCourses(courses:CourseResponseModel){
     this.coursesState$.next([...this.coursesState$.getValue(),courses])
   }
 
@@ -31,7 +32,7 @@ export class administrationState{
     this.cuentasState$.next(listaCuentas);
   }
 
-  removeCourses(courses:Course){
+  removeCourses(courses:CrearCourseModel){
     let courseList = this.coursesState$.getValue().filter(course => course.codigo != courses.codigo);
     this.cuentasState$.next(courseList);
   }
@@ -40,7 +41,7 @@ export class administrationState{
     this.cuentasState$.next(cuentas);
   }
 
-  setCourses(courses:Course[]){
+  setCourses(courses:CourseResponseModel[]){
     this.coursesState$.next(courses);
   }
 

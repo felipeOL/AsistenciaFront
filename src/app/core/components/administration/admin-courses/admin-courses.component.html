@@ -17,6 +17,11 @@
         <mat-cell *matCellDef="let cuenta"> {{cuenta.codigo}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="Profesor">
+        <mat-header-cell *matHeaderCellDef> Profesor</mat-header-cell>
+        <mat-cell *matCellDef="let cuenta"> {{cuenta.profesor.email}} </mat-cell>
+      </ng-container>
+
       <!-- Weight Column -->
       <ng-container matColumnDef="nombre">
         <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>

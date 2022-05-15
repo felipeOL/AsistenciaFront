@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
+import {teacherFacade} from "../../facade/teacher.facade";
 
 @Component({
   selector: 'app-courses',
@@ -7,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns:string[] = ['codigo', 'nombre', 'sección', 'semestre','bloque'];
+  dataSource$:Observable<CourseResponseModel[]>
+  constructor
+  (
+    private teacherFacade: teacherFacade
+  )
+  {
+    this.dataSource$ = this.teacherFacade.courses$;
+    this.teacherFacade.updateCourse();
+    console.log(this.dataSource$);
+  }
 
   ngOnInit(): void {
   }

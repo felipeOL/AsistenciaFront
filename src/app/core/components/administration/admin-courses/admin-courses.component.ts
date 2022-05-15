@@ -7,6 +7,8 @@ import {
   FormularioCrearCuentaComponent
 } from "../administrar-cuentas/formulario-crear-cuenta/formulario-crear-cuenta.component";
 import {FormularioCrearCursosComponent} from "../formulario-crear-cursos/formulario-crear-cursos.component";
+import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
+import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
 
 @Component({
   selector: 'app-admin-courses',
@@ -14,8 +16,8 @@ import {FormularioCrearCursosComponent} from "../formulario-crear-cursos/formula
   styleUrls: ['./admin-courses.component.scss']
 })
 export class AdminCoursesComponent implements OnInit,OnDestroy {
-  displayedColumns:string[] = ['codigo', 'nombre', 'sección', 'semestre','bloque'];
-  dataSource$:Observable<CrearCuentaModel[]>
+  displayedColumns:string[] = ['codigo', 'Profesor','nombre', 'sección', 'semestre','bloque'];
+  dataSource$:Observable<CourseResponseModel[]>
   constructor(
               private adminFacade:administrationFacade,
               private crearCuentaDialog: MatDialog,
@@ -44,7 +46,7 @@ export class AdminCoursesComponent implements OnInit,OnDestroy {
         this.adminFacade.updateCourse();
         dialogVal.close();
       }
-    ).unsubscribe();
+    )
 
   }
 
