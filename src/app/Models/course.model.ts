@@ -5,4 +5,5 @@ export interface Course{
   seccion?:string;
   semestre?:string;
   bloque?:string;
+  anio?:Date;
 }

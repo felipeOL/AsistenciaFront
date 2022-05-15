@@ -45,8 +45,7 @@ export class TablaCuentasComponent implements OnInit,OnDestroy {
     {
       this.adminFacade.updateCuentas();
       dialogVal.close();
-    }
-    )
+    })
   }
 
 }

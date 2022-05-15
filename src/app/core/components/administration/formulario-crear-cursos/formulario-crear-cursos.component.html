@@ -53,6 +53,15 @@
         <input matInput type="text" placeholder="bloque 1" formControlName="bloque">
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de Inicio</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="anio">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
     <div class="AcceptButton">
       <button mat-flat-button color="primary" type="submit"  (click)="crearCurso()" [disabled]="crearCursoForm.invalid">Crear Curso</button>
     </div>

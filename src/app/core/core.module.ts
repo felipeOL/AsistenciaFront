@@ -26,7 +26,8 @@ import {MatTableModule} from "@angular/material/table";
 import { AccountsComponent } from './components/administration/accounts/accounts.component';
 import { AdminCoursesComponent } from './components/administration/admin-courses/admin-courses.component';
 import { FormularioCrearCursosComponent } from './components/administration/formulario-crear-cursos/formulario-crear-cursos.component';
-
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -45,13 +46,16 @@ import { FormularioCrearCursosComponent } from './components/administration/form
         AdminCoursesComponent,
         FormularioCrearCursosComponent,
     ],
-    imports: [
-        CommonModule,
-        MatButtonToggleModule,
-        MaterialModule,
-        MatSelectModule,
-        MatTableModule
-    ],
+  imports: [
+    CommonModule,
+    MatButtonToggleModule,
+    MaterialModule,
+    MatSelectModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
     exports: [
         AccountsComponent
     ],

@@ -45,6 +45,7 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
     seccion: ['', Validators.required],
     semestre: ['', Validators.required],
     bloque: ['', Validators.required],
+    anio: ['', Validators.required]
   })
 
   public closeDialog():void
@@ -61,8 +62,10 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
       seccion:this.crearCursoForm.value.seccion.toString(),
       semestre: this.crearCursoForm.value.semestre.toString(),
       bloque: this.crearCursoForm.value.bloque.toString(),
+      anio: this.crearCursoForm.value.anio
     }
-    this.adminFacade.crearCurso(nuevoCurso);
+    let response = this.adminFacade.crearCurso(nuevoCurso);
+    this.closeDialog()
   }
 
   onChangeProfesor(event:any):void{

@@ -27,11 +27,12 @@ export class administrationFacade{
     this.adminState.addCuenta(cuenta);
   }
 
-  crearCurso(curso:Course){
-    this.adminApi.addCourse(curso).subscribe( algo => {
+  crearCurso(curso:Course): any{
+    let respose = this.adminApi.addCourse(curso).subscribe( algo => {
       console.log(algo)
     });
     this.adminState.addCourses(curso);
+    return respose
   }
 
   eliminarCuenta(cuenta:CrearCuentaModel){
