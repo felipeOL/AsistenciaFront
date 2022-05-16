@@ -4,6 +4,7 @@ import {Observable, of} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {AdminURL} from "../../../Util/adminURL.model";
 import {AuthenticationService} from "../../../services/authentication.service";
+import {TeacherURL} from "../../../Util/teacherURL.model";
 
 @Injectable()
 
@@ -41,5 +42,18 @@ export class teacherApi
       }
     )
     return of(courseList);
+  }
+
+  public addStudentToCourse(idCurso:number, emailEstudiante: string):any
+  {
+    let usuario = this.authservice.getUser();
+    this.httpclient.post(TeacherURL.Add_STUDENT_TO_COURSE, {idcurso:idCurso, idestudiante: emailEstudiante},{
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe( response =>{
+      return response
+    })
   }
 }

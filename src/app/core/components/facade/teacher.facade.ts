@@ -19,10 +19,16 @@ export class teacherFacade
     return this.teacherState.courses$();
   }
 
-  updateCourse(){
+  updateCourse()
+  {
     this.teacherApi.getAllCourses().subscribe(curso => {
       this.teacherState.setCourses(curso);
     })
+  }
+
+  public addStudenToCourse(idCurso: number, correoEstudiante: string):any
+  {
+      return this.teacherApi.addStudentToCourse(idCurso,correoEstudiante)
   }
 
 }

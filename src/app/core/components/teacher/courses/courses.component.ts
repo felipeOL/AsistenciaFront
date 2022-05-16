@@ -3,6 +3,12 @@ import {Observable} from "rxjs";
 import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
 import {teacherFacade} from "../../facade/teacher.facade";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {
+  FormularioCrearCursosComponent
+} from "../../administration/formulario-crear-cursos/formulario-crear-cursos.component";
+import {
+  FormularioAgregarEstudianteComponent
+} from "../formulario-agregar-estudiante/formulario-agregar-estudiante.component";
 
 @Component({
   selector: 'app-courses',
@@ -35,6 +41,12 @@ export class CoursesComponent implements OnInit {
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width="40%";
+    const dialogVal = this.crearCuentaDialog.open(FormularioAgregarEstudianteComponent, dialogConfig)
+    dialogVal.afterClosed().subscribe(res =>
+      {
+        dialogVal.close();
+      }
+    )
 
   }
 
