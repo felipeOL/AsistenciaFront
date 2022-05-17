@@ -13,6 +13,7 @@ import {StudentSchedulesComponent} from "./core/components/student/student-sched
 import {StudentAssistanceComponent} from "./core/components/student/student-assistance/student-assistance.component";
 import {AdminCoursesComponent} from "./core/components/administration/admin-courses/admin-courses.component";
 import {AccountsComponent} from "./core/components/administration/accounts/accounts.component";
+import {StudentCoursesComponent} from "./core/components/student/student-courses/student-courses.component";
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -27,7 +28,7 @@ const routes: Routes = [
   {path:"student-assistance",component:StudentAssistanceComponent},
   {path:"admin-courses",component:AdminCoursesComponent},
   {path:"admin-accounts",component:AccountsComponent},
-
+  {path:"student-courses",component:StudentCoursesComponent},
   {path:"**",component:LoginComponent},
 ];
 
