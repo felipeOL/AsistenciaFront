@@ -30,6 +30,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { FormularioAgregarEstudianteComponent } from './components/teacher/formulario-agregar-estudiante/formulario-agregar-estudiante.component';
 import { StudentCoursesComponent } from './components/student/student-courses/student-courses.component';
+import { FormularioCrearClaseComponent } from './components/teacher/formulario-crear-clase/formulario-crear-clase.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { StudentCoursesComponent } from './components/student/student-courses/st
         FormularioCrearCursosComponent,
         FormularioAgregarEstudianteComponent,
         StudentCoursesComponent,
+        FormularioCrearClaseComponent,
     ],
   imports: [
     CommonModule,

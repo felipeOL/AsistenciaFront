@@ -9,6 +9,7 @@ import {
 import {
   FormularioAgregarEstudianteComponent
 } from "../formulario-agregar-estudiante/formulario-agregar-estudiante.component";
+import {FormularioCrearClaseComponent} from "../formulario-crear-clase/formulario-crear-clase.component";
 
 @Component({
   selector: 'app-courses',
@@ -17,7 +18,7 @@ import {
 })
 export class CoursesComponent implements OnInit {
 
-  displayedColumns:string[] = ['codigo',"id", 'nombre', 'sección', 'semestre','bloque'];
+  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','bloque','botonCrear'];
   dataSource$:Observable<CourseResponseModel[]>
   constructor
   (
@@ -48,6 +49,19 @@ export class CoursesComponent implements OnInit {
       }
     )
 
+  }
+
+  crearCurso(){
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+    dialogConfig.width="40%";
+    const dialogVal = this.crearCuentaDialog.open(FormularioCrearClaseComponent, dialogConfig)
+    dialogVal.afterClosed().subscribe(res =>
+      {
+        dialogVal.close();
+      }
+    )
   }
 
 }
