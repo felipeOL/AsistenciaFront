@@ -34,17 +34,17 @@ export class FormularioCrearClaseComponent implements OnInit {
     this.dialogref.close()
   }
 
-  addCourse():void
+  addClase():void
   {
     let newCourse : crearClaseModel = {
       idCurso: this.courseForm.value.idCurso.toString(),
       sala: this.courseForm.value.sala.toString(),
-      modalidad: this.courseForm.value.sala.toString(),
+      modalidad: this.courseForm.value.modalidad.toString(),
       bloque: this.courseForm.value.bloque.toString(),
-      fecha: this.courseForm.value.fecha.toString(),
+      fecha: this.courseForm.value.fecha,
   }
-
-
+  console.dir(newCourse);
+  this.teacherFacade.addClase(newCourse);
     this.closeDialog()
   }
 

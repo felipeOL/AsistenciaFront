@@ -64,7 +64,7 @@ export class teacherApi
     this.httpclient.post(TeacherURL.ADD_CLASS,clase,{
       headers:{
         accept: 'application/json',
-        Authorization: 'Bearer' + usuario.token
+        Authorization: 'Bearer ' + usuario.token
       }
     }).subscribe(response => {
       return response;

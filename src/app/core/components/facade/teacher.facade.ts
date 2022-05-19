@@ -3,6 +3,7 @@ import {teacherState} from "../state/teacher.state";
 import {teacherApi} from "../api/teacher.api";
 import {Observable} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
+import {crearClaseModel} from "../../../Models/crearClase.model";
 
 @Injectable()
 
@@ -29,6 +30,10 @@ export class teacherFacade
   public addStudenToCourse(idCurso: number, correoEstudiante: string):any
   {
       return this.teacherApi.addStudentToCourse(idCurso,correoEstudiante)
+  }
+
+  addClase(clase:crearClaseModel){
+    this.teacherApi.addClass(clase);
   }
 
 }
