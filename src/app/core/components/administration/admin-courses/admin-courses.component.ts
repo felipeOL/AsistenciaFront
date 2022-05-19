@@ -47,7 +47,7 @@ export class AdminCoursesComponent implements OnInit,OnDestroy {
         dialogVal.close();
       }
     )
-
+    this.adminFacade.updateCourse();
   }
 
 }
