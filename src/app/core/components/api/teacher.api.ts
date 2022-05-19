@@ -5,6 +5,7 @@ import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {AdminURL} from "../../../Util/adminURL.model";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {TeacherURL} from "../../../Util/teacherURL.model";
+import {crearClaseModel} from "../../../Models/crearClase.model";
 
 @Injectable()
 
@@ -54,6 +55,19 @@ export class teacherApi
       }
     }).subscribe( response =>{
       return response
+    })
+  }
+
+  public addClass(clase:crearClaseModel):any
+  {
+    let usuario = this.authservice.getUser();
+    this.httpclient.post(TeacherURL.ADD_CLASS,clase,{
+      headers:{
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe(response => {
+      return response;
     })
   }
 }
