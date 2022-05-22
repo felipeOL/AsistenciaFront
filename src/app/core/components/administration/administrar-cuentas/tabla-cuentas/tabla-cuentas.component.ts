@@ -1,11 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CuentasService} from "../../../../../services/cuentas.service";
 import {GetUsersModel} from "../../../../../Models/getUsers.model";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {CrearCuentaModel} from "../../../../../Models/crearCuenta.model";
 import {administrationFacade} from "../../../facade/administration.facade";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {FormularioCrearCuentaComponent} from "../formulario-crear-cuenta/formulario-crear-cuenta.component";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-tabla-cuentas',
@@ -16,17 +18,27 @@ export class TablaCuentasComponent implements OnInit,OnDestroy {
 
   displayedColumns:string[] = ['email', 'nombre', 'rut', 'rol'];
   dataSource$:Observable<CrearCuentaModel[]>
+  myDataSource: MatTableDataSource<CrearCuentaModel> = new MatTableDataSource<CrearCuentaModel>()
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = {} as MatPaginator;
   constructor(
     private adminFacade:administrationFacade,
     private crearCuentaDialog: MatDialog,
   ) {
     this.dataSource$ = this.adminFacade.cuentas$;
-    this.adminFacade.updateCuentas();
   }
 
   ngOnInit(): void
   {
     this.adminFacade.updateCuentas();
+    this.dataSource$.subscribe( respuesta => {
+      this.myDataSource.data = respuesta
+      this.myDataSource.paginator = this.paginator
+    })
+  }
+
+  ngAfterViewInit()
+  {
   }
 
   ngOnDestroy() {
@@ -46,6 +58,14 @@ export class TablaCuentasComponent implements OnInit,OnDestroy {
       this.adminFacade.updateCuentas();
       dialogVal.close();
     })
+  }
+  onRowClicked(row: any) {
+    console.log('Row clicked: ', row);
+  }
+
+  getNumberOffClases()
+  {
+    this.myDataSource.data.length
   }
 
 }

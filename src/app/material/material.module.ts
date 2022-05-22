@@ -9,6 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatIconModule,
     MatToolbarModule,
     MatDialogModule,
+    MatPaginatorModule,
   ],
   exports:[
     CommonModule,
@@ -36,6 +38,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatIconModule,
     MatToolbarModule,
     MatDialogModule,
+    MatPaginatorModule,
   ]
 })
 export class MaterialModule { }
