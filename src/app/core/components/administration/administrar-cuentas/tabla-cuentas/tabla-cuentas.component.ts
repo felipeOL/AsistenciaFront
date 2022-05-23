@@ -19,7 +19,7 @@ export class TablaCuentasComponent implements OnInit,OnDestroy, AfterViewInit{
   i:number=0
   displayedColumns:string[] = ['email', 'nombre', 'rut', 'rol'];
   dataSource$:Observable<GetUsersModel[]>
-  myDataSource: MatTableDataSource<GetUsersModel> = new MatTableDataSource<GetUsersModel>([])
+  myDataSource: MatTableDataSource<GetUsersModel> = new MatTableDataSource<GetUsersModel>(cuentas)
 
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -27,7 +27,6 @@ export class TablaCuentasComponent implements OnInit,OnDestroy, AfterViewInit{
     private adminFacade:administrationFacade,
     private crearCuentaDialog: MatDialog,
     private cdr : ChangeDetectorRef,
-    private cuentas: CuentasService
   ) {
     this.dataSource$ = this.adminFacade.cuentas$;
   }
@@ -35,10 +34,11 @@ export class TablaCuentasComponent implements OnInit,OnDestroy, AfterViewInit{
   ngOnInit(): void
   {
     this.adminFacade.updateCuentas();
+    /* aqui probe artas cosas nada funca XD
     this.dataSource$.subscribe( respuesta => {
       this.myDataSource.data = respuesta
-      this.myDataSource.paginator = this.paginator
     })
+     */
   }
 
   ngAfterViewInit()
