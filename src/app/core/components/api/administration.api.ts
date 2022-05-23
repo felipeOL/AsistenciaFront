@@ -60,18 +60,18 @@ export class administrationApi {
     return of(courseList);
   }
 
-  obtenerCuentas(): Observable<CrearCuentaModel[]> {
-    let newArreglo:CrearCuentaModel[] =[];
+  obtenerCuentas(): Observable<GetUsersModel[]> {
+    let newArreglo:GetUsersModel[] =[];
     let usuario = this.authservice.getUser()
-    this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
+    this.httpclient.get<GetUsersModel[]>(AdminURL.GET_ALL_ACCOUNT, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
     }).subscribe(
-      (data: CrearCuentaModel[]) => {
-        data.forEach((dato:CrearCuentaModel)=>{
-          const newCuentas: CrearCuentaModel = {
+      (data: GetUsersModel[]) => {
+        data.forEach((dato:GetUsersModel)=>{
+          const newCuentas: GetUsersModel = {
             email : dato.email,
             nombre : dato.nombre,
             rut : dato.rut,
@@ -84,10 +84,10 @@ export class administrationApi {
     return of(newArreglo);
   }
 
-  obtenerCuentasProfesor(): Observable<CrearCuentaModel[]> {
-    let newArreglo:CrearCuentaModel[] =[];
+  obtenerCuentasProfesor(): Observable<GetUsersModel[]> {
+    let newArreglo:GetUsersModel[] =[];
     let usuario = this.authservice.getUser()
-    this.httpclient.get<CrearCuentaModel[]>(AdminURL.GET_ALL_ACCOUNT, {
+    this.httpclient.get<GetUsersModel[]>(AdminURL.GET_ALL_ACCOUNT, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token

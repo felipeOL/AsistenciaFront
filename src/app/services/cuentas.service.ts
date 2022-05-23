@@ -35,11 +35,10 @@ export class CuentasService {
     this.actualizarServiceCuentas()
     return this.cuentas$
   }
-  private actualizarServiceCuentas():void
+  public actualizarServiceCuentas():void
   {
     let newArreglo:GetUsersModel[] =[]
     let usuario = this.authservice.getUser()
-    console.log(usuario)
     this.httpclient.get<GetUsersModel[]>(this.urlTodosLosUsuarios, {
       headers: {
         accept: 'application/json',
@@ -60,7 +59,6 @@ export class CuentasService {
 
       }
     )
-    console.log(newArreglo)
     this.cuentas = newArreglo
     this.cuentas$.next(this.cuentas)
   }

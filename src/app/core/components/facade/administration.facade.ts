@@ -15,7 +15,7 @@ export class administrationFacade{
               private adminApi:administrationApi,
               ) {}
 
-  get cuentas$():Observable<CrearCuentaModel[]>{
+  get cuentas$():Observable<GetUsersModel[]>{
     return this.adminState.cuentas$();
   }
 
@@ -25,7 +25,23 @@ export class administrationFacade{
 
   crearCuenta(cuenta:CrearCuentaModel){
     this.adminApi.registrarCuenta(cuenta);
-    this.adminState.addCuenta(cuenta);
+    let roll ='Student'
+    if(cuenta.rol==1)
+    {
+      roll ='Teacher'
+    }
+    else if(cuenta.rol==2)
+    {
+      roll ='Admin'
+    }
+    let nuevaCuenta: GetUsersModel =
+      {
+        email: cuenta.email,
+        nombre: cuenta.nombre,
+        rut: cuenta.rut,
+        rol: roll
+      }
+    this.adminState.addCuenta(nuevaCuenta);
   }
 
   crearCurso(curso:CrearCourseModel): any{

@@ -5,7 +5,7 @@
 </div>
 <div>
   <ng-container *ngIf="dataSource$ | async as dataSource">
-    <mat-table #table [dataSource]="myDataSource" *ngIf="myDataSource.data.length > 0" class="lessons-table mat-elevation-z8">
+    <mat-table #table [dataSource]="myDataSource" class="lessons-table mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -39,9 +39,6 @@
         (click)="onRowClicked(row)">
       </mat-row>
     </mat-table>
-    <mat-paginator [length]="myDataSource.data.length"[pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
-    <div *ngIf="dataSource.length <= 0">
-      <h1>No hay cuentas creadas.</h1>
-    </div>
+    <mat-paginator [pageSizeOptions]="[1,2,5,10]" showFirstLastButtons></mat-paginator>
   </ng-container>
 </div>

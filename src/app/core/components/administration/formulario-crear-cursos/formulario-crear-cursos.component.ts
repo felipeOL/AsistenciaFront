@@ -7,6 +7,7 @@ import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {administrationFacade} from "../../facade/administration.facade";
 import {Observable, of} from "rxjs";
 import {AuthenticationService} from "../../../../services/authentication.service";
+import {GetUsersModel} from "../../../../Models/getUsers.model";
 
 @Component({
   selector: 'app-formulario-crear-cursos',
@@ -16,7 +17,7 @@ import {AuthenticationService} from "../../../../services/authentication.service
 export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
 
   profesorActual = "";
-  profesores$: Observable<CrearCuentaModel[]>;
+  profesores$: Observable<GetUsersModel[]>;
   list:CrearCuentaModel[] = [];
 
   constructor(

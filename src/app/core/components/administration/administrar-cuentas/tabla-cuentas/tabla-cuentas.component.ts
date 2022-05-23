@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CuentasService} from "../../../../../services/cuentas.service";
 import {GetUsersModel} from "../../../../../Models/getUsers.model";
 import {Observable, tap} from "rxjs";
@@ -14,16 +14,20 @@ import {MatTableDataSource} from "@angular/material/table";
   templateUrl: './tabla-cuentas.component.html',
   styleUrls: ['./tabla-cuentas.component.scss']
 })
-export class TablaCuentasComponent implements OnInit,OnDestroy {
+export class TablaCuentasComponent implements OnInit,OnDestroy, AfterViewInit{
 
+  i:number=0
   displayedColumns:string[] = ['email', 'nombre', 'rut', 'rol'];
-  dataSource$:Observable<CrearCuentaModel[]>
-  myDataSource: MatTableDataSource<CrearCuentaModel> = new MatTableDataSource<CrearCuentaModel>()
+  dataSource$:Observable<GetUsersModel[]>
+  myDataSource: MatTableDataSource<GetUsersModel> = new MatTableDataSource<GetUsersModel>([])
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = {} as MatPaginator;
+  // @ts-ignore
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private adminFacade:administrationFacade,
     private crearCuentaDialog: MatDialog,
+    private cdr : ChangeDetectorRef,
+    private cuentas: CuentasService
   ) {
     this.dataSource$ = this.adminFacade.cuentas$;
   }
@@ -39,6 +43,7 @@ export class TablaCuentasComponent implements OnInit,OnDestroy {
 
   ngAfterViewInit()
   {
+    this.myDataSource.paginator = this.paginator
   }
 
   ngOnDestroy() {
@@ -69,3 +74,26 @@ export class TablaCuentasComponent implements OnInit,OnDestroy {
   }
 
 }
+
+const cuentas:GetUsersModel[] =[
+  {
+    email: "matias@gmailk.com",
+    nombre: "matias",
+    rut: "17981314-9",
+    rol:"Administrator"
+  },
+  {
+    email: "dylan@gmailk.com",
+    nombre: "dylan",
+    rut: "18967234-9",
+    rol:"Teacher"
+  },
+  {
+    email: "benja@gmailk.com",
+    nombre: "benjamin",
+    rut: "21225333-9",
+    rol:"Student"
+  }
+]
+
+

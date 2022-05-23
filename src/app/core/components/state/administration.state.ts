@@ -8,19 +8,28 @@ import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 @Injectable()
 
 export class administrationState{
-  private cuentasState$ = new BehaviorSubject<CrearCuentaModel[]>([]);
+  private cuentasState$ = new BehaviorSubject<GetUsersModel[]>([]);
   private coursesState$ = new BehaviorSubject<CourseResponseModel[]>([]);
 
-  cuentas$():Observable<CrearCuentaModel[]>{
-    return this.cuentasState$.asObservable();
+  cuentas$():BehaviorSubject<GetUsersModel[]>{
+    return this.cuentasState$;
   }
 
   courses$():Observable<CourseResponseModel[]>{
     return this.coursesState$.asObservable();
   }
 
-  addCuenta(cuenta:CrearCuentaModel){
-    this.cuentasState$.next([...this.cuentasState$.getValue(),cuenta])
+  addCuenta(cuenta:GetUsersModel)
+  {
+    let cuentaNueva: GetUsersModel = {
+      email: cuenta.email,
+      nombre: cuenta.nombre,
+      rut: cuenta.rut,
+      rol:cuenta.rol
+
+
+    }
+    this.cuentasState$.next([...this.cuentasState$.getValue()])
   }
 
   addCourses(courses:CourseResponseModel){
@@ -37,7 +46,7 @@ export class administrationState{
     this.cuentasState$.next(courseList);
   }
 
-  setCuentas(cuentas:CrearCuentaModel[]){
+  setCuentas(cuentas:GetUsersModel[]){
     this.cuentasState$.next(cuentas);
   }
 
