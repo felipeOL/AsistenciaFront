@@ -6,5 +6,5 @@ export interface classReponse{
   modalidad?:string,
   bloque?:string,
   fecha?:Date,
-  course:CourseResponseModel;
+  course?:CourseResponseModel;
 }

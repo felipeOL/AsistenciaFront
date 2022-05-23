@@ -6,19 +6,19 @@ import {AdminURL} from "../../../Util/adminURL.model";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {TeacherURL} from "../../../Util/teacherURL.model";
 import {crearClaseModel} from "../../../Models/crearClase.model";
+import {classReponse} from "../../../Models/classReponse.model";
 
 @Injectable()
 
-export class teacherApi
-{
+export class teacherApi {
   constructor
   (
     private httpclient: HttpClient,
     private authservice: AuthenticationService
-  )
-  {}
+  ) {
+  }
 
-  getAllCourses(): Observable<CourseResponseModel[]>{
+  getAllCourses(): Observable<CourseResponseModel[]> {
     let courseList: CourseResponseModel[] = [];
     let usuario = this.authservice.getUser();
     this.httpclient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
@@ -45,29 +45,59 @@ export class teacherApi
     return of(courseList);
   }
 
-  public addStudentToCourse(idCurso:number, emailEstudiante: string):any
-  {
+  public addStudentToCourse(idCurso: number, emailEstudiante: string): any {
     let usuario = this.authservice.getUser();
-    this.httpclient.post(TeacherURL.Add_STUDENT_TO_COURSE, {idcurso:idCurso, idestudiante: emailEstudiante},{
+    this.httpclient.post(TeacherURL.Add_STUDENT_TO_COURSE, {idcurso: idCurso, idestudiante: emailEstudiante}, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-    }).subscribe( response =>{
+    }).subscribe(response => {
       return response
     })
   }
 
-  public addClass(clase:crearClaseModel):any
-  {
+  public addClass(clase: crearClaseModel): any {
     let usuario = this.authservice.getUser();
-    this.httpclient.post(TeacherURL.ADD_CLASS,clase,{
-      headers:{
+    this.httpclient.post(TeacherURL.ADD_CLASS, clase, {
+      headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
     }).subscribe(response => {
       return response;
     })
+  }
+
+  getClases(fecha: Date): Observable<classReponse[]> {
+    let clases: classReponse[] = [];
+    let usuario = this.authservice.getUser();
+    this.httpclient.post<classReponse[]>(TeacherURL.GET_ALL_CLASS, fecha,{
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe(response => {
+      response.forEach(element => {
+        let newClass:classReponse = {
+          idCurso: element.idCurso,
+          sala: element.sala,
+          modalidad: element.modalidad,
+          bloque: element.bloque,
+          fecha: element.fecha,
+          course: element.course = {
+            id: element.course?.id,
+            codigo: element.course?.codigo,
+            nombre: element.course?.nombre,
+            seccion: element.course?.seccion,
+            semestre: element.course?.semestre,
+            bloque: element.course?.bloque,
+            anio: element.course?.anio
+          }
+        }
+        clases.push(newClass);
+      })
+    })
+    return of(clases)
   }
 }

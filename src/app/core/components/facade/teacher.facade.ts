@@ -4,6 +4,7 @@ import {teacherApi} from "../api/teacher.api";
 import {Observable} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {crearClaseModel} from "../../../Models/crearClase.model";
+import {classReponse} from "../../../Models/classReponse.model";
 
 @Injectable()
 
@@ -20,6 +21,10 @@ export class teacherFacade
     return this.teacherState.courses$();
   }
 
+  get clases$():Observable<classReponse[]>{
+    return this.teacherState.clases$();
+  }
+
   updateCourse()
   {
     this.teacherApi.getAllCourses().subscribe(curso => {
@@ -34,6 +39,12 @@ export class teacherFacade
 
   addClase(clase:crearClaseModel){
     this.teacherApi.addClass(clase);
+  }
+
+  public getAllClass(fecha:Date){
+    this.teacherApi.getClases(fecha).subscribe(clases => {
+      this.teacherState.setClases(clases);
+    })
   }
 
 }
