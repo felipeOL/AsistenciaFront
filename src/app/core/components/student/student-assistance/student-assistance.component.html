@@ -1,1 +1,45 @@
-<p>student-assistance works!</p>
+<h1>Clases de hoy: {{fechaActual | date: 'dd/MM/yyyy'}} </h1>
+<div class="example-container">
+  <ng-container *ngIf="clases$ | async as dataSource">
+    <mat-table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <!-- Name Column -->
+      <ng-container matColumnDef="curso">
+        <mat-header-cell *matHeaderCellDef> Curso</mat-header-cell>
+        <mat-cell *matCellDef="let clase"> {{clase.curso.nombre}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sala">
+        <mat-header-cell *matHeaderCellDef> Sala</mat-header-cell>
+        <mat-cell *matCellDef="let clase"> {{clase.sala}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="modalidad">
+        <mat-header-cell *matHeaderCellDef> Modalidad</mat-header-cell>
+        <mat-cell *matCellDef="let clase"> {{clase.modalidad}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="bloque">
+        <mat-header-cell *matHeaderCellDef> Bloque</mat-header-cell>
+        <mat-cell *matCellDef="let clase"> {{clase.bloque}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef> Fecha</mat-header-cell>
+        <mat-cell *matCellDef="let clase"> {{clase.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <div *ngIf="dataSource.length <= 0">
+      <h1>No hay clases creadas.</h1>
+    </div>
+  </ng-container>
+</div>

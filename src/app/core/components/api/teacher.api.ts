@@ -70,6 +70,7 @@ export class teacherApi {
   }
 
   getClases(fecha: Date): Observable<classReponse[]> {
+    console.log(fecha)
     let clases: classReponse[] = [];
     let usuario = this.authservice.getUser();
     this.httpclient.post<classReponse[]>(TeacherURL.GET_ALL_CLASS, fecha,{
@@ -80,19 +81,20 @@ export class teacherApi {
     }).subscribe(response => {
       response.forEach(element => {
         let newClass:classReponse = {
-          idCurso: element.idCurso,
+          id: element.id,
           sala: element.sala,
           modalidad: element.modalidad,
           bloque: element.bloque,
           fecha: element.fecha,
-          course: element.course = {
-            id: element.course?.id,
-            codigo: element.course?.codigo,
-            nombre: element.course?.nombre,
-            seccion: element.course?.seccion,
-            semestre: element.course?.semestre,
-            bloque: element.course?.bloque,
-            anio: element.course?.anio
+          asistio: element.asistio,
+          curso: element.curso = {
+            id: element.curso?.id,
+            codigo: element.curso?.codigo,
+            nombre: element.curso?.nombre,
+            seccion: element.curso?.seccion,
+            semestre: element.curso?.semestre,
+            bloque: element.curso?.bloque,
+            anio: element.curso?.anio
           }
         }
         clases.push(newClass);

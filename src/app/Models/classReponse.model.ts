@@ -1,10 +1,11 @@
 import {CourseResponseModel} from "./CourseResponse.model";
 
 export interface classReponse{
-  idCurso?:number,
+  id?:number,
   sala?:string,
   modalidad?:string,
   bloque?:string,
   fecha?:Date,
-  course?:CourseResponseModel;
+  asistio:boolean,
+  curso?:CourseResponseModel;
 }
