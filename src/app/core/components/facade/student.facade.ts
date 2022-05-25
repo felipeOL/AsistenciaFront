@@ -36,4 +36,20 @@ export class studentFacade
       this.studentState.setClases(clases);
     })
   }
+
+  public asistir(idClass: number, fecha: Date): void
+  {
+    let respuest = this.studentApi.checkAssistence(idClass)
+    if(respuest !== null)
+    {
+      this.updateClases(fecha)
+    }
+  }
+
+  public updateClases(data:Date): void
+  {
+    this.studentApi.getClases(data).subscribe(clases => {
+      this.studentState.setClases(clases);
+    })
+  }
 }

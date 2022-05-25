@@ -34,6 +34,20 @@
         <mat-header-cell *matHeaderCellDef> Fecha</mat-header-cell>
         <mat-cell *matCellDef="let clase"> {{clase.fecha | date: 'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="asistir">
+        <mat-header-cell *matHeaderCellDef> Asistir </mat-header-cell>
+        <mat-cell *matCellDef="let clase">
+          <div *ngIf="!clase.asistio; else yaAsistio" >
+            <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>{{clase.asistio}}
+            </button>
+          </div>
+          <ng-template #yaAsistio>
+            <button mat-button disabled>Asistencia Marcada</button>
+          </ng-template>
+
+        </mat-cell>
+
+      </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

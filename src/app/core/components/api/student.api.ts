@@ -77,7 +77,20 @@ export class studentApi{
     return of(clases)
   }
 
-  checkAssistence(){
-
+  checkAssistence(idClass: number): any
+  {
+    let body =
+      {
+        idclase:idClass
+      }
+    let usuario =this.authservice.getUser();
+    this.httpClient.post(StudentURL.ASSISTENCE_CLASS,body,{
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe(a => {
+      return a
+    })
   }
 }

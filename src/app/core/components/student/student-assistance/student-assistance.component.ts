@@ -12,17 +12,21 @@ export class StudentAssistanceComponent implements OnInit {
 
   fechaActual: Date = new Date();
   clases$:Observable<classReponse[]>
-  displayedColumns:string[] = ['curso','sala', 'modalidad', 'bloque', 'fecha'];
+  displayedColumns:string[] = ['curso','sala', 'modalidad', 'bloque', 'fecha', 'asistir'];
   constructor(
     private studentFacade: studentFacade,
   ) {
     this.clases$ = this.studentFacade.clases$;
     this.studentFacade.getAllClass(this.fechaActual);
-    console.log(this.clases$)
 
   }
 
   ngOnInit(): void {
+  }
+  asitir(id:number, bloque: string)
+  {
+    console.log(id)
+    this.studentFacade.asistir(id,this.fechaActual)
   }
 
 }
