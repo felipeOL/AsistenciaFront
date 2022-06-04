@@ -7,13 +7,15 @@ import {RouterModule} from "@angular/router";
 import {MaterialModule} from "../material/material.module";
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 import {MatDialogRef} from "@angular/material/dialog";
+import { SheetComponent } from './components/sheet/sheet.component';
 
 
 @NgModule({
     declarations: [
         LoginComponent,
         NavbarComponent,
-        ErrorDialogComponent
+        ErrorDialogComponent,
+        SheetComponent
     ],
     exports: [
         NavbarComponent
