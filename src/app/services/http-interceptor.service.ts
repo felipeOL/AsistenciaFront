@@ -29,7 +29,7 @@ export class HttpInterceptorService implements HttpInterceptor{
     this.dialog.open(ErrorDialogComponent, {
       data:
         {
-          titulo: error.statusText,
+          titulo: "Error "+error.status,
           contenido: error.error
         }
     })
