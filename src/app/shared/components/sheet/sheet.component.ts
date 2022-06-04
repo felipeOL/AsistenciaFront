@@ -32,16 +32,26 @@ export class SheetComponent implements OnInit {
       /* save data */
       let i = 0
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, {header: 1}));
-      for (let j = 0; j < this.data.length; j++) {
+      for (let j = 1; j < this.data.length; j++) {
         for (let k = 0; k < 4; k++) {
           if(k == 3)
           this.excelService.addCorreo(this.data[j][k]);
         }
-        this.excelService.cantidadCorreos();
       }
-      this.excelService.mostrarDatos();
     };
     reader.readAsBinaryString(target.files[0]);
+  }
+
+  export(): void {
+    /* generate worksheet */
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.data);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
 
   constructor(private excelService:CourseStudentService) { }
