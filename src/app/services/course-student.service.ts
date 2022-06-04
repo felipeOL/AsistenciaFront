@@ -21,4 +21,8 @@ export class CourseStudentService {
   cantidadCorreos(){
     console.log(this.correosEstudiantes.length);
   }
+
+  mostrarDatos(){
+    console.log(this.correosEstudiantes);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
+import {CourseStudentService} from "../../../services/course-student.service";
 
 type AOA = any[][];
 
@@ -10,8 +11,6 @@ type AOA = any[][];
 })
 export class SheetComponent implements OnInit {
 
-  pagoMedico: PagoMedicoXmed = {};
-  pagosMedicos: PagoMedicoXmed[] = [];
   data: AOA = [];
   wopts: XLSX.WritingOptions = {bookType: 'xlsx', type: 'array'};
   fileName: string = 'SheetJS.xlsx';
@@ -34,19 +33,18 @@ export class SheetComponent implements OnInit {
       let i = 0
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, {header: 1}));
       for (let j = 0; j < this.data.length; j++) {
-        this.pagoMedico = {};
-        for (let k = 0; k < 21; k++) {
-          this.InformacionPagoMedico(this.data[j][k], k)
+        for (let k = 0; k < 4; k++) {
+          if(k == 3)
+          this.excelService.addCorreo(this.data[j][k]);
         }
-        this._pagosService.addPago(this.pagoMedico);
-        this._pagosService.cantidadDatos();
+        this.excelService.cantidadCorreos();
       }
-      this._pagosService.mostrarDatos();
+      this.excelService.mostrarDatos();
     };
     reader.readAsBinaryString(target.files[0]);
   }
 
-  constructor() { }
+  constructor(private excelService:CourseStudentService) { }
 
   ngOnInit(): void {
   }
