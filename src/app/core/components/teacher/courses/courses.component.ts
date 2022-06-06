@@ -10,6 +10,7 @@ import {
   FormularioAgregarEstudianteComponent
 } from "../formulario-agregar-estudiante/formulario-agregar-estudiante.component";
 import {FormularioCrearClaseComponent} from "../formulario-crear-clase/formulario-crear-clase.component";
+import {FormCrearClaseDataModel} from "../../../../Models/FormCrearClaseData.model";
 
 @Component({
   selector: 'app-courses',
@@ -51,11 +52,18 @@ export class CoursesComponent implements OnInit {
 
   }
 
-  crearCurso(){
+  crearCurso(curso: CourseResponseModel){
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width="40%";
+    let data : FormCrearClaseDataModel  = {
+      // @ts-ignore
+      idCurso:curso.id,
+      // @ts-ignore
+      bloque:curso.bloque,
+    }
+    dialogConfig.data=data
     const dialogVal = this.crearCuentaDialog.open(FormularioCrearClaseComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>
       {
