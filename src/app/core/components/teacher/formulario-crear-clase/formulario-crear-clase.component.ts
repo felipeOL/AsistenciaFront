@@ -53,13 +53,25 @@ export class FormularioCrearClaseComponent implements OnInit {
     }
     else
     {
-      // @ts-ignore
-      let newDate = new Date(newClase.fecha.toString())
-      newDate.setHours(bloque.horaInicio,bloque.minutoInicio)
-      newClase.fecha = newDate
-      console.dir(newClase);
-      this.teacherFacade.addClase(newClase);
-      this.closeDialog()
+      console.log("jajaj")
+
+      if(!(typeof newClase.fecha === 'undefined'))
+      {
+        let fecha=newClase.fecha.toString()
+        let newDate = new Date(fecha)
+        console.log(newDate)
+        newDate.setHours(bloque.horaInicio,bloque.minutoInicio)
+        newDate.setDate(newDate.getDate()+1)
+        newClase.fecha = new Date(Date.UTC(newDate.getUTCFullYear(), newDate.getUTCMonth(), newDate.getUTCDate(),newDate.getUTCHours(), newDate.getUTCMinutes()))
+        console.dir(newClase);
+        this.teacherFacade.addClase(newClase);
+        this.closeDialog()
+      }
+      else
+      {
+        console.log("error date")
+      }
+
     }
   }
 
