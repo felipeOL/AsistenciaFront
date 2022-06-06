@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, Validators} from "@angular/forms";
 import {teacherFacade} from "../../facade/teacher.facade";
-import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {crearClaseModel} from "../../../../Models/crearClase.model";
 import {HorarioBloqueService} from "../../../../services/horario-bloque.service";
+import {FormCrearClaseDataModel} from "../../../../Models/FormCrearClaseData.model";
 
 @Component({
   selector: 'app-formulario-crear-clase',
@@ -13,12 +13,21 @@ import {HorarioBloqueService} from "../../../../services/horario-bloque.service"
 })
 export class FormularioCrearClaseComponent implements OnInit {
 
+  public myData:FormCrearClaseDataModel
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: FormCrearClaseDataModel,
     public dialogref: MatDialogRef<FormularioCrearClaseComponent>,
     private formBuilder: FormBuilder,
     private teacherFacade: teacherFacade,
     private horarioServici:HorarioBloqueService
-  ) { }
+  )
+  {
+    this.myData = data
+    this.courseForm.patchValue({
+      idCurso:this.myData.idCurso,
+      bloque:this.myData.bloque
+    })
+  }
 
   courseForm = this.formBuilder.group({
     idCurso: ['',Validators.required],
