@@ -32,7 +32,7 @@
 
       <ng-container matColumnDef="fecha">
         <mat-header-cell *matHeaderCellDef> Fecha</mat-header-cell>
-        <mat-cell *matCellDef="let clase"> {{clase.fecha}} </mat-cell>
+        <mat-cell *matCellDef="let clase"> {{clase.fecha | date:'short'}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
