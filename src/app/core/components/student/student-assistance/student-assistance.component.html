@@ -38,7 +38,8 @@
         <mat-header-cell *matHeaderCellDef> Asistir </mat-header-cell>
         <mat-cell *matCellDef="let clase">
           <div *ngIf="!clase.asistio; else yaAsistio" >
-            <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>{{clase.asistio}}
+            <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>
+              Asistir
             </button>
           </div>
           <ng-template #yaAsistio>
