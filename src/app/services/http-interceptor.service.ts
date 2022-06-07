@@ -3,6 +3,7 @@ import {HttpHandler, HttpInterceptor, HttpRequest, HttpEvent, HttpErrorResponse}
 import {catchError, Observable} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorDialogComponent} from "../shared/components/dialogs/error-dialog/error-dialog.component";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {ErrorDialogComponent} from "../shared/components/dialogs/error-dialog/er
 export class HttpInterceptorService implements HttpInterceptor{
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   // @ts-ignore
@@ -33,6 +35,8 @@ export class HttpInterceptorService implements HttpInterceptor{
           contenido: error.error
         }
     })
-    return "e"
+    if(error.status == 401){
+      this.router.navigate(['/login']);
+    }
   }
 }

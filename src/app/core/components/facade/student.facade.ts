@@ -37,18 +37,20 @@ export class studentFacade
     })
   }
 
-  public asistir(idClass: number, fecha: Date): void
+  public asistir(idClass: number, fecha: Date)
   {
-    let respuest = this.studentApi.checkAssistence(idClass)
-    if(respuest !== null)
-    {
-      this.updateClases(fecha)
-    }
+    //nueva forma.
+    this.studentApi.checkAssistence(idClass).subscribe({next:(respuesta)=>{
+      this.updateClases(fecha);
+      },error:(err) => {
+      console.log()
+      }})
   }
 
-  public updateClases(data:Date): void
+  public updateClases(date:Date)
   {
-    this.studentApi.getClases(data).subscribe(clases => {
+    console.log("update clases....")
+    this.studentApi.getClases(date).subscribe(clases => {
       this.studentState.setClases(clases);
     })
   }

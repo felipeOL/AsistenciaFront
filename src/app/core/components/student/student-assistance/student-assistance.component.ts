@@ -22,11 +22,14 @@ export class StudentAssistanceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.clases$ = this.studentFacade.clases$;
   }
+
   asitir(id:number, bloque: string)
   {
     console.log(id)
-    this.studentFacade.asistir(id,this.fechaActual)
+    this.studentFacade.asistir(id,this.fechaActual);
+    this.clases$ = this.studentFacade.clases$;
   }
 
 }
