@@ -38,9 +38,14 @@
         <mat-header-cell *matHeaderCellDef> Asistir </mat-header-cell>
         <mat-cell *matCellDef="let clase">
           <div *ngIf="!clase.asistio; else yaAsistio" >
-            <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>
-              Asistir
-            </button>
+            <div *ngIf="validarHora(clase.fecha); else FueraDeHorario">
+              <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>
+                Asistir
+              </button>
+            </div>
+            <ng-template #FueraDeHorario>
+              <button mat-button disabled>Fuera de horario</button>
+            </ng-template>
           </div>
           <ng-template #yaAsistio>
             <button mat-button disabled>Asistencia Marcada</button>
