@@ -33,7 +33,7 @@ export class SheetComponent implements OnInit {
       /* save data */
       let i = 0
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, {header: 1}));
-      for (let j = 1; j < this.data.length; j++) {
+      for (let j = 1; j < this.data.length-1; j++) {
         for (let k = 0; k < 4; k++) {
           if(k == 3){
             console.log(this.data[j][k]);
