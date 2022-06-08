@@ -16,6 +16,7 @@ export class SheetComponent implements OnInit {
   fileName: string = 'SheetJS.xlsx';
 
   onFileChange(evt: any) {
+    this.data = [];
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
@@ -34,8 +35,10 @@ export class SheetComponent implements OnInit {
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, {header: 1}));
       for (let j = 1; j < this.data.length; j++) {
         for (let k = 0; k < 4; k++) {
-          if(k == 3)
-          this.excelService.addCorreo(this.data[j][k]);
+          if(k == 3){
+            console.log(this.data[j][k]);
+            this.excelService.addCorreo(this.data[j][k]);
+          }
         }
       }
     };

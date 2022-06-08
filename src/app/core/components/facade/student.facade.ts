@@ -49,7 +49,6 @@ export class studentFacade
 
   public updateClases(date:Date)
   {
-    console.log("update clases....")
     this.studentApi.getClases(date).subscribe(clases => {
       this.studentState.setClases(clases);
     })

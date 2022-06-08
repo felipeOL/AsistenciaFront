@@ -31,6 +31,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { FormularioAgregarEstudianteComponent } from './components/teacher/formulario-agregar-estudiante/formulario-agregar-estudiante.component';
 import { StudentCoursesComponent } from './components/student/student-courses/student-courses.component';
 import { FormularioCrearClaseComponent } from './components/teacher/formulario-crear-clase/formulario-crear-clase.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -52,16 +53,17 @@ import { FormularioCrearClaseComponent } from './components/teacher/formulario-c
         StudentCoursesComponent,
         FormularioCrearClaseComponent,
     ],
-  imports: [
-    CommonModule,
-    MatButtonToggleModule,
-    MaterialModule,
-    MatSelectModule,
-    MatTableModule,
-    MatDatepickerModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonToggleModule,
+        MaterialModule,
+        MatSelectModule,
+        MatTableModule,
+        MatDatepickerModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        SharedModule
+    ],
     exports: [
         AccountsComponent
     ],

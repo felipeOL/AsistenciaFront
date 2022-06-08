@@ -1,8 +1,3 @@
-<div>
-  <mat-button-toggle (click)="addStudent()">
-    Asignar estudiante
-  </mat-button-toggle>
-</div>
 <div class="example-container">
   <ng-container *ngIf="dataSource$ | async as dataSource">
     <mat-table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
@@ -47,10 +42,26 @@
       <ng-container matColumnDef="botonCrear">
         <mat-header-cell *matHeaderCellDef> Crear </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-raised-button color="primary" (click)='crearCurso(element)'>Crear Clase
+          <button mat-raised-button color="primary" (click)='crearCurso(element)'> + Clase
           </button>
         </mat-cell>
+      </ng-container>
 
+      <ng-container matColumnDef="botonAgregarEstudiante">
+        <mat-header-cell *matHeaderCellDef> Carga Manual </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)='addStudent(element)'> Carga Estudiante
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="botonAgregarExcel">
+        <mat-header-cell *matHeaderCellDef> Excel </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)='cargarExcel(element)'>
+            <app-sheet></app-sheet>
+          </button>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

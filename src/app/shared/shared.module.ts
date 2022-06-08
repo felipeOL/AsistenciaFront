@@ -18,7 +18,8 @@ import { SheetComponent } from './components/sheet/sheet.component';
         SheetComponent
     ],
     exports: [
-        NavbarComponent
+        NavbarComponent,
+        SheetComponent
     ],
     imports: [
         CommonModule,

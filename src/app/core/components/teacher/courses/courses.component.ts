@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
 import {teacherFacade} from "../../facade/teacher.facade";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {
-  FormularioCrearCursosComponent
-} from "../../administration/formulario-crear-cursos/formulario-crear-cursos.component";
-import {
   FormularioAgregarEstudianteComponent
 } from "../formulario-agregar-estudiante/formulario-agregar-estudiante.component";
 import {FormularioCrearClaseComponent} from "../formulario-crear-clase/formulario-crear-clase.component";
 import {FormCrearClaseDataModel} from "../../../../Models/FormCrearClaseData.model";
+import {CourseStudentService} from "../../../../services/course-student.service";
 
 @Component({
   selector: 'app-courses',
@@ -19,12 +17,13 @@ import {FormCrearClaseDataModel} from "../../../../Models/FormCrearClaseData.mod
 })
 export class CoursesComponent implements OnInit {
 
-  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','bloque','botonCrear'];
+  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','bloque','botonCrear','botonAgregarEstudiante','botonAgregarExcel'];
   dataSource$:Observable<CourseResponseModel[]>
   constructor
   (
     private teacherFacade: teacherFacade,
     private crearCuentaDialog: MatDialog,
+    private excelService:CourseStudentService
   )
   {
     this.dataSource$ = this.teacherFacade.courses$;
@@ -37,12 +36,16 @@ export class CoursesComponent implements OnInit {
 
   }
 
-  public addStudent(): void
+  public addStudent(curso:CourseResponseModel): void
   {
-    const dialogConfig = new MatDialogConfig()
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      idCurso: curso.id
+    };
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width="40%";
+
     const dialogVal = this.crearCuentaDialog.open(FormularioAgregarEstudianteComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>
       {
@@ -57,19 +60,35 @@ export class CoursesComponent implements OnInit {
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width="40%";
-    let data : FormCrearClaseDataModel  = {
+    dialogConfig.data={
       // @ts-ignore
-      idCurso:curso.id,
+      idCurso: curso.id,
       // @ts-ignore
-      bloque:curso.bloque,
+      bloque: curso.bloque,
     }
-    dialogConfig.data=data
     const dialogVal = this.crearCuentaDialog.open(FormularioCrearClaseComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>
       {
         dialogVal.close();
       }
     )
+  }
+
+  cargarExcel(curso:CourseResponseModel){
+    let correos:string[] = []
+    this.excelService.correos$().subscribe(res => {
+      res.forEach(correo => {
+        if(!correos.includes(correo)){
+          correos.push(correo)
+        }else{
+          console.log("repetido");
+        }
+      })
+      correos.forEach(correos => {
+        this.teacherFacade.addStudenToCourse(curso.id!, correos);
+      })
+    })
+
   }
 
 }

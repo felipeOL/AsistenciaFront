@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseStudentService {
 
-  correosEstudiantes: string[] = [];
+  private correosEstudiantes$ = new BehaviorSubject<string[]>([])
+
+  correos$():Observable<string[]>{
+    return this.correosEstudiantes$.asObservable();
+  }
 
   constructor() { }
 
   addCorreo(correo:string){
-    this.correosEstudiantes.push(correo);
+    console.log("se agrego correo:",correo);
+    this.correosEstudiantes$.next([...this.correosEstudiantes$.getValue(),correo]);
   }
 
-  getCorreos():Observable<string[]>{
-    return of(this.correosEstudiantes);
-  }
-
-  cantidadCorreos(){
-    console.log(this.correosEstudiantes.length);
-  }
-
-  mostrarDatos(){
-    console.log(this.correosEstudiantes);
+  setCorreos(correos:string[]){
+    this.correosEstudiantes$.next(correos);
   }
 }
