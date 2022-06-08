@@ -34,7 +34,11 @@ export class teacherFacade
 
   public addStudenToCourse(idCurso: number, correoEstudiante: string):any
   {
-      return this.teacherApi.addStudentToCourse(idCurso,correoEstudiante)
+      this.teacherApi.addStudentToCourse(idCurso,correoEstudiante).subscribe({next:(respuesta)=>{
+
+        },error:(err)=>{
+
+        }})
   }
 
   addClase(clase:crearClaseModel){

@@ -24,16 +24,21 @@ export class administrationFacade{
   }
 
   crearCuenta(cuenta:CrearCuentaModel){
-    this.adminApi.registrarCuenta(cuenta);
-    this.adminState.addCuenta(cuenta);
+    this.adminApi.registrarCuenta(cuenta).subscribe({next:(respuesta) => {
+        this.adminState.addCuenta(cuenta);
+      },error:(err) => {
+        console.log();
+    }})
   }
 
-  crearCurso(curso:CrearCourseModel): any{
-    let respose = this.adminApi.addCourse(curso).subscribe( algo => {
-      console.log(algo)
-    });
-    this.updateCourse()
-    return respose
+  crearCurso(curso:CrearCourseModel): any {
+    this.adminApi.addCourse(curso).subscribe({
+      next: (respuesta) => {
+        this.updateCourse();
+      }, error: (err) => {
+        console.log();
+      }
+    })
   }
 
   eliminarCuenta(cuenta:CrearCuentaModel){

@@ -45,15 +45,13 @@ export class teacherApi {
     return of(courseList);
   }
 
-  public addStudentToCourse(idCurso: number, emailEstudiante: string): any {
+  public addStudentToCourse(idCurso: number, emailEstudiante: string) {
     let usuario = this.authservice.getUser();
-    this.httpclient.post(TeacherURL.Add_STUDENT_TO_COURSE, {idcurso: idCurso, idestudiante: emailEstudiante}, {
+    return this.httpclient.post(TeacherURL.Add_STUDENT_TO_COURSE, {idcurso: idCurso, idestudiante: emailEstudiante}, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-    }).subscribe(response => {
-      return response
     })
   }
 
