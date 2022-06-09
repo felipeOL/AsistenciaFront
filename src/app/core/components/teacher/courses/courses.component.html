@@ -58,7 +58,7 @@
       <ng-container matColumnDef="botonAgregarExcel">
         <mat-header-cell *matHeaderCellDef> Excel </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-raised-button color="primary" (click)='cargarExcel(element)'>
+          <button mat-raised-button color="primary" (click)="cargarExcel(element)">
             <app-sheet></app-sheet>
           </button>
         </mat-cell>

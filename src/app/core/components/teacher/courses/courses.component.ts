@@ -18,8 +18,6 @@ export class CoursesComponent implements OnInit {
 
   displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','bloque','botonCrear','botonAgregarEstudiante','botonAgregarExcel'];
   dataSource$:Observable<CourseResponseModel[]>
-  correos$:Observable<string[]>
-  correos:string[] = [];
   constructor
   (
     private teacherFacade: teacherFacade,
@@ -27,7 +25,6 @@ export class CoursesComponent implements OnInit {
     private excelService:CourseStudentService
   )
   {
-    this.correos$ = this.excelService.correos$();
     this.dataSource$ = this.teacherFacade.courses$;
     this.teacherFacade.updateCourse();
     console.log(this.dataSource$);
@@ -77,16 +74,7 @@ export class CoursesComponent implements OnInit {
   }
 
   cargarExcel(curso:CourseResponseModel){
-    this.correos = [];
-    this.correos$.subscribe(res => {
-      res.forEach(correo => {
-        if(!this.correos.includes(correo)){
-          this.correos.push(correo);
-          this.teacherFacade.addStudenToCourse(curso.id!,correo);
-        }else{
-        }
-      })
-    })
+    this.excelService.obtenerCurso(curso);
   }
 
 }

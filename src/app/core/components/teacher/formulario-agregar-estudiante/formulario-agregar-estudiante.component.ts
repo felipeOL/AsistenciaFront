@@ -42,7 +42,6 @@ export class FormularioAgregarEstudianteComponent implements OnInit {
 
   public addStudent():void
   {
-
     let response = this.teacherFacade.addStudenToCourse(this.addStudentForm.value.idCurso, this.addStudentForm.value.emailStudent);
     console.log(response)
     this.closeDialog()
