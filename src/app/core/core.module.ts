@@ -32,6 +32,9 @@ import { FormularioAgregarEstudianteComponent } from './components/teacher/formu
 import { StudentCoursesComponent } from './components/student/student-courses/student-courses.component';
 import { FormularioCrearClaseComponent } from './components/teacher/formulario-crear-clase/formulario-crear-clase.component';
 import {SharedModule} from "../shared/shared.module";
+import { MarkAttendanceTeacherComponent } from './components/teacher/mark-attendance-teacher/mark-attendance-teacher.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -52,18 +55,21 @@ import {SharedModule} from "../shared/shared.module";
         FormularioAgregarEstudianteComponent,
         StudentCoursesComponent,
         FormularioCrearClaseComponent,
+        MarkAttendanceTeacherComponent,
     ],
-    imports: [
-        CommonModule,
-        MatButtonToggleModule,
-        MaterialModule,
-        MatSelectModule,
-        MatTableModule,
-        MatDatepickerModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        SharedModule
-    ],
+  imports: [
+    CommonModule,
+    MatButtonToggleModule,
+    MaterialModule,
+    MatSelectModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    SharedModule,
+    MatGridListModule,
+    MatCheckboxModule
+  ],
     exports: [
         AccountsComponent
     ],
