@@ -32,7 +32,17 @@ export class MarkAttendanceTeacherComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  public changAttendance(email:string): void
+  {
+    console.log("ajja saludos ")
+    let alumno = this.dataSource.find(alumn => alumn.email === email)
+    if(typeof alumno !== 'undefined')
+    {
+      alumno.attendan = !alumno.attendan
+    }
+    console.log(alumno)
+    console.log(this.dataSource)
+  }
 }
 
 

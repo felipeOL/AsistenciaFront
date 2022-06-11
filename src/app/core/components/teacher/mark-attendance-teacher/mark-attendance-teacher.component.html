@@ -11,10 +11,10 @@
     <mat-header-cell *matHeaderCellDef> Asistencia</mat-header-cell>
     <mat-cell *matCellDef="let cuenta">
       <div>
-        <mat-checkbox *ngIf="cuenta.attendan; else NoCheck" class="example-margin " value="{{cuenta.attendan}}"></mat-checkbox>
+        <mat-checkbox *ngIf="!cuenta.attendan; else NoCheck" class="example-margin" (click)="changAttendance(cuenta.email)" value="{{cuenta.attendan}}"></mat-checkbox>
       </div>
       <ng-template #NoCheck>
-        <mat-checkbox ngtem class="example-margin mat-checkbox-checked" value="{{cuenta.attendan}}"></mat-checkbox>
+        <mat-checkbox ngtem class="example-margin mat-checkbox-checked" (click)="changAttendance(cuenta.email)" value="{{cuenta.attendan}}"></mat-checkbox>
       </ng-template>
     </mat-cell>
   </ng-container>
