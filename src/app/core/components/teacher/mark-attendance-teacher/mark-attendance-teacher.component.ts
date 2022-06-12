@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DialogDataModel} from "../../../../Models/dialogData.model";
 
 export interface  attendan
 {
@@ -28,7 +30,10 @@ export class MarkAttendanceTeacherComponent implements OnInit {
   displayedColumns: string[]=['email', 'attendan'];
   dataSource = listData;
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataModel,
+    public dialogref: MatDialogRef<MarkAttendanceTeacherComponent>
+  ) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +47,11 @@ export class MarkAttendanceTeacherComponent implements OnInit {
     }
     console.log(alumno)
     console.log(this.dataSource)
+  }
+
+  public closeDialog():void
+  {
+    this.dialogref.close()
   }
 }
 
