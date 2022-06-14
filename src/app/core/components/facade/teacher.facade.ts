@@ -5,6 +5,9 @@ import {Observable} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {crearClaseModel} from "../../../Models/crearClase.model";
 import {classReponse} from "../../../Models/classReponse.model";
+import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
+import {ErrorDialogComponent} from "../../../shared/components/dialogs/error-dialog/error-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Injectable()
 
@@ -12,6 +15,7 @@ export class teacherFacade
 {
   constructor
   (
+    private dialog: MatDialog,
     private teacherState: teacherState,
     private teacherApi: teacherApi
   )
@@ -59,6 +63,22 @@ export class teacherFacade
   {
     let attendance = this.teacherApi.getAttendance(idClass)
     this.teacherState.setAttendanClass(attendance)
+  }
+
+  public saveAttendan(asistencia: SaveAtttendanModel)
+  {
+    let result = this.teacherApi.saveAttendan(asistencia)
+    result.subscribe(response => {
+        this.teacherState.setAttendanClass(asistencia.asistencias)
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Guardado con exito ",
+              contenido: "se guardo con exito los cambios"
+            }
+        })
+      }
+    )
   }
 
 }

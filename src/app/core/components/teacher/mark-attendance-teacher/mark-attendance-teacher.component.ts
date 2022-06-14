@@ -68,8 +68,8 @@ export class MarkAttendanceTeacherComponent implements OnInit, OnDestroy{
       idclase: this.data,
       asistencias: this.dataSource
     }
+    this.teacherFacade.saveAttendan(saveAttendan)
     console.log(saveAttendan)
-    this.dialogref.close()
   }
 }
 
