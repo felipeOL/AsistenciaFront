@@ -51,4 +51,14 @@ export class teacherFacade
     })
   }
 
+  public getAttendanceOfClass()
+  {
+    return this.teacherState.getAttendanClass()
+  }
+  public updateAttendance(idClass:number)
+  {
+    let attendance = this.teacherApi.getAttendance(idClass)
+    this.teacherState.setAttendanClass(attendance)
+  }
+
 }

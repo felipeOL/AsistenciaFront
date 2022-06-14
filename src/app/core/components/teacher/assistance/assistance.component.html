@@ -38,7 +38,7 @@
       <ng-container matColumnDef="btnAsistencia">
         <mat-header-cell *matHeaderCellDef> Asistencia </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-raised-button color="primary" (click)="verAsistencia()">
+          <button mat-raised-button color="primary" (click)="verAsistencia(element.id)">
             <mat-icon>assignment</mat-icon> Asistencia
           </button>
         </mat-cell>

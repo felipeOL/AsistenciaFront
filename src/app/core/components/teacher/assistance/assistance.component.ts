@@ -31,11 +31,12 @@ export class AssistanceComponent implements OnInit {
 
   }
 
-  verAsistencia ():void {
+  verAsistencia (id:number):void {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
     dialogConfig.width = "40%";
+    dialogConfig.data =id;
     const dialogVal = this.dialog.open(MarkAttendanceTeacherComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>
       {

@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {AdminURL} from "../../../Util/adminURL.model";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {TeacherURL} from "../../../Util/teacherURL.model";
 import {crearClaseModel} from "../../../Models/crearClase.model";
 import {classReponse} from "../../../Models/classReponse.model";
+import {AttendanModel} from "../../../Models/attendan.model";
 
 @Injectable()
 
@@ -99,5 +100,26 @@ export class teacherApi {
       })
     })
     return of(clases)
+  }
+
+  getAttendance(idclase:number)
+  {
+    let attendanClass: AttendanModel[] = [];
+    let usuario = this.authservice.getUser();
+    this.httpclient.post<AttendanModel[]>(TeacherURL.GET_ATTENDANCE_OF, {
+      idclase:idclase
+    },{
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe(response =>
+    {
+      response.forEach(elemenT =>
+      {
+        attendanClass.push(elemenT)
+      })
+    })
+    return attendanClass
   }
 }
