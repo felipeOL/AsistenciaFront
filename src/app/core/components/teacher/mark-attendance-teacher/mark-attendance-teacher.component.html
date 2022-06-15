@@ -1,0 +1,42 @@
+<div>
+  <mat-button-toggle class="close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </mat-button-toggle>
+</div>
+<div>
+  <h2>ajajaj soy un titulo</h2>
+</div>
+<div>
+  <p *ngIf="!dataSource.length;else ahoraSi">Aun no se cargando lista</p>
+  <ng-template #ahoraSi>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+        <mat-cell *matCellDef="let cuenta"> {{cuenta.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="attendan">
+        <mat-header-cell *matHeaderCellDef> Asistencia</mat-header-cell>
+        <mat-cell *matCellDef="let cuenta">
+          <div>
+            <mat-checkbox *ngIf="!cuenta.asistio; else NoCheck" class="example-margin" (click)="changAttendance(cuenta.email)" value="{{cuenta.asistio}}"></mat-checkbox>
+          </div>
+          <ng-template #NoCheck>
+            <mat-checkbox class="example-margin mat-checkbox-checked" (click)="changAttendance(cuenta.email)" value="{{cuenta.asistio}}"></mat-checkbox>
+          </ng-template>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <br/>
+    <div>
+      <button mat-raised-button color="primary" (click)="guardar()">
+        Guardar
+      </button>
+    </div>
+  </ng-template>
+</div>
+
+

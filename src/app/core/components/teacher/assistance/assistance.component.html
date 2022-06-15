@@ -35,6 +35,15 @@
         <mat-cell *matCellDef="let clase"> {{clase.fecha | date:'short'}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="btnAsistencia">
+        <mat-header-cell *matHeaderCellDef> Asistencia </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="verAsistencia(element.id)">
+            <mat-icon>assignment</mat-icon> Asistencia
+          </button>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
