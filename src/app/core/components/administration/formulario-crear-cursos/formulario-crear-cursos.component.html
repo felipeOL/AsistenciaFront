@@ -8,65 +8,102 @@
   <h2 class="titulo">Formulario Crear Curso</h2>
 </div>
 <br/>
-<div class="centerDiv">
-  <form [formGroup]="crearCursoForm">
-    <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Profesor</mat-label>
-        <mat-select formControlName="id" [ngModel]="profesorActual" (ngModelChange)="onChangeProfesor($event)">
-          <div *ngIf="profesores$ | async as profesores">
-          <mat-option *ngFor="let profesor of profesores" [value]="profesor.email">{{profesor.nombre}}</mat-option>
-          </div>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field >
-        <mat-label>Codigo</mat-label>
-        <input matInput name="Codigo" type="text" placeholder="98AS_D1" formControlName="codigo">
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field >
-        <mat-label>Nombre Curso</mat-label>
-        <input matInput name="Nombre" type="text" placeholder="Electivo sin elección" formControlName="nombre">
-      </mat-form-field>
-    </div>
-    <div >
-      <mat-form-field >
-        <mat-label>Sección</mat-label>
-        <input matInput placeholder="A" formControlName="seccion">
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <mat-label>Semestre</mat-label>
-        <mat-select formControlName="semestre">
-          <mat-option value="semestre 1">Primer semestre</mat-option>
-          <mat-option value="semestre 2">Segundo semestre</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <mat-label>Bloque</mat-label>
-        <input matInput type="text" placeholder="bloque 1" formControlName="bloque">
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Fecha de Inicio</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="anio">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="AcceptButton">
-      <button mat-flat-button color="primary" type="submit"  (click)="crearCurso()" [disabled]="crearCursoForm.invalid">Crear Curso</button>
-    </div>
-    <br/>
-  </form>
+<div>
+  <div class="centerDiv">
+    <form [formGroup]="crearCursoForm">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Profesor</mat-label>
+          <mat-select formControlName="id" [ngModel]="profesorActual" (ngModelChange)="onChangeProfesor($event)">
+            <div *ngIf="profesores$ | async as profesores">
+              <mat-option *ngFor="let profesor of profesores" [value]="profesor.email">{{profesor.nombre}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field >
+          <mat-label>Codigo</mat-label>
+          <input matInput name="Codigo" type="text" placeholder="98AS_D1" formControlName="codigo">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field >
+          <mat-label>Nombre Curso</mat-label>
+          <input matInput name="Nombre" type="text" placeholder="Electivo sin elección" formControlName="nombre">
+        </mat-form-field>
+      </div>
+      <div >
+        <mat-form-field >
+          <mat-label>Sección</mat-label>
+          <input matInput placeholder="A" formControlName="seccion">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Semestre</mat-label>
+          <mat-select formControlName="semestre">
+            <mat-option value="semestre 1">Primer semestre</mat-option>
+            <mat-option value="semestre 2">Segundo semestre</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="anio">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="centerDiv">
+        <div>
+          <mat-label>Dia</mat-label>
+          <select matNativeControl name="Dia">
+            <option value="" selected></option>
+            <option *ngFor="let dia of dias" [value]="dia">
+              {{dia}}
+            </option>
+          </select>
+          <mat-label>Bloque</mat-label>
+          <select matNativeControl name="Bloque">
+            <option value="" selected></option>
+            <option *ngFor="let bloque of bloques" [value]="bloque">
+              {{bloque}}
+            </option>
+          </select>
+
+          <button mat-flat-button color="primary">Agregar Bloque</button>
+        </div>
+  </div>
+  <div class="centerDiv">
+        <table mat-table [dataSource]="listadoBloques" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="Dia">
+            <th mat-header-cell *matHeaderCellDef> Dia </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Bloque">
+            <th mat-header-cell *matHeaderCellDef> Bloque </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  </div>
+  <div class="AcceptButton">
+      <button mat-flat-button color="primary"  (click)="crearCurso()" [disabled]="crearCursoForm.invalid">Crear Curso</button>
+  </div>
 </div>
 
 

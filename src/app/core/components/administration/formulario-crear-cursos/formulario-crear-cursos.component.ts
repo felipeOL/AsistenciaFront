@@ -7,6 +7,7 @@ import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {administrationFacade} from "../../facade/administration.facade";
 import {Observable, of} from "rxjs";
 import {AuthenticationService} from "../../../../services/authentication.service";
+import {BloqueCursoModel} from "../../../../Models/BloqueCurso.model";
 
 @Component({
   selector: 'app-formulario-crear-cursos',
@@ -14,7 +15,12 @@ import {AuthenticationService} from "../../../../services/authentication.service
   styleUrls: ['./formulario-crear-cursos.component.scss']
 })
 export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
-
+  diaActual:string=""
+  bloqueActual:string=""
+  displayedColumns =["Dia","Bloque"]
+  listadoBloques: BloqueCursoModel[]=[]
+  dias =["Lunes", "Martes", "Miercoles", "Jueves","Viernes","Sabado"]
+  bloques =["1","2","3","4","5","6","7","8","9","10","11","12"]
   profesorActual = "";
   profesores$: Observable<CrearCuentaModel[]>;
   list:CrearCuentaModel[] = [];
@@ -44,7 +50,6 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
     nombre: ['', Validators.required],
     seccion: ['', Validators.required],
     semestre: ['', Validators.required],
-    bloque: ['', Validators.required],
     anio: ['', Validators.required]
   })
 
@@ -61,7 +66,7 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
       nombre:this.crearCursoForm.value.nombre.toString(),
       seccion:this.crearCursoForm.value.seccion.toString(),
       semestre: this.crearCursoForm.value.semestre.toString(),
-      bloque: this.crearCursoForm.value.bloque.toString(),
+      bloquesCurso: this.listadoBloques,
       anio: this.crearCursoForm.value.anio
     }
     let response = this.adminFacade.crearCurso(nuevoCurso);

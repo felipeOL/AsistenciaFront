@@ -55,7 +55,7 @@ export class FormularioCrearClaseComponent implements OnInit {
         bloque: this.courseForm.value.bloque.toString(),
         fecha: this.courseForm.value.fecha,
       }
-    let bloque = this.horarioServici.getBloque(newClase.bloque)
+    let bloque = this.horarioServici.getBloque(newClase.bloque.bloque)
     if(bloque.horaInicio<0)
     {
       console.log("error al ingresdar el bloque")
