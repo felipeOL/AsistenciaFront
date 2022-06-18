@@ -36,6 +36,7 @@ import { MarkAttendanceTeacherComponent } from './components/teacher/mark-attend
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {FormsModule} from "@angular/forms";
     SharedModule,
     MatGridListModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatStepperModule
   ],
     exports: [
         AccountsComponent

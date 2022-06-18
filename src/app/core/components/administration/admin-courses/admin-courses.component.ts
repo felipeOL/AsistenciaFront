@@ -39,7 +39,7 @@ export class AdminCoursesComponent implements OnInit,OnDestroy {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
-    dialogConfig.width="60%";
+    dialogConfig.width="40%";
     const dialogVal = this.crearCuentaDialog.open(FormularioCrearCursosComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>
       {
