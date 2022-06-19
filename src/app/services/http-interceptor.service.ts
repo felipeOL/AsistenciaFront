@@ -28,15 +28,17 @@ export class HttpInterceptorService implements HttpInterceptor{
   capturaError( error: HttpErrorResponse):string
   {
     console.log(error)
-    this.dialog.open(ErrorDialogComponent, {
-      data:
-        {
-          titulo: "Error "+error.status,
-          contenido: error.error
-        }
-    })
     if(error.status == 401){
       this.router.navigate(['/login']);
+    }
+    else {
+      this.dialog.open(ErrorDialogComponent, {
+        data:
+          {
+            titulo: "Error "+error.status,
+            contenido: error.error
+          }
+      })
     }
   }
 }

@@ -1,4 +1,4 @@
-<div>
+<div xmlns="http://www.w3.org/1999/html">
   <mat-button-toggle class="close" (click)="closeDialog()">
     <mat-icon>clear</mat-icon>
   </mat-button-toggle>
@@ -64,6 +64,7 @@
     </mat-step>
     <mat-step>
       <div class="centerDiv">
+        <br/>
         <div>
           <mat-label>Dia</mat-label>
           <mat-select [(value)]="diaActual">
@@ -72,6 +73,7 @@
             </mat-option>
           </mat-select>
         </div>
+        <br/>
         <div>
           <mat-label>Bloque</mat-label>
           <mat-select [(value)]="bloqueActual">
@@ -80,12 +82,13 @@
             </mat-option>
           </mat-select>
         </div>
+        <br/>
         <div>
-          <button mat-flat-button color="primary">Agregar Bloque</button>
+          <button mat-flat-button color="primary" (click)="agregarBloque()">Agregar Bloque</button>
         </div>
       </div>
       <div class="example-container">
-        <table mat-table [dataSource]="listadoBloques" class="tabla">
+        <table mat-table [dataSource]="listadeBloques$" class="tabla">
 
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
@@ -93,13 +96,13 @@
           <!-- Position Column -->
           <ng-container matColumnDef="Dia">
             <mat-header-cell *matHeaderCellDef> Dia </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.dia}} </mat-cell>
           </ng-container>
 
           <!-- Name Column -->
           <ng-container matColumnDef="Bloque">
             <mat-header-cell *matHeaderCellDef> Bloque </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.bloques[0].bloque}} </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -109,7 +112,7 @@
     </mat-step>
   </mat-stepper>
   <div class="AcceptButton">
-      <button mat-flat-button color="primary"  (click)="crearCurso()" [disabled]="crearCursoForm.invalid">Crear Curso</button>
+      <button mat-flat-button color="primary"  (click)="crearCurso()" [disabled]="(crearCursoForm.invalid || listadoBloques.length<1)">Crear Curso</button>
   </div>
 </div>
 

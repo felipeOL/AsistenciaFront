@@ -25,6 +25,7 @@ export class administrationApi {
 
   addCourse(course:CrearCourseModel):Observable<CrearCourseModel>
   {
+    console.log(course)
     let usuario = this.authservice.getUser();
     return this.httpclient.post<CrearCourseModel>("http://localhost:5000/api/curso/crear", course, {
       headers: {
@@ -49,7 +50,7 @@ export class administrationApi {
               nombre: course.nombre,
               seccion: course.seccion,
               semestre: course.semestre,
-              bloque: course.bloque,
+              bloques: course.bloques,
               anio: course.anio,
               profesor: course.profesor
             }

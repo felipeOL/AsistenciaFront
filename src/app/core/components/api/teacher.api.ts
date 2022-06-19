@@ -36,7 +36,7 @@ export class teacherApi {
             nombre: course.nombre,
             seccion: course.seccion,
             semestre: course.semestre,
-            bloque: course.bloque,
+            bloques: course.bloques,
             anio: course.anio,
             profesor: course.profesor
           }
@@ -93,7 +93,7 @@ export class teacherApi {
             nombre: element.curso?.nombre,
             seccion: element.curso?.seccion,
             semestre: element.curso?.semestre,
-            bloque: element.curso?.bloque,
+            bloques: element.curso?.bloques,
             anio: element.curso?.anio
           }
         }
