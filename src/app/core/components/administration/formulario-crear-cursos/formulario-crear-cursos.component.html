@@ -10,7 +10,7 @@
 <br/>
 <div>
   <mat-stepper>
-    <mat-step [stepControl]="crearCursoForm">
+    <mat-step [stepControl]="crearCursoForm" label="Informacion del Curso">
       <div class="centerDiv">
         <form [formGroup]="crearCursoForm">
           <div>
@@ -62,8 +62,8 @@
         </form>
       </div>
     </mat-step>
-    <mat-step>
-      <div class="centerDiv">
+    <mat-step label="Agregar Bloques de Clases">
+      <div class="centerDivAgregarBloque">
         <br/>
         <div>
           <mat-label>Dia</mat-label>
@@ -102,7 +102,7 @@
           <!-- Name Column -->
           <ng-container matColumnDef="Bloque">
             <mat-header-cell *matHeaderCellDef> Bloque </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.bloques[0].bloque}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.bloque}} </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
