@@ -37,6 +37,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
 import {MatStepperModule} from "@angular/material/stepper";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatGridListModule,
     MatCheckboxModule,
     FormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
     exports: [
         AccountsComponent

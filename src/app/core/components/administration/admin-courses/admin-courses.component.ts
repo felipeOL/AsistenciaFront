@@ -1,14 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {CrearCuentaModel} from "../../../../Models/crearCuenta.model";
+import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Observable, Subscription} from "rxjs";
 import {administrationFacade} from "../../facade/administration.facade";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {
-  FormularioCrearCuentaComponent
-} from "../administrar-cuentas/formulario-crear-cuenta/formulario-crear-cuenta.component";
 import {FormularioCrearCursosComponent} from "../formulario-crear-cursos/formulario-crear-cursos.component";
-import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-admin-courses',
@@ -17,17 +14,25 @@ import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
 })
 export class AdminCoursesComponent implements OnInit,OnDestroy {
   displayedColumns:string[] = ['codigo', 'Profesor','nombre', 'sección', 'semestre','bloque'];
-  dataSource$:Observable<CourseResponseModel[]>
+  cursos:CourseResponseModel[]=[]
+  subscriptionDataSource$:Subscription
+  // @ts-ignore
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
               private adminFacade:administrationFacade,
               private crearCuentaDialog: MatDialog,
               ) {
-    this.dataSource$ = this.adminFacade.courses$;
+    this.subscriptionDataSource$ = this.adminFacade.courses$.subscribe();
     this.adminFacade.updateCourse();
-    console.log(this.dataSource$);
+    console.log(this.subscriptionDataSource$);
   }
 
   ngOnInit(): void {
+    this.subscriptionDataSource$ = this.adminFacade.courses$.subscribe(data => {
+      this.cursos=data
+      console.log(this.cursos)
+    });
+    this.adminFacade.updateCourse()
   }
 
   ngOnDestroy() {

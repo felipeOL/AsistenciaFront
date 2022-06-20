@@ -16,7 +16,7 @@ export class administrationState{
   }
 
   courses$():Observable<CourseResponseModel[]>{
-    return this.coursesState$.asObservable();
+    return this.coursesState$
   }
 
   addCuenta(cuenta:CrearCuentaModel){
