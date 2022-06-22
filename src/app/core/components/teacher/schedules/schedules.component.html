@@ -1,75 +1,87 @@
 <div>
   <h1>HORARIOS EN CONSTRUCCIÓN</h1>
 </div>
-<div>
-    <mat-table [dataSource]="dataSource">
+<div class="tabla">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
       <ng-container matColumnDef="bloque">
         <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta"> {{cuenta.bloque}} </mat-cell>
+        <mat-cell *matCellDef="let cuenta"> {{cuenta.horario}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="lunes">
         <mat-header-cell *matHeaderCellDef>Lunes</mat-header-cell>
         <mat-cell *matCellDef="let cuenta">
-          {{cuenta.lunes.curso}}
+          {{cuenta.Lunes.nombrecurso}}
           <br/>
-          {{cuenta.lunes.sala}}
+          {{cuenta.Lunes.seccioncurso}}
           <br/>
-          {{cuenta.lunes.profesor}}
+          {{cuenta.Lunes.nombreprofesor}}
+          <br/>
+          {{cuenta.Lunes.emailprofesor}}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="martes">
         <mat-header-cell *matHeaderCellDef>Martes</mat-header-cell>
         <mat-cell *matCellDef="let cuenta">
-          {{cuenta.martes.curso}}
+          {{cuenta.Martes.nombrecurso}}
           <br/>
-          {{cuenta.martes.sala}}
+          {{cuenta.Martes.seccioncurso}}
           <br/>
-          {{cuenta.martes.profesor}}
+          {{cuenta.Martes.nombreprofesor}}
+          <br/>
+          {{cuenta.Martes.emailprofesor}}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="miercoles">
         <mat-header-cell *matHeaderCellDef>Miercoles</mat-header-cell>
         <mat-cell *matCellDef="let cuenta">
-          {{cuenta.miercoles.curso}}
+          {{cuenta.Miercoles.nombrecurso}}
           <br/>
-          {{cuenta.miercoles.sala}}
+          {{cuenta.Miercoles.seccioncurso}}
           <br/>
-          {{cuenta.miercoles.profesor}}
+          {{cuenta.Miercoles.nombreprofesor}}
+          <br/>
+          {{cuenta.Miercoles.emailprofesor}}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="jueves">
         <mat-header-cell *matHeaderCellDef>Jueves</mat-header-cell>
         <mat-cell *matCellDef="let cuenta">
-          {{cuenta.jueves.curso}}
+          {{cuenta.Jueves.nombrecurso}}
           <br/>
-          {{cuenta.jueves.sala}}
+          {{cuenta.Jueves.seccioncurso}}
           <br/>
-          {{cuenta.jueves.profesor}}
+          {{cuenta.Jueves.nombreprofesor}}
+          <br/>
+          {{cuenta.Jueves.emailprofesor}}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="viernes">
         <mat-header-cell *matHeaderCellDef>Viernes</mat-header-cell>
         <mat-cell *matCellDef="let cuenta">
-          {{cuenta.viernes.curso}}
+          {{cuenta.Viernes.nombrecurso}}
           <br/>
-          {{cuenta.viernes.sala}}
+          {{cuenta.Viernes.seccioncurso}}
           <br/>
-          {{cuenta.viernes.profesor}}
+          {{cuenta.Viernes.nombreprofesor}}
+          <br/>
+          {{cuenta.Viernes.emailprofesor}}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="sabado">
         <mat-header-cell *matHeaderCellDef>Sabado</mat-header-cell>
         <mat-cell *matCellDef="let cuenta">
-          {{cuenta.sabado.curso}}
+          {{cuenta.Sabado.nombrecurso}}
           <br/>
-          {{cuenta.sabado.sala}}
+          {{cuenta.Sabado.seccioncurso}}
           <br/>
-          {{cuenta.sabado.profesor}}
+          {{cuenta.Sabado.nombreprofesor}}
+          <br/>
+          {{cuenta.Sabado.emailprofesor}}
         </mat-cell>
       </ng-container>
 

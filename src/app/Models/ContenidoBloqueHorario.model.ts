@@ -1,7 +1,9 @@
 export interface ContenidoBloqueHorarioModel
 {
-  bloque:string,
-  curso:string,
-  sala?:number,
-  profesor:string
+  nombrecurso:string,
+  seccioncurso:string,
+  nombreprofesor:string,
+  emailprofesor:string,
+  dia:string,
+  bloque:string
 }

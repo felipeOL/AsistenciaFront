@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, elementAt, Observable, of} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {AdminURL} from "../../../Util/adminURL.model";
 import {AuthenticationService} from "../../../services/authentication.service";
@@ -9,6 +9,7 @@ import {crearClaseModel} from "../../../Models/crearClase.model";
 import {classReponse} from "../../../Models/classReponse.model";
 import {AttendanModel} from "../../../Models/attendan.model";
 import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
+import {ContenidoBloqueHorarioModel} from "../../../Models/ContenidoBloqueHorario.model";
 
 @Injectable()
 
@@ -133,5 +134,23 @@ export class teacherApi {
         Authorization: 'Bearer ' + usuario.token
       }
     })
+  }
+
+  getSchedules(): ContenidoBloqueHorarioModel[]
+  {
+    let SchudeleList: ContenidoBloqueHorarioModel[] = [];
+    let usuario = this.authservice.getUser();
+    this.httpclient.get<ContenidoBloqueHorarioModel[]>(TeacherURL.GET_SCHEDULES, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    }).subscribe( repuesta => {
+      repuesta.forEach(element =>
+      {
+        SchudeleList.push(element)
+      })
+    })
+    return SchudeleList
   }
 }

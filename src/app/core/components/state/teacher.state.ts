@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {classReponse} from "../../../Models/classReponse.model";
 import {AttendanModel} from "../../../Models/attendan.model";
+import {BloqueHorarioModel} from "../../../Models/BloqueHorario.model";
 
 @Injectable()
 

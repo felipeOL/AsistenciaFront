@@ -81,4 +81,9 @@ export class teacherFacade
     )
   }
 
+  getSchudeles()
+  {
+    return this.teacherApi.getSchedules()
+  }
+
 }
