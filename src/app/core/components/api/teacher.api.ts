@@ -59,6 +59,7 @@ export class teacherApi {
   }
 
   public addClass(clase: crearClaseModel): any {
+    console.log(clase)
     let usuario = this.authservice.getUser();
     this.httpclient.post(TeacherURL.ADD_CLASS, clase, {
       headers: {

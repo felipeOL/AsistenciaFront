@@ -1,16 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BloqueHorarioModel} from "../../../../Models/BloqueHorario.model";
 import {ContenidoBloqueHorarioModel} from "../../../../Models/ContenidoBloqueHorario.model";
 import {teacherFacade} from "../../facade/teacher.facade";
-
-const bloqueP: ContenidoBloqueHorarioModel = {
-  nombrecurso:"prueba 1",
-  seccioncurso:"A",
-  nombreprofesor:"juanito perez",
-  emailprofesor:"jperez@utalca.cl",
-  dia:"Lunes",
-  bloque:"1"
-}
+import {Observable, Subscription} from "rxjs";
+import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
 
 const bloqueS: ContenidoBloqueHorarioModel = {
   nombrecurso:"",
@@ -26,7 +19,7 @@ const hoario: BloqueHorarioModel[] = [
     bloque:"1",
     horario:"8:30 - 9:30",
     Lunes: bloqueS,
-    Martes:bloqueP,
+    Martes:bloqueS,
     Miercoles:bloqueS,
     Jueves:bloqueS,
     Viernes:bloqueS,
@@ -37,17 +30,17 @@ const hoario: BloqueHorarioModel[] = [
     horario:"9:40 - 10:40",
     Lunes:bloqueS,
     Martes:bloqueS,
-    Miercoles:bloqueP,
-    Jueves:bloqueP,
+    Miercoles:bloqueS,
+    Jueves:bloqueS,
     Viernes:bloqueS,
     Sabado:bloqueS,
   },
   {
     bloque:"3",
     horario:"10:50 - 11:50",
-    Lunes:bloqueP,
+    Lunes:bloqueS,
     Martes:bloqueS,
-    Miercoles:bloqueP,
+    Miercoles:bloqueS,
     Jueves:bloqueS,
     Viernes:bloqueS,
     Sabado:bloqueS,
@@ -57,7 +50,7 @@ const hoario: BloqueHorarioModel[] = [
     horario:"12:00 - 13:00",
     Lunes:bloqueS,
     Martes:bloqueS,
-    Miercoles:bloqueP,
+    Miercoles:bloqueS,
     Jueves:bloqueS,
     Viernes:bloqueS,
     Sabado:bloqueS,
@@ -70,7 +63,7 @@ const hoario: BloqueHorarioModel[] = [
     Miercoles:bloqueS,
     Jueves:bloqueS,
     Viernes:bloqueS,
-    Sabado:bloqueP,
+    Sabado:bloqueS,
   },
   {
     bloque:"6",
@@ -79,7 +72,7 @@ const hoario: BloqueHorarioModel[] = [
     Martes:bloqueS,
     Miercoles:bloqueS,
     Jueves:bloqueS,
-    Viernes:bloqueP,
+    Viernes:bloqueS,
     Sabado:bloqueS,
   },
   {
@@ -89,7 +82,7 @@ const hoario: BloqueHorarioModel[] = [
     Martes:bloqueS,
     Miercoles:bloqueS,
     Jueves:bloqueS,
-    Viernes:bloqueP,
+    Viernes:bloqueS,
     Sabado:bloqueS,
   },
   {
@@ -109,7 +102,7 @@ const hoario: BloqueHorarioModel[] = [
     Martes:bloqueS,
     Miercoles:bloqueS,
     Jueves:bloqueS,
-    Viernes:bloqueP,
+    Viernes:bloqueS,
     Sabado:bloqueS,
   },
   {
@@ -148,20 +141,80 @@ const hoario: BloqueHorarioModel[] = [
   templateUrl: './schedules.component.html',
   styleUrls: ['./schedules.component.scss']
 })
-export class SchedulesComponent implements OnInit {
+export class SchedulesComponent implements OnInit, OnDestroy{
 
-  miHorario: ContenidoBloqueHorarioModel[]
+  mostrar:Observable<ContenidoBloqueHorarioModel[]>
+  horarioPrueba: ContenidoBloqueHorarioModel[]=[]
+  miHorarioSuscription: Subscription
   displayedColumns: string[]=['bloque','lunes', 'martes','miercoles','jueves','viernes','sabado'];
   dataSource : BloqueHorarioModel[]=hoario
   constructor(private techarFacade: teacherFacade)
   {
     //falta observar
-    this.miHorario = this.techarFacade.getSchudeles()
-    console.log(this.miHorario)
+    this.mostrar= this.techarFacade.suscribeSchudeles()
+    this.miHorarioSuscription = this.techarFacade.suscribeSchudeles().subscribe(
+      data =>
+      {
+        this.horarioPrueba = data
+        this.horarioPrueba.forEach(element => {
+          let bloque = this.dataSource.find(bloque => bloque.bloque == element.bloque)
+          if(typeof bloque != 'undefined')
+          {
+            this.modificarHorario(bloque,element)
+          }
+        })
+      }
+    )
+    this.techarFacade.getSchudeles()
   }
+
+  ngOnDestroy(): void {
+        this.miHorarioSuscription.unsubscribe()
+    }
 
   ngOnInit(): void
   {
+    this.miHorarioSuscription = this.techarFacade.suscribeSchudeles().subscribe(
+      data =>
+      {
+        this.horarioPrueba = data
+        this.horarioPrueba.forEach(element => {
+          let bloque = this.dataSource.find(bloque => bloque.bloque == element.bloque)
+          if(typeof bloque != 'undefined')
+          {
+            this.modificarHorario(bloque,element)
+          }
+        })
+      }
+    )
+    this.techarFacade.getSchudeles()
+  }
+
+  private modificarHorario(bloque: BloqueHorarioModel, contenido:ContenidoBloqueHorarioModel)
+  {
+    switch (contenido.dia)
+    {
+      case "Lunes":
+        bloque.Lunes =contenido
+        break;
+      case "Martes":
+        bloque.Martes=contenido
+        break;
+      case "Miercoles":
+        bloque.Miercoles=contenido
+        break;
+      case "Jueves":
+        bloque.Jueves=contenido
+        break;
+      case "Viernes":
+        bloque.Viernes=contenido
+        break;
+      case "Sabado":
+        bloque.Sabado=contenido
+        break;
+      default:
+        console.log("error")
+    }
   }
 
 

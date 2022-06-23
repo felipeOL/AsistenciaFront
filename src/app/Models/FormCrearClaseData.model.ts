@@ -1,5 +1,7 @@
+import {BloqueCursoModel} from "./BloqueCurso.model";
+
 export interface FormCrearClaseDataModel
 {
   idCurso:number,
-  bloque:string,
+  bloques:BloqueCursoModel[],
 }

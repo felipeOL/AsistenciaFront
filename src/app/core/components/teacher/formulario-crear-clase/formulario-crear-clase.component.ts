@@ -5,6 +5,7 @@ import {teacherFacade} from "../../facade/teacher.facade";
 import {crearClaseModel} from "../../../../Models/crearClase.model";
 import {HorarioBloqueService} from "../../../../services/horario-bloque.service";
 import {FormCrearClaseDataModel} from "../../../../Models/FormCrearClaseData.model";
+import {BloqueCursoModel} from "../../../../Models/BloqueCurso.model";
 
 @Component({
   selector: 'app-formulario-crear-clase',
@@ -13,6 +14,7 @@ import {FormCrearClaseDataModel} from "../../../../Models/FormCrearClaseData.mod
 })
 export class FormularioCrearClaseComponent implements OnInit {
 
+  bloqueActual:BloqueCursoModel={dia:"",bloque:""}
   public myData:FormCrearClaseDataModel
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: FormCrearClaseDataModel,
@@ -25,7 +27,6 @@ export class FormularioCrearClaseComponent implements OnInit {
     this.myData = data
     this.courseForm.patchValue({
       idCurso:this.myData.idCurso,
-      bloque:this.myData.bloque
     })
   }
 
@@ -40,6 +41,11 @@ export class FormularioCrearClaseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChangeBloque(event:any):void{
+    this.bloqueActual= event;
+    console.log(this.bloqueActual)
+  }
+
   public closeDialog():void
   {
     this.dialogref.close()
@@ -49,13 +55,14 @@ export class FormularioCrearClaseComponent implements OnInit {
   {
     let newClase : crearClaseModel =
       {
-        idCurso: this.courseForm.value.idCurso.toString(),
+        idCurso: this.courseForm.value.idCurso,
         sala: this.courseForm.value.sala.toString(),
         modalidad: this.courseForm.value.modalidad.toString(),
-        bloque: this.courseForm.value.bloque.toString(),
+        bloque: {dia:this.bloqueActual.dia, bloque:this.bloqueActual.bloque},
         fecha: this.courseForm.value.fecha,
       }
     let bloque = this.horarioServici.getBloque(newClase.bloque.bloque)
+    console.log(bloque)
     if(bloque.horaInicio<0)
     {
       console.log("error al ingresdar el bloque")

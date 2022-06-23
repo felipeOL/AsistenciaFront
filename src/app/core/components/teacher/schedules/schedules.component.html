@@ -1,93 +1,99 @@
 <div>
   <h1>HORARIOS EN CONSTRUCCIÓN</h1>
 </div>
-<div class="tabla">
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
-      <ng-container matColumnDef="bloque">
-        <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta"> {{cuenta.horario}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="lunes">
-        <mat-header-cell *matHeaderCellDef>Lunes</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta">
-          {{cuenta.Lunes.nombrecurso}}
-          <br/>
-          {{cuenta.Lunes.seccioncurso}}
-          <br/>
-          {{cuenta.Lunes.nombreprofesor}}
-          <br/>
-          {{cuenta.Lunes.emailprofesor}}
-        </mat-cell>
-      </ng-container>
+<ng-container *ngIf="mostrar | async as mostrar">
+  <p *ngIf="!horarioPrueba.length;else ahoraSi">Aun no se cargando lista</p>
+  <ng-template #ahoraSi>
+    <div class="tabla">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+          <ng-container matColumnDef="bloque">
+            <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta"> {{cuenta.horario}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="lunes">
+            <mat-header-cell *matHeaderCellDef>Lunes</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta">
+              {{cuenta.Lunes.nombrecurso}}
+              <br/>
+              {{cuenta.Lunes.seccioncurso}}
+              <br/>
+              {{cuenta.Lunes.nombreprofesor}}
+              <br/>
+              {{cuenta.Lunes.emailprofesor}}
+            </mat-cell>
+          </ng-container>
 
-      <ng-container matColumnDef="martes">
-        <mat-header-cell *matHeaderCellDef>Martes</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta">
-          {{cuenta.Martes.nombrecurso}}
-          <br/>
-          {{cuenta.Martes.seccioncurso}}
-          <br/>
-          {{cuenta.Martes.nombreprofesor}}
-          <br/>
-          {{cuenta.Martes.emailprofesor}}
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="martes">
+            <mat-header-cell *matHeaderCellDef>Martes</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta">
+              {{cuenta.Martes.nombrecurso}}
+              <br/>
+              {{cuenta.Martes.seccioncurso}}
+              <br/>
+              {{cuenta.Martes.nombreprofesor}}
+              <br/>
+              {{cuenta.Martes.emailprofesor}}
+            </mat-cell>
+          </ng-container>
 
-      <ng-container matColumnDef="miercoles">
-        <mat-header-cell *matHeaderCellDef>Miercoles</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta">
-          {{cuenta.Miercoles.nombrecurso}}
-          <br/>
-          {{cuenta.Miercoles.seccioncurso}}
-          <br/>
-          {{cuenta.Miercoles.nombreprofesor}}
-          <br/>
-          {{cuenta.Miercoles.emailprofesor}}
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="miercoles">
+            <mat-header-cell *matHeaderCellDef>Miercoles</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta">
+              {{cuenta.Miercoles.nombrecurso}}
+              <br/>
+              {{cuenta.Miercoles.seccioncurso}}
+              <br/>
+              {{cuenta.Miercoles.nombreprofesor}}
+              <br/>
+              {{cuenta.Miercoles.emailprofesor}}
+            </mat-cell>
+          </ng-container>
 
-      <ng-container matColumnDef="jueves">
-        <mat-header-cell *matHeaderCellDef>Jueves</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta">
-          {{cuenta.Jueves.nombrecurso}}
-          <br/>
-          {{cuenta.Jueves.seccioncurso}}
-          <br/>
-          {{cuenta.Jueves.nombreprofesor}}
-          <br/>
-          {{cuenta.Jueves.emailprofesor}}
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="jueves">
+            <mat-header-cell *matHeaderCellDef>Jueves</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta">
+              {{cuenta.Jueves.nombrecurso}}
+              <br/>
+              {{cuenta.Jueves.seccioncurso}}
+              <br/>
+              {{cuenta.Jueves.nombreprofesor}}
+              <br/>
+              {{cuenta.Jueves.emailprofesor}}
+            </mat-cell>
+          </ng-container>
 
-      <ng-container matColumnDef="viernes">
-        <mat-header-cell *matHeaderCellDef>Viernes</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta">
-          {{cuenta.Viernes.nombrecurso}}
-          <br/>
-          {{cuenta.Viernes.seccioncurso}}
-          <br/>
-          {{cuenta.Viernes.nombreprofesor}}
-          <br/>
-          {{cuenta.Viernes.emailprofesor}}
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="viernes">
+            <mat-header-cell *matHeaderCellDef>Viernes</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta">
+              {{cuenta.Viernes.nombrecurso}}
+              <br/>
+              {{cuenta.Viernes.seccioncurso}}
+              <br/>
+              {{cuenta.Viernes.nombreprofesor}}
+              <br/>
+              {{cuenta.Viernes.emailprofesor}}
+            </mat-cell>
+          </ng-container>
 
-      <ng-container matColumnDef="sabado">
-        <mat-header-cell *matHeaderCellDef>Sabado</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta">
-          {{cuenta.Sabado.nombrecurso}}
-          <br/>
-          {{cuenta.Sabado.seccioncurso}}
-          <br/>
-          {{cuenta.Sabado.nombreprofesor}}
-          <br/>
-          {{cuenta.Sabado.emailprofesor}}
-        </mat-cell>
-      </ng-container>
+          <ng-container matColumnDef="sabado">
+            <mat-header-cell *matHeaderCellDef>Sabado</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta">
+              {{cuenta.Sabado.nombrecurso}}
+              <br/>
+              {{cuenta.Sabado.seccioncurso}}
+              <br/>
+              {{cuenta.Sabado.nombreprofesor}}
+              <br/>
+              {{cuenta.Sabado.emailprofesor}}
+            </mat-cell>
+          </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <br/>
-</div>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <br/>
+    </div>
+  </ng-template>
+</ng-container>
+
 

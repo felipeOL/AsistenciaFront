@@ -83,7 +83,13 @@ export class teacherFacade
 
   getSchudeles()
   {
-    return this.teacherApi.getSchedules()
+    let response= this.teacherApi.getSchedules()
+    this.teacherState.setSchudeles(response)
+  }
+
+  suscribeSchudeles()
+  {
+    return this.teacherState.getSchudelesSuscribe()
   }
 
 }
