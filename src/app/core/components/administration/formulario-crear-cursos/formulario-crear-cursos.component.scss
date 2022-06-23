@@ -1,0 +1,37 @@
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.close {
+  background-color: brown;
+  display: compact;
+  float: right;
+  color: aliceblue;
+}
+
+.titulo {
+  text-align: center;
+}
+
+.AcceptButton
+{
+  width:60%;
+  margin-left:15%;
+  margin-right:25%;
+}
+
+.tabla
+{
+  width: 100%;
+}
+
+.centerDivAgregarBloque {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  white-space: normal;
+}

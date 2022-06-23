@@ -1,0 +1,49 @@
+<div>
+  <mat-button-toggle class="close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </mat-button-toggle>
+
+</div>
+<div>
+  <h2 class="titulo">Crear clase</h2>
+</div>
+<br/>
+<div class="centerDiv">
+  <form [formGroup]="courseForm">
+    <div>
+      <mat-form-field >
+        <mat-label>Id Curso</mat-label>
+        <input matInput name="idCurso" type="number"  placeholder="1" formControlName="idCurso">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field >
+        <mat-label>Sala</mat-label>
+        <input matInput name="sala" type="text" placeholder="21" formControlName="sala">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field >
+        <mat-label>Modalidad</mat-label>
+        <input matInput name="Modalidad" type="text" placeholder="Online/Presencial" formControlName="modalidad">
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Bloque</mat-label>
+      <mat-select formControlName="bloque" [ngModel]="bloqueActual" (ngModelChange)="onChangeBloque($event)">
+        <mat-option *ngFor="let bloque of myData.bloques" [value]="bloque">Dia:{{bloque.dia}} , Bloque:{{bloque.bloque}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <mat-form-field >
+        <mat-label>fecha</mat-label>
+        <input matInput name="fecha" type="date" placeholder="" formControlName="fecha">
+      </mat-form-field>
+    </div>
+    <div class="AcceptButton">
+      <button mat-flat-button color="primary" type="submit"  (click)="addClase()" [disabled]="courseForm.invalid">Crear clase</button>
+    </div>
+  </form>
+</div>
+
+
