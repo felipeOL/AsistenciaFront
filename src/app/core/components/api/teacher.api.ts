@@ -61,13 +61,11 @@ export class teacherApi {
   public addClass(clase: crearClaseModel): any {
     console.log(clase)
     let usuario = this.authservice.getUser();
-    this.httpclient.post(TeacherURL.ADD_CLASS, clase, {
+    return this.httpclient.post(TeacherURL.ADD_CLASS, clase, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-    }).subscribe(response => {
-      return response;
     })
   }
 

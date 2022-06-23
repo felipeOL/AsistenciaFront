@@ -58,7 +58,7 @@ export class FormularioCrearClaseComponent implements OnInit {
         idCurso: this.courseForm.value.idCurso,
         sala: this.courseForm.value.sala.toString(),
         modalidad: this.courseForm.value.modalidad.toString(),
-        bloque: {dia:this.bloqueActual.dia, bloque:this.bloqueActual.bloque},
+        bloque: this.bloqueActual,
         fecha: this.courseForm.value.fecha,
       }
     let bloque = this.horarioServici.getBloque(newClase.bloque.bloque)

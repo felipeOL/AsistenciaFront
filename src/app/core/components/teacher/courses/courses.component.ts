@@ -16,7 +16,7 @@ import {CourseStudentService} from "../../../../services/course-student.service"
 })
 export class CoursesComponent implements OnInit {
 
-  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','bloque','botonCrear','botonAgregarEstudiante','botonAgregarExcel'];
+  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','botonCrear','botonAgregarEstudiante','botonAgregarExcel'];
   dataSource$:Observable<CourseResponseModel[]>
   constructor
   (
