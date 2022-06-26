@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {CuentasService} from "../../../../services/cuentas.service";
+import {ErrorDialogComponent} from "../../../../shared/components/dialogs/error-dialog/error-dialog.component";
+import {PeriodsComponent} from "../periods/periods.component";
+import {PeriodModel} from "../../../../Models/Period.model";
+import {administrationFacade} from "../../facade/administration.facade";
 
 @Component({
   selector: 'app-form-create-period',
@@ -7,9 +14,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormCreatePeriodComponent implements OnInit {
 
-  constructor() { }
+  fechaFin:Date = new Date()
+  fechaInicio:Date = new Date()
+
+  constructor(
+    public dialogref: MatDialogRef<FormCreatePeriodComponent>,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private adminFacade: administrationFacade
+  ) { }
 
   ngOnInit(): void {
   }
 
+  onChangeFechaFin(event:Date):void{
+    this.fechaFin = event;
+  }
+
+  onChangeFechaInicio(event:Date):void{
+    this.fechaInicio = event;
+  }
+  createPeriodForm = this.formBuilder.group({
+    nombre:['', Validators.required],
+    anio: ['', Validators.required],
+    fechaInicio:['',Validators.required],
+    fechaFin:['',Validators.required]
+  })
+
+  createPeriodo()
+  {
+    if(this.createPeriodForm.value.fechaFin<this.createPeriodForm.value.fechaInicio)
+    {
+      this.dialog.open(ErrorDialogComponent, {
+        data:
+          {
+            titulo: "Rango de fechas no valido",
+            contenido: "por favor ingrese correctamente el rango de fechas, recordando que la fecha inicial tiene que ser mayor a la fecha final"
+          }
+      })
+    }
+    else
+    {
+      let newPeriod: PeriodModel = {
+        nombre: this.createPeriodForm.value.nombre,
+        anio:this.createPeriodForm.value.anio,
+        fechainicio:this.fechaInicio,
+        fechafin:this.fechaFin
+      }
+      this.adminFacade.createPeriod(newPeriod)
+      this.closeDialog()
+    }
+  }
+
+  closeDialog():void
+  {
+    this.dialogref.close()
+  }
 }

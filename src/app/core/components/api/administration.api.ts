@@ -127,7 +127,6 @@ export class administrationApi {
 
   CreatePeriod(period: PeriodModel)
   {
-    console.log(period)
     let usuario = this.authservice.getUser();
     return this.httpclient.post<PeriodModel>(AdminURL.CREATE_PERIOD, period, {
       headers: {

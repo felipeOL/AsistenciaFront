@@ -6,6 +6,9 @@ import {GetUsersModel} from "../../../Models/getUsers.model";
 import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
 import {CrearCourseModel} from "../../../Models/CrearCourse.model";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
+import {PeriodModel} from "../../../Models/Period.model";
+import {ErrorDialogComponent} from "../../../shared/components/dialogs/error-dialog/error-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Injectable()
 
@@ -13,6 +16,7 @@ export class administrationFacade{
 
   constructor(private adminState:administrationState,
               private adminApi:administrationApi,
+              private dialog:MatDialog,
               ) {}
 
   get cuentas$():Observable<CrearCuentaModel[]>{
@@ -72,6 +76,19 @@ export class administrationFacade{
   getPeriodosActuales()
   {
 
+  }
+
+  createPeriod(newPeriod: PeriodModel)
+  {
+      this.adminApi.CreatePeriod(newPeriod).subscribe(response => {
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Periodo Creado",
+              contenido: "el periodo fue creado exitosamente "
+            }
+        })
+      })
   }
 
 }
