@@ -5,8 +5,10 @@ import {CuentasService} from "../../../../services/cuentas.service";
 import {CrearCuentaModel} from "../../../../Models/crearCuenta.model";
 import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {administrationFacade} from "../../facade/administration.facade";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {AuthenticationService} from "../../../../services/authentication.service";
+import {BloqueCursoModel} from "../../../../Models/BloqueCurso.model";
+import {ErrorDialogComponent} from "../../../../shared/components/dialogs/error-dialog/error-dialog.component";
 
 @Component({
   selector: 'app-formulario-crear-cursos',
@@ -14,7 +16,13 @@ import {AuthenticationService} from "../../../../services/authentication.service
   styleUrls: ['./formulario-crear-cursos.component.scss']
 })
 export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
-
+  diaActual:string=""
+  bloqueActual:string=""
+  displayedColumns =["Dia","Bloque"]
+  listadoBloques: BloqueCursoModel[]=[]
+  listadeBloques$= new BehaviorSubject<BloqueCursoModel[]>(this.listadoBloques)
+  dias =["Lunes", "Martes", "Miercoles", "Jueves","Viernes","Sabado"]
+  bloques =["1","2","3","4","5","6","7","8","9","10","11","12"]
   profesorActual = "";
   profesores$: Observable<CrearCuentaModel[]>;
   list:CrearCuentaModel[] = [];
@@ -44,7 +52,6 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
     nombre: ['', Validators.required],
     seccion: ['', Validators.required],
     semestre: ['', Validators.required],
-    bloque: ['', Validators.required],
     anio: ['', Validators.required]
   })
 
@@ -61,7 +68,7 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
       nombre:this.crearCursoForm.value.nombre.toString(),
       seccion:this.crearCursoForm.value.seccion.toString(),
       semestre: this.crearCursoForm.value.semestre.toString(),
-      bloque: this.crearCursoForm.value.bloque.toString(),
+      bloques: this.listadoBloques,
       anio: this.crearCursoForm.value.anio
     }
     let response = this.adminFacade.crearCurso(nuevoCurso);
@@ -71,5 +78,36 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
   onChangeProfesor(event:any):void{
     this.profesorActual = event;
   }
-
+  public agregarBloque():void
+  {
+    if(!(this.diaActual=="") && !(this.bloqueActual==""))
+    {
+      let nuevoBloque: BloqueCursoModel ={dia:this.diaActual,bloque:this.bloqueActual}
+      let result=this.listadoBloques.filter( result => result.dia==nuevoBloque.dia && result.bloque==nuevoBloque.bloque)
+      if(result.length<1)
+      {
+        this.listadoBloques.push(nuevoBloque)
+        this.listadeBloques$.next(this.listadoBloques)
+      }
+      else {
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Error bloque ya existe",
+              contenido: "revise la informacion ingresada, el dia y bloque selecccionados ya se encuentra registrado"
+            }
+        })
+      }
+    }
+    else
+    {
+      this.dialog.open(ErrorDialogComponent, {
+        data:
+          {
+            titulo: "Error ingrese la informacion requerida",
+            contenido: "revise la informacion ingresada, los campos dia y bloque deben estar llenos"
+          }
+      })
+    }
+  }
 }

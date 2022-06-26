@@ -1,4 +1,5 @@
 import {ProferoResposeModel} from "./ProferoRespose.model";
+import {BloqueCursoModel} from "./BloqueCurso.model";
 
 export interface CourseResponseModel
 {
@@ -7,7 +8,7 @@ export interface CourseResponseModel
   nombre?: string,
   seccion?: string,
   semestre?: string,
-  bloque?: string,
+  bloques?: BloqueCursoModel[],
   anio?: Date,
   profesor?: ProferoResposeModel[]
 }

@@ -46,7 +46,18 @@ export class teacherFacade
   }
 
   addClase(clase:crearClaseModel){
-    this.teacherApi.addClass(clase);
+    let result=this.teacherApi.addClass(clase)
+    result.subscribe((response: any) => {
+      console.log(response)
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Guardado con exito ",
+              contenido: "Clase creada con exito"
+            }
+        })
+      }
+    );
   }
 
   public getAllClass(fecha:Date){
@@ -79,6 +90,17 @@ export class teacherFacade
         })
       }
     )
+  }
+
+  getSchudeles()
+  {
+    let response= this.teacherApi.getSchedules()
+    this.teacherState.setSchudeles(response)
+  }
+
+  suscribeSchudeles()
+  {
+    return this.teacherState.getSchudelesSuscribe()
   }
 
 }

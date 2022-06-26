@@ -16,7 +16,7 @@ import {CourseStudentService} from "../../../../services/course-student.service"
 })
 export class CoursesComponent implements OnInit {
 
-  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','bloque','botonCrear','botonAgregarEstudiante','botonAgregarExcel'];
+  displayedColumns:string[] = ['codigo','id', 'nombre', 'sección', 'semestre','botonCrear','botonAgregarEstudiante','botonAgregarExcel'];
   dataSource$:Observable<CourseResponseModel[]>
   constructor
   (
@@ -54,7 +54,7 @@ export class CoursesComponent implements OnInit {
 
   }
 
-  crearCurso(curso: CourseResponseModel){
+  crearClase(curso: CourseResponseModel){
     const dialogConfig = new MatDialogConfig()
     dialogConfig.disableClose = true
     dialogConfig.autoFocus = true
@@ -63,7 +63,7 @@ export class CoursesComponent implements OnInit {
       // @ts-ignore
       idCurso: curso.id,
       // @ts-ignore
-      bloque: curso.bloque,
+      bloques: curso.bloques,
     }
     const dialogVal = this.crearCuentaDialog.open(FormularioCrearClaseComponent, dialogConfig)
     dialogVal.afterClosed().subscribe(res =>

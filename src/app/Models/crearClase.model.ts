@@ -1,7 +1,9 @@
+import {BloqueCursoModel} from "./BloqueCurso.model";
+
 export interface crearClaseModel{
   idCurso?:number,
   sala?:string,
   modalidad?:string,
-  bloque?:string,
+  bloque:BloqueCursoModel,
   fecha?:Date,
 }

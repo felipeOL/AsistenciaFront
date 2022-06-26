@@ -1,6 +1,13 @@
+import {ContenidoBloqueHorarioModel} from "./ContenidoBloqueHorario.model";
+
 export interface BloqueHorarioModel
 {
-  curso:string,
-  sala:number,
-  profesor?:string
+  bloque:string,
+  horario:string,
+  Lunes:ContenidoBloqueHorarioModel,
+  Martes:ContenidoBloqueHorarioModel,
+  Miercoles:ContenidoBloqueHorarioModel,
+  Jueves:ContenidoBloqueHorarioModel,
+  Viernes:ContenidoBloqueHorarioModel,
+  Sabado:ContenidoBloqueHorarioModel
 }

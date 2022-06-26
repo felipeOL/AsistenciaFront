@@ -22,3 +22,21 @@
   margin-left:15%;
   margin-right:25%;
 }
+
+.tabla
+{
+  width: 100%;
+}
+
+.centerDivAgregarBloque {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  white-space: normal;
+}
+
+.tableContainer {
+  height: 80%;
+  overflow: hidden;
+}

@@ -35,6 +35,10 @@ import {SharedModule} from "../shared/shared.module";
 import { MarkAttendanceTeacherComponent } from './components/teacher/mark-attendance-teacher/mark-attendance-teacher.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule} from "@angular/forms";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -68,7 +72,11 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatNativeDateModule,
     SharedModule,
     MatGridListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule,
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
     exports: [
         AccountsComponent
