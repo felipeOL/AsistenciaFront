@@ -1,44 +1,49 @@
-<div>
-  <mat-button-toggle (click)="crearCuenta()">
-    Crear cuenta
-  </mat-button-toggle>
+<div class="divPrincipal">
+  <br/>
+  <div class="mat-elevation-z8">
+    <mat-button-toggle (click)="crearCuenta()">
+      Crear cuenta
+    </mat-button-toggle>
+  </div>
+  <br/>
+  <div class="mat-elevation-z8">
+    <ng-container *ngIf="dataSource$ | async as dataSource">
+      <mat-table #table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta"> {{cuenta.email}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta"> {{cuenta.nombre}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="rut">
+          <mat-header-cell *matHeaderCellDef> Rut</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta"> {{cuenta.rut}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rol">
+          <mat-header-cell *matHeaderCellDef> Rol</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta"> {{cuenta.rol}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <div *ngIf="dataSource.length <= 0">
+        <h1>No hay cuentas creadas.</h1>
+      </div>
+    </ng-container>
+  </div>
 </div>
-<div class="example-container">
-  <ng-container *ngIf="dataSource$ | async as dataSource">
-    <mat-table #table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
 
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <!-- Name Column -->
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta"> {{cuenta.email}} </mat-cell>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="nombre">
-        <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta"> {{cuenta.nombre}} </mat-cell>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="rut">
-        <mat-header-cell *matHeaderCellDef> Rut</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta"> {{cuenta.rut}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="rol">
-        <mat-header-cell *matHeaderCellDef> Rol</mat-header-cell>
-        <mat-cell *matCellDef="let cuenta"> {{cuenta.rol}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <div *ngIf="dataSource.length <= 0">
-      <h1>No hay cuentas creadas.</h1>
-    </div>
-  </ng-container>
-</div>

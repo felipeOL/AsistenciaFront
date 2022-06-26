@@ -69,5 +69,10 @@ export class administrationFacade{
     })
   }
 
+  getPeriodosActuales()
+  {
+
+  }
+
 }
 

@@ -39,6 +39,8 @@ import {FormsModule} from "@angular/forms";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { PeriodsComponent } from './components/administration/periods/periods.component';
+import { FormCreatePeriodComponent } from './components/administration/FormCreatePeriod/form-create-period.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         StudentCoursesComponent,
         FormularioCrearClaseComponent,
         MarkAttendanceTeacherComponent,
+        PeriodsComponent,
+        FormCreatePeriodComponent,
     ],
   imports: [
     CommonModule,
