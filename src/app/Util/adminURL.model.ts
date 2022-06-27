@@ -7,4 +7,5 @@ export class AdminURL{
   public static COURSES_CHANGE = "";
   public static GET_ALL_ACCOUNT = "http://localhost:5000/api/usuario/todos";
   public static CREATE_PERIOD = "http://localhost:5000/api/periodo/crear"
+  public static GET_PERIOD_OF_THE_YEAR ="http://localhost:5000/api/periodo/obtener"
 }

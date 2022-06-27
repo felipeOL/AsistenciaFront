@@ -73,9 +73,20 @@ export class administrationFacade{
     })
   }
 
-  getPeriodosActuales()
+  getPeriodosActuales(year: number)
   {
 
+    this.adminApi.getCurrentPeriods(year).subscribe(res=>
+      {
+        console.log(res)
+        //this.adminState.setPeriodos(res)
+      }
+    )
+  }
+
+  suscribePeriodos$()
+  {
+    return this.adminState.getPeriod$()
   }
 
   createPeriod(newPeriod: PeriodModel)
