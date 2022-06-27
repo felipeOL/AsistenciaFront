@@ -8,6 +8,8 @@ import {AdminURL} from "../../../Util/adminURL.model";
 import {CrearCourseModel} from "../../../Models/CrearCourse.model";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {ProferoResposeModel} from "../../../Models/ProferoRespose.model";
+import {PeriodModel} from "../../../Models/Period.model";
+import {PeriodResponseModel} from "../../../Models/PeriodResponse.model";
 
 @Injectable()
 
@@ -118,6 +120,27 @@ export class administrationApi {
   deleteCourse(course:CrearCourseModel){}
 
   courseChange(course:CrearCourseModel){}
+
+  getCurrentPeriods(year:number): Observable<PeriodResponseModel[]>
+  {
+    let usuario = this.authservice.getUser();
+    return this.httpclient.post<PeriodResponseModel[]>(AdminURL.GET_PERIOD_OF_THE_YEAR, year, {
+      headers: {
+        Authorization: 'Bearer ' + usuario.token
+      }
+    })
+
+  }
+
+  CreatePeriod(period: PeriodModel)
+  {
+    let usuario = this.authservice.getUser();
+    return this.httpclient.post<PeriodModel>(AdminURL.CREATE_PERIOD, period, {
+      headers: {
+        Authorization: 'Bearer ' + usuario.token
+      }
+    })
+  }
 
 
 

@@ -1,0 +1,45 @@
+<div class="divPrincipal">
+  <br/>
+  <div class="mat-elevation-z8">
+    <mat-button-toggle (click)="createPeriod()">
+      Crear Periodo
+    </mat-button-toggle>
+    <h1 class="tituloCentral">Listado de Periodos</h1>
+  </div>
+  <br/>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="tabla">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Periodo </th>
+          <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="anio">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+          <td mat-cell *matCellDef="let row"> {{row.anio}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fechainicio">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Inicio </th>
+          <td mat-cell *matCellDef="let row"> {{row.fechainicio}} </td>
+        </ng-container>
+
+        <!-- Fruit Column -->
+        <ng-container matColumnDef="fechafin">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Fin </th>
+          <td mat-cell *matCellDef="let row"> {{row.fechafin}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[1,5, 10, 20]" aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>
+

@@ -15,4 +15,5 @@ export const STUDENTROUTES: RouteInfo[] = [
 export const ADMINROUTES: RouteInfo[] = [
   {path:'/admin-courses',title:'Cursos',class:''},
   {path:'/admin-accounts',title:'Cuentas',class:''},
+  {path:'/periods', title:'Periodos',class:''}
 ]
