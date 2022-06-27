@@ -121,7 +121,7 @@ export class administrationApi {
 
   courseChange(course:CrearCourseModel){}
 
-  getCurrentPeriods(year:number): Observable<PeriodModel[]>
+  getCurrentPeriods(year:number): Observable<PeriodResponseModel[]>
   {
     let usuario = this.authservice.getUser();
     return this.httpclient.post<PeriodResponseModel[]>(AdminURL.GET_PERIOD_OF_THE_YEAR, year, {

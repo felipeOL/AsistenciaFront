@@ -15,17 +15,26 @@ import {Subscription} from "rxjs";
 })
 export class PeriodsComponent implements OnInit {
 
+  displayedColumns: string[] = ['nombre', 'anio', 'fechainicio', 'fechafin'];
+  dataSource: MatTableDataSource<PeriodResponseModel>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private adminFacade:administrationFacade,
     private createPeriodDialog: MatDialog,
   )
   {
-
+    this.dataSource = new MatTableDataSource<PeriodResponseModel>([])
+    this.dataSource.paginator = this.paginator
   }
 
   ngOnInit(): void
   {
     let year = new Date()
+    this.adminFacade.suscribePeriodos$().subscribe(data =>
+    {
+      this.dataSource = new MatTableDataSource<PeriodResponseModel>(data)
+      this.dataSource.paginator = this.paginator
+    })
     this.adminFacade.getPeriodosActuales(year.getFullYear())
   }
 

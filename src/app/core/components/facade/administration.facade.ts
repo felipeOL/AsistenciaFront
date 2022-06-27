@@ -79,7 +79,7 @@ export class administrationFacade{
     this.adminApi.getCurrentPeriods(year).subscribe(res=>
       {
         console.log(res)
-        //this.adminState.setPeriodos(res)
+        this.adminState.setPeriodos(res)
       }
     )
   }
