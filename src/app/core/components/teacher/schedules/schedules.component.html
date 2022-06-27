@@ -1,11 +1,10 @@
-<div>
-  <h1>HORARIOS EN CONSTRUCCIÓN</h1>
-</div>
-<ng-container *ngIf="mostrar | async as mostrar">
-  <p *ngIf="!horarioPrueba.length;else ahoraSi">Aun no se cargando lista</p>
-  <ng-template #ahoraSi>
-    <div class="tabla">
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+<br/>
+<div class="divPrincipal">
+  <ng-container *ngIf="mostrar | async as mostrar">
+    <p *ngIf="!horarioPrueba.length;else ahoraSi">Aun no se cargando lista</p>
+    <ng-template #ahoraSi>
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" class="tabla">
           <ng-container matColumnDef="bloque">
             <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
             <mat-cell *matCellDef="let cuenta"> {{cuenta.horario}} </mat-cell>
@@ -92,8 +91,10 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
         <br/>
-    </div>
-  </ng-template>
-</ng-container>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
+<br/>
 
 

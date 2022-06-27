@@ -9,7 +9,7 @@ import {studentFacade} from "../../facade/student.facade";
   styleUrls: ['./student-schedules.component.scss']
 })
 export class StudentSchedulesComponent implements OnInit {
-  displayedColumns:string[] = ['codigo', 'Profesor','nombre', 'sección', 'semestre','bloque'];
+  displayedColumns:string[] = ['codigo', 'Profesor','nombre', 'sección', 'semestre'];
   dataSource$:Observable<CourseResponseModel[]>
   constructor
   (
