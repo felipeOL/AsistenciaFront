@@ -13,7 +13,7 @@ import {MatPaginator} from "@angular/material/paginator";
   styleUrls: ['./admin-courses.component.scss']
 })
 export class AdminCoursesComponent implements OnInit,OnDestroy {
-  displayedColumns:string[] = ['codigo', 'Profesor','nombre', 'sección', 'semestre','bloque'];
+  displayedColumns:string[] = ['codigo', 'Profesor','nombre', 'sección', 'semestre'];
   cursos:CourseResponseModel[]=[]
   subscriptionDataSource$:Subscription
   // @ts-ignore
