@@ -99,6 +99,8 @@ export class administrationFacade{
               contenido: "el periodo fue creado exitosamente "
             }
         })
+        let year =new Date()
+        this.getPeriodosActuales(year.getFullYear())
       })
   }
 
