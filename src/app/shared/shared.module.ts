@@ -8,6 +8,7 @@ import {MaterialModule} from "../material/material.module";
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 import {MatDialogRef} from "@angular/material/dialog";
 import { SheetComponent } from './components/sheet/sheet.component';
+import { OkDialogComponent } from './components/dialogs/ok-dialog/ok-dialog.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SheetComponent } from './components/sheet/sheet.component';
         LoginComponent,
         NavbarComponent,
         ErrorDialogComponent,
-        SheetComponent
+        SheetComponent,
+        OkDialogComponent
     ],
     exports: [
         NavbarComponent,
