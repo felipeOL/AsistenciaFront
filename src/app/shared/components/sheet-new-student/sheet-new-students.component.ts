@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from "xlsx";
+import {NewStudentsExcelService} from "../../../services/new-students-excel.service";
 
 type AOA = any[][];
 
@@ -13,11 +14,14 @@ export class SheetNewStudentsComponent implements OnInit {
   wopts: XLSX.WritingOptions = {bookType: 'xlsx', type: 'array'};
   fileName: string = 'SheetJS.xlsx';
 
-  onFileChange(evt: any) {}
+  onFileChange(evt: any) {
+  }
 
   export(): void {}
 
-  constructor() { }
+  constructor(
+    private excelService: NewStudentsExcelService
+  ) { }
 
   ngOnInit(): void {
   }
