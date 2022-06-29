@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import {teacherFacade} from "../core/components/facade/teacher.facade";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewStudentsExcelService {
   correos:string[] = [];
-  constructor() { }
+  constructor(private teacherFacade:teacherFacade) { }
 
   addCorreo(correo:string){
     this.correos.push(correo);
@@ -16,8 +17,6 @@ export class NewStudentsExcelService {
   }
 
   cargarExcel(){
-    this.correos.forEach(element => {
-      
-    })
+    this.teacherFacade.createNewStudent(this.correos);
   }
 }
