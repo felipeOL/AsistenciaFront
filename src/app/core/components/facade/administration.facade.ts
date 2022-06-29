@@ -9,6 +9,7 @@ import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {PeriodModel} from "../../../Models/Period.model";
 import {ErrorDialogComponent} from "../../../shared/components/dialogs/error-dialog/error-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {OkDialogComponent} from "../../../shared/components/dialogs/ok-dialog/ok-dialog.component";
 
 @Injectable()
 
@@ -92,7 +93,7 @@ export class administrationFacade{
   createPeriod(newPeriod: PeriodModel)
   {
       this.adminApi.CreatePeriod(newPeriod).subscribe(response => {
-        this.dialog.open(ErrorDialogComponent, {
+        this.dialog.open(OkDialogComponent, {
           data:
             {
               titulo: "Periodo Creado",

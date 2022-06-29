@@ -8,6 +8,7 @@ import {MaterialModule} from "../material/material.module";
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 import {MatDialogRef} from "@angular/material/dialog";
 import { SheetComponent } from './components/sheet/sheet.component';
+import { OkDialogComponent } from './components/dialogs/ok-dialog/ok-dialog.component';
 import { SheetCoursesComponent } from './components/sheet-courses/sheet-courses.component';
 
 
@@ -16,6 +17,7 @@ import { SheetCoursesComponent } from './components/sheet-courses/sheet-courses.
         LoginComponent,
         NavbarComponent,
         ErrorDialogComponent,
+        OkDialogComponent
         SheetComponent,
         SheetCoursesComponent
     ],

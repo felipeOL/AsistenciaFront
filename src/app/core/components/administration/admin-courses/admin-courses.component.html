@@ -1,10 +1,12 @@
 <div class="divPrincipal">
   <br/>
   <div class="mat-elevation-z8">
-    <mat-button-toggle (click)="crearCurso()">
-      Crear curso
-    </mat-button-toggle>
-    <h1 class="tituloCentral">Listado de cursos</h1>
+    <div class="divTitulo">
+      <h1>Listado de Cursos</h1>
+      <button mat-stroked-button (click)="crearCurso()">
+        Crear Curso
+      </button>
+    </div>
   </div>
   <br/>
   <div class="tableContainer">
@@ -42,11 +44,6 @@
           <ng-container matColumnDef="semestre">
             <mat-header-cell *matHeaderCellDef> Semestre</mat-header-cell>
             <mat-cell *matCellDef="let cuenta"> {{cuenta.semestre}} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="bloque">
-            <mat-header-cell *matHeaderCellDef> Bloque</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta"> {{cuenta.bloque}} </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
