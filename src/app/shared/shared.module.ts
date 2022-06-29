@@ -17,7 +17,7 @@ import { SheetCoursesComponent } from './components/sheet-courses/sheet-courses.
         LoginComponent,
         NavbarComponent,
         ErrorDialogComponent,
-        OkDialogComponent
+        OkDialogComponent,
         SheetComponent,
         SheetCoursesComponent
     ],
