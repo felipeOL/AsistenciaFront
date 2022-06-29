@@ -53,4 +53,18 @@ export class studentFacade
       this.studentState.setClases(clases);
     })
   }
+
+  getSchudeles()
+  {
+    this.studentApi.getSchedules().subscribe( respuesta =>
+    {
+      this.studentState.setSchudeles(respuesta)
+    })
+
+  }
+
+  suscribeSchudeles()
+  {
+    return this.studentState.getSchudelesSuscribe()
+  }
 }
