@@ -9,8 +9,8 @@
             <mat-cell *matCellDef="let cuenta"> {{cuenta.horario}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="lunes">
-            <mat-header-cell *matHeaderCellDef>Lunes</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
+            <mat-header-cell *matHeaderCellDef class="mat-table-border">Lunes</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
               <div *ngIf="cuenta.Lunes.nombrecurso !='';else NoCheckLunes">
                 <div class="bloquelleno">
                   <h3 class="nombreCurso">{{cuenta.Lunes.nombrecurso}}</h3>
@@ -27,8 +27,8 @@
           </ng-container>
 
           <ng-container matColumnDef="martes">
-            <mat-header-cell *matHeaderCellDef>Martes</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
+            <mat-header-cell *matHeaderCellDef class="mat-table-border">Martes</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
               <div *ngIf="cuenta.Martes.nombrecurso !='';else NoCheckMartes" >
                 <div class="bloquelleno">
                   <h3 class="nombreCurso">{{cuenta.Martes.nombrecurso}}</h3>
@@ -46,8 +46,8 @@
           </ng-container>
 
           <ng-container matColumnDef="miercoles">
-            <mat-header-cell *matHeaderCellDef>Miercoles</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
+            <mat-header-cell *matHeaderCellDef class="mat-table-border">Miercoles</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
               <div *ngIf="cuenta.Miercoles.nombrecurso !='';else NoCheckMiercoles">
                 <div class="bloquelleno">
                   <h3 class="nombreCurso">{{cuenta.Miercoles.nombrecurso}}</h3>
@@ -64,8 +64,8 @@
           </ng-container>
 
           <ng-container matColumnDef="jueves">
-            <mat-header-cell *matHeaderCellDef>Jueves</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
+            <mat-header-cell *matHeaderCellDef class="mat-table-border">Jueves</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
               <div *ngIf="cuenta.Jueves.nombrecurso !='';else NoCheckJueves">
                 <div class="bloquelleno">
                   <h3 class="nombreCurso">{{cuenta.Jueves.nombrecurso}}</h3>
@@ -82,8 +82,8 @@
           </ng-container>
 
           <ng-container matColumnDef="viernes">
-            <mat-header-cell *matHeaderCellDef>Viernes</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
+            <mat-header-cell *matHeaderCellDef class="mat-table-border">Viernes</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
               <div *ngIf="cuenta.Viernes.nombrecurso !='';else NoCheckViernes" >
                 <div class="bloquelleno">
                   <h3 class="nombreCurso">{{cuenta.Viernes.nombrecurso}}</h3>
@@ -100,8 +100,8 @@
           </ng-container>
 
           <ng-container matColumnDef="sabado">
-            <mat-header-cell *matHeaderCellDef>Sabado</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
+            <mat-header-cell *matHeaderCellDef class="mat-table-border">Sabado</mat-header-cell>
+            <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
               <div *ngIf="cuenta.Sabado.nombrecurso !='';else NoCheckSabado">
                 <div class="bloquelleno">
                   <h3 class="nombreCurso">{{cuenta.Sabado.nombrecurso}}</h3>

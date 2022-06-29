@@ -12,7 +12,7 @@
   <div class="tableContainer">
     <ng-container *ngIf="cursos.length;else cargandoCursos">
       <div class="mat-elevation-z8">
-        <mat-table #table [dataSource]="cursos">
+        <mat-table #table [dataSource]="cursos" class="tabla">
 
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
@@ -56,5 +56,5 @@
       <mat-spinner></mat-spinner>
     </ng-template>
   </div>
-
 </div>
+<br/>
