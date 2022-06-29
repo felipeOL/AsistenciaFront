@@ -8,3 +8,22 @@
 {
   width: 100%;
 }
+
+.bloquelleno
+{
+  height: 100%;
+  width: content-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+  border-style: dotted;
+  border-radius:5px;
+  padding: 1px;
+}
+
+.nombreCurso
+{
+  font-weight: bold
+}

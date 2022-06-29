@@ -6,7 +6,7 @@ import {Observable, Subscription} from "rxjs";
 import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
 
 const bloqueS: ContenidoBloqueHorarioModel = {
-  nombrecurso:"",
+  nombrecurso:'',
   seccioncurso:"",
   nombreprofesor:"",
   emailprofesor:"",
