@@ -6,9 +6,9 @@ import {CrearCuentaModel} from "../../../../Models/crearCuenta.model";
 import {CrearCourseModel} from "../../../../Models/CrearCourse.model";
 import {administrationFacade} from "../../facade/administration.facade";
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {AuthenticationService} from "../../../../services/authentication.service";
 import {BloqueCursoModel} from "../../../../Models/BloqueCurso.model";
 import {ErrorDialogComponent} from "../../../../shared/components/dialogs/error-dialog/error-dialog.component";
+import {PeriodResponseModel} from "../../../../Models/PeriodResponse.model";
 
 @Component({
   selector: 'app-formulario-crear-cursos',
@@ -24,7 +24,9 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
   dias =["Lunes", "Martes", "Miercoles", "Jueves","Viernes","Sabado"]
   bloques =["1","2","3","4","5","6","7","8","9","10","11","12"]
   profesorActual = "";
+  periodoActual!:PeriodResponseModel;
   profesores$: Observable<CrearCuentaModel[]>;
+  periodos$: Observable<PeriodResponseModel[]>;
   list:CrearCuentaModel[] = [];
 
   constructor(
@@ -34,8 +36,12 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
     private dialog: MatDialog,
     private adminFacade: administrationFacade,
   ) {
+    let year = new Date()
+    this.adminFacade.getPeriodosActuales(year.getFullYear())
     this.adminFacade.updateCuentasProfesor();
     this.profesores$ = this.adminFacade.cuentas$;
+    this.periodos$=this.adminFacade.suscribePeriodos$()
+
   }
 
   ngOnInit(): void {
@@ -62,22 +68,52 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
 
   public crearCurso():void
   {
-    let nuevoCurso : CrearCourseModel = {
-      idprofesor: this.crearCursoForm.value.id.toString(),
-      codigo:this.crearCursoForm.value.codigo.toString(),
-      nombre:this.crearCursoForm.value.nombre.toString(),
-      seccion:this.crearCursoForm.value.seccion.toString(),
-      semestre: this.crearCursoForm.value.semestre.toString(),
-      bloques: this.listadoBloques,
-      anio: this.crearCursoForm.value.anio
+    if(!(typeof this.periodoActual == 'undefined'))
+    {
+      let fechaClase=new Date(this.crearCursoForm.value.anio.toString())
+      let fechaInicioPeriodo=new Date(this.periodoActual.fechainicio)
+      let FechaFinPeriodo=new Date(this.periodoActual.fechafin)
+
+      if( fechaInicioPeriodo<= fechaClase && fechaClase<=FechaFinPeriodo)
+      {
+        let nuevoCurso : CrearCourseModel = {
+          idprofesor: this.crearCursoForm.value.id.toString(),
+          codigo:this.crearCursoForm.value.codigo.toString(),
+          nombre:this.crearCursoForm.value.nombre.toString(),
+          seccion:this.crearCursoForm.value.seccion.toString(),
+          semestre: this.periodoActual.nombre,
+          bloques: this.listadoBloques,
+          anio: this.crearCursoForm.value.anio
+        }
+        console.log(nuevoCurso)
+
+        this.adminFacade.crearCurso(nuevoCurso);
+        this.closeDialog()
+      }
+      else
+      {
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Error en la fecha de inicio del curso",
+              contenido: "revise la informacion ingresada, revise que la fecha de inicio corrspoda al perido que comprende desde: "+this.periodoActual.fechainicio.toLocaleString()+" a "+this.periodoActual.fechafin.toLocaleString()
+            }
+        })
+      }
+
+
     }
-    let response = this.adminFacade.crearCurso(nuevoCurso);
-    this.closeDialog()
+
   }
 
   onChangeProfesor(event:any):void{
     this.profesorActual = event;
   }
+
+  onChangePeriod(event:any):void{
+    this.periodoActual = event;
+  }
+
   public agregarBloque():void
   {
     if(!(this.diaActual=="") && !(this.bloqueActual==""))

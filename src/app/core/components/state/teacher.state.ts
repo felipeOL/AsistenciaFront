@@ -10,17 +10,15 @@ import {ContenidoBloqueHorarioModel} from "../../../Models/ContenidoBloqueHorari
 
 export class teacherState
 {
-  private schudeles : ContenidoBloqueHorarioModel[]=[]
   private attendanClass : AttendanModel[] = []
   private attendanClass$= new BehaviorSubject<AttendanModel[]>(this.attendanClass)
-  private schudeles$ = new BehaviorSubject<ContenidoBloqueHorarioModel[]>(this.schudeles)
+  private schudeles$ = new BehaviorSubject<ContenidoBloqueHorarioModel[]>([])
   private coursesState$ = new BehaviorSubject<CourseResponseModel[]>([]);
   private classState$ = new BehaviorSubject<classReponse[]>([]);
 
   public setSchudeles(schudeles: ContenidoBloqueHorarioModel[])
   {
-    this.schudeles = schudeles
-    this.schudeles$.next(this.schudeles)
+    this.schudeles$.next(schudeles)
   }
 
   public getSchudelesSuscribe():BehaviorSubject<ContenidoBloqueHorarioModel[]>

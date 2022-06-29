@@ -7,9 +7,9 @@ export const TEACHERROUTES: RouteInfo[] = [
 ]
 
 export const STUDENTROUTES: RouteInfo[] = [
-  {path:'/student-schedules',title:'Horario',class:''},
-  {path:'/student-assistance',title:'Asistencia',class:''},
-  {path:'/student-courses',title:'Clases',class:''},
+  {path:'/student-schedules',title:'Cursos',class:''},
+  {path:'/student-assistance',title:'Clases',class:''},
+  {path:'/student-courses',title:'Horario',class:''},
 ]
 
 export const ADMINROUTES: RouteInfo[] = [

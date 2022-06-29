@@ -39,4 +39,12 @@
 .tableContainer {
   height: 80%;
   overflow: hidden;
+  overflow-y: scroll;
+  max-height: 200px;
+  max-width: 450px;
+}
+
+.divScrollTable
+{
+
 }
