@@ -1,7 +1,6 @@
 <br/>
 <div class="divPrincipal">
-  <ng-container *ngIf="mostrar | async as mostrar">
-    <p *ngIf="!horarioPrueba.length;else ahoraSi">Aun no se cargando lista</p>
+    <p *ngIf="!mostrar;else ahoraSi">Aun no se cargando lista</p>
     <ng-template #ahoraSi>
       <div class="mat-elevation-z8">
         <mat-table [dataSource]="dataSource" class="tabla">
@@ -93,7 +92,6 @@
         <br/>
       </div>
     </ng-template>
-  </ng-container>
 </div>
 <br/>
 

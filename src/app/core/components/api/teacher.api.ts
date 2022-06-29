@@ -135,21 +135,14 @@ export class teacherApi {
     })
   }
 
-  getSchedules(): ContenidoBloqueHorarioModel[]
+  getSchedules(): Observable<ContenidoBloqueHorarioModel[]>
   {
-    let SchudeleList: ContenidoBloqueHorarioModel[] = [];
     let usuario = this.authservice.getUser();
-    this.httpclient.get<ContenidoBloqueHorarioModel[]>(TeacherURL.GET_SCHEDULES, {
+    return this.httpclient.get<ContenidoBloqueHorarioModel[]>(TeacherURL.GET_SCHEDULES, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-    }).subscribe( repuesta => {
-      repuesta.forEach(element =>
-      {
-        SchudeleList.push(element)
-      })
     })
-    return SchudeleList
   }
 }
