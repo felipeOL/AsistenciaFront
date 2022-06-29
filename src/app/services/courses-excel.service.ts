@@ -6,4 +6,12 @@ import { Injectable } from '@angular/core';
 export class CoursesExcelService {
   correos:string[] = [];
   constructor() { }
+
+  addCorreo(correo:string){
+    this.correos.push(correo);
+  }
+
+  setCorreo(correos:string[]){
+    this.correos = correos;
+  }
 }
