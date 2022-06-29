@@ -9,7 +9,7 @@ import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-di
 import {MatDialogRef} from "@angular/material/dialog";
 import { SheetComponent } from './components/sheet/sheet.component';
 import { OkDialogComponent } from './components/dialogs/ok-dialog/ok-dialog.component';
-import { SheetCoursesComponent } from './components/sheet-courses/sheet-courses.component';
+import { SheetNewStudentsComponent } from './components/sheet-new-student/sheet-new-students.component';
 
 
 @NgModule({
@@ -19,7 +19,7 @@ import { SheetCoursesComponent } from './components/sheet-courses/sheet-courses.
         ErrorDialogComponent,
         OkDialogComponent,
         SheetComponent,
-        SheetCoursesComponent
+        SheetNewStudentsComponent
     ],
     exports: [
         NavbarComponent,
