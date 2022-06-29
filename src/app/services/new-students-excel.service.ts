@@ -17,6 +17,8 @@ export class NewStudentsExcelService {
   }
 
   cargarExcel(){
-    this.teacherFacade.createNewStudent(this.correos);
+    this.teacherFacade.createNewStudent(this.correos).subscribe(response => {
+      console.log(response);
+    })
   }
 }

@@ -21,10 +21,11 @@ import { SheetNewStudentsComponent } from './components/sheet-new-student/sheet-
         SheetComponent,
         SheetNewStudentsComponent
     ],
-    exports: [
-        NavbarComponent,
-        SheetComponent
-    ],
+  exports: [
+    NavbarComponent,
+    SheetComponent,
+    SheetNewStudentsComponent
+  ],
     imports: [
         CommonModule,
         RouterModule,
