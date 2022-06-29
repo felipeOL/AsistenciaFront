@@ -11,7 +11,11 @@ export class NewStudentsExcelService {
     this.correos.push(correo);
   }
 
-  setCorreo(correos:string[]){
+  setCorreos(correos:string[]){
     this.correos = correos;
+  }
+
+  cargarExcel(){
+
   }
 }
