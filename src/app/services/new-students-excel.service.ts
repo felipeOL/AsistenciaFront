@@ -16,6 +16,8 @@ export class NewStudentsExcelService {
   }
 
   cargarExcel(){
-
+    this.correos.forEach(element => {
+      
+    })
   }
 }

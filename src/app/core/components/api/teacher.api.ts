@@ -10,6 +10,7 @@ import {classReponse} from "../../../Models/classReponse.model";
 import {AttendanModel} from "../../../Models/attendan.model";
 import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
 import {ContenidoBloqueHorarioModel} from "../../../Models/ContenidoBloqueHorario.model";
+import {CreationStudentResponse} from "../../../Models/creationStudentResponse.model";
 
 @Injectable()
 
@@ -142,6 +143,16 @@ export class teacherApi {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
+      }
+    })
+  }
+
+  addStudent(students:string[]){
+    let usuario = this.authservice.getUser();
+    return this.httpclient.post<CreationStudentResponse>(TeacherURL.CREATE_NEW_STUDENT, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer' + usuario.token
       }
     })
   }

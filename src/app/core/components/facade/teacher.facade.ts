@@ -106,4 +106,9 @@ export class teacherFacade
     return this.teacherState.getSchudelesSuscribe()
   }
 
+  createNewStudent(correos:string[])
+  {
+    return this.teacherApi.addStudent(correos);
+  }
+
 }
