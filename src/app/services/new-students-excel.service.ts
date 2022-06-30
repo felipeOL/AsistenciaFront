@@ -5,12 +5,15 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {
   ResultCreationStudentsComponent
 } from "../core/components/teacher/result-creation-students/result-creation-students.component";
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewStudentsExcelService {
   correos:string[] = [];
+  respuestas:CreationStudentResponse[] = [];
+  dataResponse$: Observable<CreationStudentResponse[]> = new Observable<CreationStudentResponse[]>();
   constructor(
     private teacherFacade:teacherFacade,
     private dialog:MatDialog,
@@ -27,20 +30,23 @@ export class NewStudentsExcelService {
 
   cargarExcel(){
     this.teacherFacade.createNewStudent(this.correos).subscribe(response => {
-      this.responseRequest.push(response);
+      console.log(response);
+      this.VisualizarRespuestas(response);
     })
-    this.VisualizarRespuestas()
   }
 
-  VisualizarRespuestas(){
+  VisualizarRespuestas(data:CreationStudentResponse[]){
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
-    dialogConfig.data = this.responseRequest;
+    dialogConfig.width = "60%";
+    dialogConfig.data = data;
     const dialogVal = this.dialog.open(ResultCreationStudentsComponent,dialogConfig);
     dialogVal.afterClosed().subscribe( res => {
       dialogVal.close();
     })
+  }
+
+  getData(){
+    return this.dataResponse$;
   }
 }

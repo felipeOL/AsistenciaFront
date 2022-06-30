@@ -5,6 +5,7 @@ import {classReponse} from "../../../Models/classReponse.model";
 import {AttendanModel} from "../../../Models/attendan.model";
 import {BloqueHorarioModel} from "../../../Models/BloqueHorario.model";
 import {ContenidoBloqueHorarioModel} from "../../../Models/ContenidoBloqueHorario.model";
+import {CreationStudentResponse} from "../../../Models/creationStudentResponse.model";
 
 @Injectable()
 
@@ -15,6 +16,8 @@ export class teacherState
   private schudeles$ = new BehaviorSubject<ContenidoBloqueHorarioModel[]>([])
   private coursesState$ = new BehaviorSubject<CourseResponseModel[]>([]);
   private classState$ = new BehaviorSubject<classReponse[]>([]);
+  private newStudent: CreationStudentResponse[] = [];
+  private newStudentState$ = new BehaviorSubject<CreationStudentResponse[]>(this.newStudent);
 
   public setSchudeles(schudeles: ContenidoBloqueHorarioModel[])
   {
@@ -57,5 +60,20 @@ export class teacherState
     this.classState$.next(clases);
   }
 
+  public addNewStudent(response:CreationStudentResponse)
+  {
+    console.log("new response:",response);
+    this.newStudent.push(response);
+  }
+
+  public setnewStudents()
+  {
+    this.newStudentState$.next(this.newStudent);
+  }
+
+  public getnewStudent()
+  {
+    return this.newStudentState$;
+  }
 
 }

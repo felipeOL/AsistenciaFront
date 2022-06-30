@@ -34,10 +34,11 @@ export class SheetNewStudentsComponent implements OnInit {
         /* save data */
         let i = 0
         this.data = <AOA>(XLSX.utils.sheet_to_json(ws, {header: 1}));
-        console.log(this.data);
+        //console.log(this.data);
         for (let j = 1; j < this.data.length; j++) {
           for (let k = 0; k < 4; k++) {
             if(k == 3 && this.data[j][k] != undefined){
+              console.log("----------------");
               console.log(this.data[j][k]);
               this.excelService.addCorreo(this.data[j][k]);
             }

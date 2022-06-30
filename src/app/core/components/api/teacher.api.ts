@@ -149,7 +149,7 @@ export class teacherApi {
 
   addStudent(students:string[]){
     let usuario = this.authservice.getUser();
-    return this.httpclient.post<CreationStudentResponse>(TeacherURL.CREATE_NEW_STUDENT,students, {
+    return this.httpclient.post<CreationStudentResponse[]>(TeacherURL.CREATE_NEW_STUDENT,students, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token

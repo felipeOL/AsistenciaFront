@@ -8,6 +8,7 @@ import {classReponse} from "../../../Models/classReponse.model";
 import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
 import {ErrorDialogComponent} from "../../../shared/components/dialogs/error-dialog/error-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {CreationStudentResponse} from "../../../Models/creationStudentResponse.model";
 
 @Injectable()
 
@@ -109,6 +110,20 @@ export class teacherFacade
   createNewStudent(correos:string[])
   {
     return this.teacherApi.addStudent(correos);
+  }
+
+  public addNewResponse(response:CreationStudentResponse)
+  {
+    this.teacherState.addNewStudent(response);
+  }
+
+  public getnewStudents()
+  {
+    return this.teacherState.getnewStudent()
+  }
+  public updateNewStudents(response:CreationStudentResponse[])
+  {
+    this.teacherState.setnewStudents();
   }
 
 }
