@@ -14,6 +14,7 @@ import {StudentAssistanceComponent} from "./core/components/student/student-assi
 import {AdminCoursesComponent} from "./core/components/administration/admin-courses/admin-courses.component";
 import {AccountsComponent} from "./core/components/administration/accounts/accounts.component";
 import {StudentCoursesComponent} from "./core/components/student/student-courses/student-courses.component";
+import {PeriodsComponent} from "./core/components/administration/periods/periods.component";
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path:"admin-courses",component:AdminCoursesComponent},
   {path:"admin-accounts",component:AccountsComponent},
   {path:"student-courses",component:StudentCoursesComponent},
+  {path:"periods",component:PeriodsComponent},
   {path:"**",component:LoginComponent},
 ];
 

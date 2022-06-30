@@ -1,65 +1,73 @@
-<h1>Clases de hoy: {{fechaActual | date: 'dd/MM/yyyy'}} </h1>
-<div class="example-container">
-  <ng-container *ngIf="clases$ | async as dataSource">
-    <mat-table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
+<br/>
+<div class="divPrincipal">
+  <div class="mat-elevation-z8">
+    <h1>Clases de hoy: {{fechaActual | date: 'dd/MM/yyyy'}} </h1>
+  </div>
+  <br/>
+  <div class="mat-elevation-z8">
+    <ng-container *ngIf="clases$ | async as dataSource">
+      <mat-table [dataSource]="dataSource" *ngIf="dataSource.length > 0" class="tabla">
 
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
 
-      <!-- Position Column -->
-      <!-- Name Column -->
-      <ng-container matColumnDef="curso">
-        <mat-header-cell *matHeaderCellDef> Curso</mat-header-cell>
-        <mat-cell *matCellDef="let clase"> {{clase.curso.nombre}} </mat-cell>
-      </ng-container>
+        <!-- Position Column -->
+        <!-- Name Column -->
+        <ng-container matColumnDef="curso">
+          <mat-header-cell *matHeaderCellDef> Curso</mat-header-cell>
+          <mat-cell *matCellDef="let clase"> {{clase.curso.nombre}} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="sala">
-        <mat-header-cell *matHeaderCellDef> Sala</mat-header-cell>
-        <mat-cell *matCellDef="let clase"> {{clase.sala}} </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="sala">
+          <mat-header-cell *matHeaderCellDef> Sala</mat-header-cell>
+          <mat-cell *matCellDef="let clase"> {{clase.sala}} </mat-cell>
+        </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="modalidad">
-        <mat-header-cell *matHeaderCellDef> Modalidad</mat-header-cell>
-        <mat-cell *matCellDef="let clase"> {{clase.modalidad}} </mat-cell>
-      </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="modalidad">
+          <mat-header-cell *matHeaderCellDef> Modalidad</mat-header-cell>
+          <mat-cell *matCellDef="let clase"> {{clase.modalidad}} </mat-cell>
+        </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="bloque">
-        <mat-header-cell *matHeaderCellDef> Bloque</mat-header-cell>
-        <mat-cell *matCellDef="let clase"> {{clase.bloque.bloque}} </mat-cell>
-      </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="bloque">
+          <mat-header-cell *matHeaderCellDef> Bloque</mat-header-cell>
+          <mat-cell *matCellDef="let clase"> {{clase.bloque.bloque}} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="fecha">
-        <mat-header-cell *matHeaderCellDef> Fecha</mat-header-cell>
-        <mat-cell *matCellDef="let clase"> {{clase.fecha | date: 'short'}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="asistir">
-        <mat-header-cell *matHeaderCellDef> Asistir </mat-header-cell>
-        <mat-cell *matCellDef="let clase">
-          <div *ngIf="!clase.asistio; else yaAsistio" >
-            <div *ngIf="validarHora(clase.fecha); else FueraDeHorario">
-              <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>
-                Asistir
-              </button>
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef> Fecha</mat-header-cell>
+          <mat-cell *matCellDef="let clase"> {{clase.fecha | date: 'short'}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="asistir">
+          <mat-header-cell *matHeaderCellDef> Asistir </mat-header-cell>
+          <mat-cell *matCellDef="let clase">
+            <div *ngIf="!clase.asistio; else yaAsistio" >
+              <div *ngIf="validarHora(clase.fecha); else FueraDeHorario">
+                <button mat-raised-button color="primary" (click)='asitir(clase.id, clase.bloque)'>
+                  Asistir
+                </button>
+              </div>
+              <ng-template #FueraDeHorario>
+                <button mat-button disabled>Fuera de horario</button>
+              </ng-template>
             </div>
-            <ng-template #FueraDeHorario>
-              <button mat-button disabled>Fuera de horario</button>
+            <ng-template #yaAsistio>
+              <button mat-button disabled>Asistencia Marcada</button>
             </ng-template>
-          </div>
-          <ng-template #yaAsistio>
-            <button mat-button disabled>Asistencia Marcada</button>
-          </ng-template>
 
-        </mat-cell>
+          </mat-cell>
 
-      </ng-container>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <div *ngIf="dataSource.length <= 0">
-      <h1>No hay clases creadas.</h1>
-    </div>
-  </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <div *ngIf="dataSource.length <= 0">
+        <h1>No hay clases creadas.</h1>
+      </div>
+    </ng-container>
+  </div>
 </div>
+<br/>
+

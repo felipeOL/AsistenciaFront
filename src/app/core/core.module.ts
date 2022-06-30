@@ -39,6 +39,10 @@ import {FormsModule} from "@angular/forms";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { PeriodsComponent } from './components/administration/periods/periods.component';
+import { FormCreatePeriodComponent } from './components/administration/FormCreatePeriod/form-create-period.component';
+import {MatSortModule} from "@angular/material/sort";
+import { ResultCreationStudentsComponent } from './components/teacher/result-creation-students/result-creation-students.component';
 
 
 @NgModule({
@@ -60,24 +64,28 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         StudentCoursesComponent,
         FormularioCrearClaseComponent,
         MarkAttendanceTeacherComponent,
+        PeriodsComponent,
+        FormCreatePeriodComponent,
+        ResultCreationStudentsComponent,
     ],
-  imports: [
-    CommonModule,
-    MatButtonToggleModule,
-    MaterialModule,
-    MatSelectModule,
-    MatTableModule,
-    MatDatepickerModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    SharedModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    FormsModule,
-    MatStepperModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonToggleModule,
+        MaterialModule,
+        MatSelectModule,
+        MatTableModule,
+        MatDatepickerModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        SharedModule,
+        MatGridListModule,
+        MatCheckboxModule,
+        FormsModule,
+        MatStepperModule,
+        MatProgressSpinnerModule,
+        MatPaginatorModule,
+        MatSortModule
+    ],
     exports: [
         AccountsComponent
     ],

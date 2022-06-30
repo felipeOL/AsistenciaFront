@@ -8,6 +8,8 @@ import {MaterialModule} from "../material/material.module";
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 import {MatDialogRef} from "@angular/material/dialog";
 import { SheetComponent } from './components/sheet/sheet.component';
+import { OkDialogComponent } from './components/dialogs/ok-dialog/ok-dialog.component';
+import { SheetNewStudentsComponent } from './components/sheet-new-student/sheet-new-students.component';
 
 
 @NgModule({
@@ -15,12 +17,15 @@ import { SheetComponent } from './components/sheet/sheet.component';
         LoginComponent,
         NavbarComponent,
         ErrorDialogComponent,
-        SheetComponent
+        OkDialogComponent,
+        SheetComponent,
+        SheetNewStudentsComponent
     ],
-    exports: [
-        NavbarComponent,
-        SheetComponent
-    ],
+  exports: [
+    NavbarComponent,
+    SheetComponent,
+    SheetNewStudentsComponent
+  ],
     imports: [
         CommonModule,
         RouterModule,

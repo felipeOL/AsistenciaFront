@@ -8,6 +8,7 @@ import {
 } from "../formulario-agregar-estudiante/formulario-agregar-estudiante.component";
 import {FormularioCrearClaseComponent} from "../formulario-crear-clase/formulario-crear-clase.component";
 import {CourseStudentService} from "../../../../services/course-student.service";
+import {NewStudentsExcelService} from "../../../../services/new-students-excel.service";
 
 @Component({
   selector: 'app-courses',
@@ -22,7 +23,8 @@ export class CoursesComponent implements OnInit {
   (
     private teacherFacade: teacherFacade,
     private crearCuentaDialog: MatDialog,
-    private excelService:CourseStudentService
+    private excelService:CourseStudentService,
+    private excelStudent: NewStudentsExcelService,
   )
   {
     this.dataSource$ = this.teacherFacade.courses$;

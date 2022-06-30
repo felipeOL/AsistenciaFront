@@ -1,0 +1,42 @@
+<div>
+  <mat-button-toggle class="close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </mat-button-toggle>
+
+</div>
+<div>
+  <h2 class="titulo">Formulario Crear Nuevo Periodo</h2>
+</div>
+<br/>
+<div class="centerDiv">
+  <form [formGroup]="createPeriodForm">
+    <div style="display: flex">
+      <mat-form-field >
+        <mat-label>Nombre periodo</mat-label>
+        <input matInput name="nombrePeriodo" id="nombre" type="text" placeholder="Semestre otoño 2022" formControlName="nombre">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field >
+        <mat-label>Año</mat-label>
+        <input matInput name="año" id="año" type="number" placeholder="2022" formControlName="anio">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field >
+        <mat-label>Fecha inicio Periodo</mat-label>
+        <input matInput name="fechaInicio" type="date" placeholder="22-05-2022" formControlName="fechaInicio" (ngModelChange)="onChangeFechaInicio($event)">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field >
+        <mat-label>Fecha Fin Periodo</mat-label>
+        <input matInput name="fechaFin" type="date" placeholder="23-07-2022" formControlName="fechaFin" (ngModelChange)="onChangeFechaFin($event)">
+      </mat-form-field>
+    </div>
+    <div class="AcceptButton">
+      <button mat-flat-button color="primary" type="submit" (click)="createPeriodo()" [disabled]="createPeriodForm.invalid">Crear Periodo</button>
+    </div>
+    <br/>
+  </form>
+</div>

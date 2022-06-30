@@ -4,10 +4,12 @@ import {GetUsersModel} from "../../../Models/getUsers.model";
 import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
 import {CrearCourseModel} from "../../../Models/CrearCourse.model";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
+import {PeriodResponseModel} from "../../../Models/PeriodResponse.model";
 
 @Injectable()
 
 export class administrationState{
+  private periodState$ = new BehaviorSubject<PeriodResponseModel[]>([]);
   private cuentasState$ = new BehaviorSubject<CrearCuentaModel[]>([]);
   private coursesState$ = new BehaviorSubject<CourseResponseModel[]>([]);
 
@@ -43,6 +45,16 @@ export class administrationState{
 
   setCourses(courses:CourseResponseModel[]){
     this.coursesState$.next(courses);
+  }
+
+  setPeriodos(periods: PeriodResponseModel[])
+  {
+    this.periodState$.next(periods)
+  }
+
+  getPeriod$(): BehaviorSubject<PeriodResponseModel[]>
+  {
+    return this.periodState$
   }
 
 }

@@ -2,11 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BloqueHorarioModel} from "../../../../Models/BloqueHorario.model";
 import {ContenidoBloqueHorarioModel} from "../../../../Models/ContenidoBloqueHorario.model";
 import {teacherFacade} from "../../facade/teacher.facade";
-import {Observable, Subscription} from "rxjs";
-import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
-
+import { Subscription} from "rxjs";
 const bloqueS: ContenidoBloqueHorarioModel = {
-  nombrecurso:"",
+  nombrecurso:'',
   seccioncurso:"",
   nombreprofesor:"",
   emailprofesor:"",
@@ -143,32 +141,16 @@ const hoario: BloqueHorarioModel[] = [
 })
 export class SchedulesComponent implements OnInit, OnDestroy{
 
-  mostrar:Observable<ContenidoBloqueHorarioModel[]>
-  horarioPrueba: ContenidoBloqueHorarioModel[]=[]
-  miHorarioSuscription: Subscription
+  mostrar:boolean = false
+  miHorarioSuscription!: Subscription
   displayedColumns: string[]=['bloque','lunes', 'martes','miercoles','jueves','viernes','sabado'];
   dataSource : BloqueHorarioModel[]=hoario
   constructor(private techarFacade: teacherFacade)
   {
-    //falta observar
-    this.mostrar= this.techarFacade.suscribeSchudeles()
-    this.miHorarioSuscription = this.techarFacade.suscribeSchudeles().subscribe(
-      data =>
-      {
-        this.horarioPrueba = data
-        this.horarioPrueba.forEach(element => {
-          let bloque = this.dataSource.find(bloque => bloque.bloque == element.bloque)
-          if(typeof bloque != 'undefined')
-          {
-            this.modificarHorario(bloque,element)
-          }
-        })
-      }
-    )
-    this.techarFacade.getSchudeles()
   }
 
   ngOnDestroy(): void {
+    console.log("saliendo Horario")
         this.miHorarioSuscription.unsubscribe()
     }
 
@@ -177,14 +159,27 @@ export class SchedulesComponent implements OnInit, OnDestroy{
     this.miHorarioSuscription = this.techarFacade.suscribeSchudeles().subscribe(
       data =>
       {
-        this.horarioPrueba = data
-        this.horarioPrueba.forEach(element => {
+        hoario.forEach(element =>
+        {
+          element.Lunes = bloqueS;
+          element.Martes = bloqueS;
+          element.Miercoles =bloqueS;
+          element.Jueves = bloqueS;
+          element.Viernes = bloqueS;
+          element.Sabado = bloqueS
+        })
+        console.log(data)
+        data.forEach(element => {
           let bloque = this.dataSource.find(bloque => bloque.bloque == element.bloque)
           if(typeof bloque != 'undefined')
           {
             this.modificarHorario(bloque,element)
           }
         })
+        if (data.length)
+        {
+          this.mostrar=true
+        }
       }
     )
     this.techarFacade.getSchudeles()
