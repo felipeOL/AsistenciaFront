@@ -1,0 +1,39 @@
+<div>
+  <mat-button-toggle class="close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </mat-button-toggle>
+</div>
+<div>
+  <h2>Resultado creación estudiantes</h2>
+</div>
+<div>
+  <p *ngIf="!dataSource.length;else ahoraSi">Aun no se cargando lista</p>
+  <ng-template #ahoraSi>
+    <mat-table [dataSource]="dataSource" class="table">
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+        <mat-cell *matCellDef="let response"> {{response.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="resultado">
+        <mat-header-cell *matHeaderCellDef> Resultado</mat-header-cell>
+        <mat-cell *matCellDef="let response">
+          <div *ngIf="response.resultadobool"><mat-icon>check_circle_outline</mat-icon></div>
+          <div *ngIf="!response.resultadobool"><mat-icon>close</mat-icon></div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="comentario">
+        <mat-header-cell *matHeaderCellDef> Resultado</mat-header-cell>
+        <mat-cell *matCellDef="let response">
+          <div *ngIf="!response.resultadobool">{{response.resultado}}</div>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <br/>
+  </ng-template>
+</div>

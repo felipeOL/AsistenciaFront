@@ -7,6 +7,7 @@ import {crearClaseModel} from "../../../Models/crearClase.model";
 import {classReponse} from "../../../Models/classReponse.model";
 import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
 import {MatDialog} from "@angular/material/dialog";
+import {CreationStudentResponse} from "../../../Models/creationStudentResponse.model";
 import {OkDialogComponent} from "../../../shared/components/dialogs/ok-dialog/ok-dialog.component";
 
 @Injectable()
@@ -104,6 +105,25 @@ export class teacherFacade
   suscribeSchudeles()
   {
     return this.teacherState.getSchudelesSuscribe()
+  }
+
+  createNewStudent(correos:string[])
+  {
+    return this.teacherApi.addStudent(correos);
+  }
+
+  public addNewResponse(response:CreationStudentResponse)
+  {
+    this.teacherState.addNewStudent(response);
+  }
+
+  public getnewStudents()
+  {
+    return this.teacherState.getnewStudent()
+  }
+  public updateNewStudents(response:CreationStudentResponse[])
+  {
+    this.teacherState.setnewStudents();
   }
 
 }

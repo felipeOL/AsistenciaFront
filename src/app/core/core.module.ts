@@ -42,6 +42,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { PeriodsComponent } from './components/administration/periods/periods.component';
 import { FormCreatePeriodComponent } from './components/administration/FormCreatePeriod/form-create-period.component';
 import {MatSortModule} from "@angular/material/sort";
+import { ResultCreationStudentsComponent } from './components/teacher/result-creation-students/result-creation-students.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {MatSortModule} from "@angular/material/sort";
         MarkAttendanceTeacherComponent,
         PeriodsComponent,
         FormCreatePeriodComponent,
+        ResultCreationStudentsComponent,
     ],
     imports: [
         CommonModule,
