@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {CourseResponseModel} from "../Models/CourseResponse.model";
 import {teacherFacade} from "../core/components/facade/teacher.facade";
+import {OkDialogComponent} from "../shared/components/dialogs/ok-dialog/ok-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class CourseStudentService {
     return this.correosEstudiantes$.asObservable();
   }
 
-  constructor(private teacherFacade:teacherFacade) {
+  constructor(private teacherFacade:teacherFacade,private dialog: MatDialog) {
     this.correos$ = this.correosObtenidos$();
     this.curso = {};
   }
@@ -46,6 +48,13 @@ export class CourseStudentService {
           this.teacherFacade.addStudenToCourse(this.curso.id!,correo);
         }
       })
+    })
+    this.dialog.open(OkDialogComponent, {
+      data:
+        {
+          titulo: "Carga Completada",
+          contenido: "Los estudiantes fueron cargados exitosamente"
+        }
     })
     this.setCorreos([]);
   }

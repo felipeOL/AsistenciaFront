@@ -12,8 +12,8 @@ export class CuentasService {
 
   private cuentas$ = new BehaviorSubject<GetUsersModel[]>([])
   private cuentas : GetUsersModel[]=[]
-  private urlCrearCuenta ="http://localhost:5000/api/usuario/registrar"
-  private urlTodosLosUsuarios="http://localhost:5000/api/usuario/todos"
+  private urlCrearCuenta ="https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/registrar"
+  private urlTodosLosUsuarios="https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/todos"
   constructor(
     private httpclient: HttpClient,
     private authservice: AuthenticationService,

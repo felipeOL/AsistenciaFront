@@ -9,7 +9,7 @@
 <div>
   <p *ngIf="!dataSource.length;else ahoraSi">Aun no se cargando lista</p>
   <ng-template #ahoraSi>
-    <mat-table [dataSource]="dataSource">
+    <mat-table [dataSource]="dataSource" class="table">
       <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
         <mat-cell *matCellDef="let cuenta"> {{cuenta.email}} </mat-cell>

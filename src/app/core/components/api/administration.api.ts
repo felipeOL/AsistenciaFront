@@ -29,7 +29,7 @@ export class administrationApi {
   {
     console.log(course)
     let usuario = this.authservice.getUser();
-    return this.httpclient.post<CrearCourseModel>("http://localhost:5000/api/curso/crear", course, {
+    return this.httpclient.post<CrearCourseModel>(AdminURL.COURSES_CREATION, course, {
       headers: {
         Authorization: 'Bearer ' + usuario.token
       }

@@ -2,9 +2,10 @@
 <div class="divPrincipal">
   <div>
     <button mat-raised-button color="primary">
-      <app-sheet-new-student></app-sheet-new-student>
+      <app-sheet-new-student></app-sheet-new-student> Crear cuentas estudiantes
     </button>
   </div>
+  <br>
   <div class="mat-elevation-z8">
     <ng-container *ngIf="dataSource$ | async as dataSource">
       <mat-table [dataSource]="dataSource" *ngIf="dataSource.length > 0" class="tabla">
