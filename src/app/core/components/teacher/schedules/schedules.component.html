@@ -1,122 +1,124 @@
 <br/>
 <div class="divPrincipal">
-    <p *ngIf="!mostrar;else ahoraSi">Aun no se cargando lista</p>
-    <ng-template #ahoraSi>
-      <div class="mat-elevation-z8">
-        <mat-table [dataSource]="dataSource" class="tabla">
-          <ng-container matColumnDef="bloque">
-            <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta"> {{cuenta.horario}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="lunes">
-            <mat-header-cell *matHeaderCellDef>Lunes</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
-              <div *ngIf="cuenta.Sabado.nombrecurso !=' ';else NoCheckLunes">
-                <h3>{{cuenta.Lunes.nombrecurso}}</h3>
-                <br/>
-                {{cuenta.Lunes.seccioncurso}}
-                <br/>
+  <p *ngIf="!mostrar;else ahoraSi">Aun no se cargando lista</p>
+  <ng-template #ahoraSi>
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" class="tabla">
+        <ng-container matColumnDef="bloque">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Hora</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell"> {{cuenta.horario}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lunes">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Lunes</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
+            <div *ngIf="cuenta.Lunes.nombrecurso !='';else NoCheckLunes">
+              <div class="bloquelleno">
+                <p class="nombreCurso">{{cuenta.Lunes.nombrecurso}}</p>
+                Secccion:{{cuenta.Lunes.seccioncurso}}<br/>
               </div>
-              <ng-template #NoCheckLunes>
-                <div>
+            </div>
+            <ng-template #NoCheckLunes>
+              <div>
 
-                </div>
-              </ng-template>
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="martes">
-            <mat-header-cell *matHeaderCellDef>Martes</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
-              <div *ngIf="cuenta.Sabado.nombrecurso !=' ';else NoCheckMartes">
-                <h3>{{cuenta.Martes.nombrecurso}}</h3>
-                <br/>
-                {{cuenta.Martes.seccioncurso}}
-                <br/>
               </div>
-              <ng-template #NoCheckMartes>
-                <div>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
 
-                </div>
-              </ng-template>
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="miercoles">
-            <mat-header-cell *matHeaderCellDef>Miercoles</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
-              <div *ngIf="cuenta.Sabado.nombrecurso !=' ';else NoCheckMiercoles">
-                <h3>{{cuenta.Miercoles.nombrecurso}}</h3>
-                <br/>
-                {{cuenta.Miercoles.seccioncurso}}
-                <br/>
+        <ng-container matColumnDef="martes">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Martes</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
+            <div *ngIf="cuenta.Martes.nombrecurso !='';else NoCheckMartes" >
+              <div class="bloquelleno">
+                <p class="nombreCurso">{{cuenta.Martes.nombrecurso}}</p>
+                Secccion:{{cuenta.Martes.seccioncurso}}<br/>
               </div>
-              <ng-template #NoCheckMiercoles>
-                <div>
 
-                </div>
-              </ng-template>
-            </mat-cell>
-          </ng-container>
+            </div>
+            <ng-template #NoCheckMartes>
+              <div>
 
-          <ng-container matColumnDef="jueves">
-            <mat-header-cell *matHeaderCellDef>Jueves</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
-              <div *ngIf="cuenta.Sabado.nombrecurso !=' ';else NoCheckJueves">
-                <h3>{{cuenta.Jueves.nombrecurso}}</h3>
-                <br/>
-                {{cuenta.Jueves.seccioncurso}}
-                <br/>
               </div>
-              <ng-template #NoCheckJueves>
-                <div>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
 
-                </div>
-              </ng-template>
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="viernes">
-            <mat-header-cell *matHeaderCellDef>Viernes</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
-              <div *ngIf="cuenta.Sabado.nombrecurso !=' ';else NoCheckViernes">
-                <h3>{{cuenta.Viernes.nombrecurso}}</h3>
-                <br/>
-                {{cuenta.Viernes.seccioncurso}}
-                <br/>
+        <ng-container matColumnDef="miercoles">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Miercoles</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
+            <div *ngIf="cuenta.Miercoles.nombrecurso !='';else NoCheckMiercoles">
+              <div class="bloquelleno">
+                <p class="nombreCurso">{{cuenta.Miercoles.nombrecurso}}</p>
+                Secccion:{{cuenta.Miercoles.seccioncurso}}<br/>
               </div>
-              <ng-template #NoCheckViernes>
-                <div>
+            </div>
+            <ng-template #NoCheckMiercoles>
+              <div>
 
-                </div>
-              </ng-template>
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="sabado">
-            <mat-header-cell *matHeaderCellDef>Sabado</mat-header-cell>
-            <mat-cell *matCellDef="let cuenta">
-              <div *ngIf="cuenta.Sabado.nombrecurso !=' ';else NoCheckSabado">
-                <h3>{{cuenta.Sabado.nombrecurso}}</h3>
-                <br/>
-                {{cuenta.Sabado.seccioncurso}}
-                <br/>
               </div>
-              <ng-template #NoCheckSabado>
-                <div>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
 
-                </div>
-              </ng-template>
-            </mat-cell>
-          </ng-container>
+        <ng-container matColumnDef="jueves">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Jueves</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
+            <div *ngIf="cuenta.Jueves.nombrecurso !='';else NoCheckJueves">
+              <div class="bloquelleno">
+                <p class="nombreCurso">{{cuenta.Jueves.nombrecurso}}</p>
+                Secccion:{{cuenta.Jueves.seccioncurso}}<br/>
+              </div>
+            </div>
+            <ng-template #NoCheckJueves>
+              <div>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-        <br/>
-      </div>
-    </ng-template>
+              </div>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="viernes">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Viernes</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
+            <div *ngIf="cuenta.Viernes.nombrecurso !='';else NoCheckViernes" >
+              <div class="bloquelleno">
+                <p class="nombreCurso">{{cuenta.Viernes.nombrecurso}}</p>
+                Secccion:{{cuenta.Viernes.seccioncurso}}<br/>
+              </div>
+            </div>
+            <ng-template #NoCheckViernes>
+              <div>
+
+              </div>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sabado">
+          <mat-header-cell *matHeaderCellDef class="mat-table-border">Sabado</mat-header-cell>
+          <mat-cell *matCellDef="let cuenta" class="mat-table-border-cell">
+            <div *ngIf="cuenta.Sabado.nombrecurso !='';else NoCheckSabado">
+              <div class="bloquelleno">
+                <p class="nombreCurso">{{cuenta.Sabado.nombrecurso}}</p>
+                Secccion:{{cuenta.Sabado.seccioncurso}}<br/>
+              </div>
+            </div>
+            <ng-template #NoCheckSabado>
+              <div>
+
+              </div>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <br/>
+    </div>
+  </ng-template>
 </div>
 <br/>
+
 
 

@@ -2,11 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BloqueHorarioModel} from "../../../../Models/BloqueHorario.model";
 import {ContenidoBloqueHorarioModel} from "../../../../Models/ContenidoBloqueHorario.model";
 import {teacherFacade} from "../../facade/teacher.facade";
-import {Observable, Subscription} from "rxjs";
-import {CourseResponseModel} from "../../../../Models/CourseResponse.model";
-
+import { Subscription} from "rxjs";
 const bloqueS: ContenidoBloqueHorarioModel = {
-  nombrecurso:"",
+  nombrecurso:'',
   seccioncurso:"",
   nombreprofesor:"",
   emailprofesor:"",

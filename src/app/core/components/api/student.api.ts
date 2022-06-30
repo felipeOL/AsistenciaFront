@@ -6,6 +6,8 @@ import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {AdminURL} from "../../../Util/adminURL.model";
 import {classReponse} from "../../../Models/classReponse.model";
 import {StudentURL} from "../../../Util/studentURL.model";
+import {ContenidoBloqueHorarioModel} from "../../../Models/ContenidoBloqueHorario.model";
+import {TeacherURL} from "../../../Util/teacherURL.model";
 
 @Injectable()
 
@@ -85,6 +87,17 @@ export class studentApi{
       }
     let usuario =this.authservice.getUser();
     return this.httpClient.post(StudentURL.ASSISTENCE_CLASS,body,{
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    })
+  }
+
+  getSchedules(): Observable<ContenidoBloqueHorarioModel[]>
+  {
+    let usuario = this.authservice.getUser();
+    return this.httpClient.get<ContenidoBloqueHorarioModel[]>(TeacherURL.GET_SCHEDULES, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token

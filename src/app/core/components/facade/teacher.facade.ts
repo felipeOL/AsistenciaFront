@@ -6,9 +6,9 @@ import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {crearClaseModel} from "../../../Models/crearClase.model";
 import {classReponse} from "../../../Models/classReponse.model";
 import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
-import {ErrorDialogComponent} from "../../../shared/components/dialogs/error-dialog/error-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CreationStudentResponse} from "../../../Models/creationStudentResponse.model";
+import {OkDialogComponent} from "../../../shared/components/dialogs/ok-dialog/ok-dialog.component";
 
 @Injectable()
 
@@ -50,7 +50,7 @@ export class teacherFacade
     let result=this.teacherApi.addClass(clase)
     result.subscribe((response: any) => {
       console.log(response)
-        this.dialog.open(ErrorDialogComponent, {
+        this.dialog.open(OkDialogComponent, {
           data:
             {
               titulo: "Guardado con exito ",
@@ -82,7 +82,7 @@ export class teacherFacade
     let result = this.teacherApi.saveAttendan(asistencia)
     result.subscribe(response => {
         this.teacherState.setAttendanClass(asistencia.asistencias)
-        this.dialog.open(ErrorDialogComponent, {
+        this.dialog.open(OkDialogComponent, {
           data:
             {
               titulo: "Guardado con exito ",
