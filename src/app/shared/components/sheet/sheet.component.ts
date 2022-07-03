@@ -16,7 +16,7 @@ export class SheetComponent implements OnInit {
   fileName: string = 'SheetJS.xlsx';
 
   onFileChange(evt: any) {
-    this.excelService.setCorreos([]);
+    this.excelService.resetCorreos()
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');

@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {CourseResponseModel} from "../Models/CourseResponse.model";
 import {teacherFacade} from "../core/components/facade/teacher.facade";
+import {CreationStudentResponse} from "../Models/creationStudentResponse.model";
+import {MatDialogConfig} from "@angular/material/dialog";
+import {
+  ResultCreationStudentsComponent
+} from "../core/components/teacher/result-creation-students/result-creation-students.component";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +29,7 @@ export class CourseStudentService {
 
   addCorreo(correo:string){
     console.log("se agrego correo:",correo);
+    this.correos.push(correo)
     this.correosEstudiantes$.next([...this.correosEstudiantes$.getValue(),correo]);
   }
 
@@ -36,17 +42,20 @@ export class CourseStudentService {
   }
 
   cargarExcel(){
-    this.correos = [];
-    this.correos$ = this.correosObtenidos$();
-    this.correos$.subscribe(res => {
-      res.forEach(correo => {
-        if(!this.correos.includes(correo)){
-          console.log("this.correos:",this.correos);
-          this.correos.push(correo);
-          this.teacherFacade.addStudenToCourse(this.curso.id!,correo);
-        }
-      })
-    })
-    this.setCorreos([]);
+    console.log("aajjaaja")
+    console.log(this.correos)
+    console.log(this.curso)
+    if(typeof this.curso.id != 'undefined')
+    {
+      this.teacherFacade.cargarEstudiantesCurso(this.curso.id,this.correos)
+    }
+
   }
+
+  resetCorreos()
+  {
+    this.correos =[]
+    this.correosEstudiantes$.next(this.correos)
+  }
+
 }

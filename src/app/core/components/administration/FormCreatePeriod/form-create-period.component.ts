@@ -70,10 +70,19 @@ export class FormCreatePeriodComponent implements OnInit {
           fechafin:this.fechaFin
         }
         console.log(newPeriod)
+        this.adminFacade.createPeriod(newPeriod)
+        this.closeDialog()
       }
-
-      //this.adminFacade.createPeriod(newPeriod)
-      this.closeDialog()
+      else
+      {
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Fechas no validas",
+              contenido: "por favor valide que los campos de fechas esten correctamente ingresdos o seleccionados "
+            }
+        })
+      }
     }
   }
 

@@ -6,6 +6,7 @@ export interface CrearCourseModel{
   nombre?:string;
   seccion?:string;
   semestre?:string;
+  idperiodo:number;
   bloques: BloqueCursoModel[];
   anio?:Date;
 }

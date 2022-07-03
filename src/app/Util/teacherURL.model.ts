@@ -6,5 +6,6 @@ export class TeacherURL{
   public static SAVE_ATTENDANCE = 'http://localhost:5000/api/clase/marcarAsistencias';
   public static GET_SCHEDULES ='http://localhost:5000/api/curso/horarios';
   public static CREATE_NEW_STUDENT = 'http://localhost:5000/api/usuario/crearEstudiantesProfesor';
+  public static CRAGE_STUDENT_IN_COURSE = 'http://localhost:5000/api/curso/cargarEstudiantesProfesor'
 
 }
