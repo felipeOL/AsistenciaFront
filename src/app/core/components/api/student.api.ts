@@ -46,9 +46,12 @@ export class studentApi{
   }
 
   getClases(fecha: Date): Observable<classReponse[]> {
+    console.log("fecha")
+    console.log(fecha.toLocaleDateString())
+    let fechaString:string =fecha.toLocaleDateString()
     let clases: classReponse[] = [];
     let usuario = this.authservice.getUser();
-    this.httpClient.post<classReponse[]>(StudentURL.GET_ALL_CLASS, fecha,{
+    this.httpClient.post<classReponse[]>(StudentURL.GET_ALL_CLASS,{fecha:fechaString},{
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
