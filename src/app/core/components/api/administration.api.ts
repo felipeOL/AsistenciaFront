@@ -19,17 +19,19 @@ export class administrationApi {
               private authservice: AuthenticationService,) {
   }
 
-  registrarCuenta(nuevacuenta: CrearCuentaModel){
-    return this.httpclient.post(AdminURL.ACCOUNT_CREATION, nuevacuenta, {}).pipe(
-      catchError(err => "e")
-    )
+  registrarCuenta(nuevacuenta: CrearCuentaModel)
+  {
+    let response= this.httpclient.post(AdminURL.ACCOUNT_CREATION, nuevacuenta, )
+    console.log("response")
+    console.log(response)
+    return response
   }
 
   addCourse(course:CrearCourseModel):Observable<CrearCourseModel>
   {
     console.log(course)
     let usuario = this.authservice.getUser();
-    return this.httpclient.post<CrearCourseModel>("http://localhost:5000/api/curso/crear", course, {
+    return this.httpclient.post<CrearCourseModel>(AdminURL.COURSES_CREATION, course, {
       headers: {
         Authorization: 'Bearer ' + usuario.token
       }

@@ -13,6 +13,8 @@ import {PeriodResponseModel} from "../../../../Models/PeriodResponse.model";
 })
 export class PeriodsComponent implements OnInit, OnDestroy {
 
+  year:number=0
+  panelOpenState=false;
   displayedColumns: string[] = ['nombre', 'anio', 'fechainicio', 'fechafin'];
   dataSource: MatTableDataSource<PeriodResponseModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;

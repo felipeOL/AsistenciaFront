@@ -2,12 +2,10 @@ import {Injectable} from "@angular/core";
 import {administrationState} from "../state/administration.state";
 import {administrationApi} from "../api/administration.api";
 import {Observable} from "rxjs";
-import {GetUsersModel} from "../../../Models/getUsers.model";
 import {CrearCuentaModel} from "../../../Models/crearCuenta.model";
 import {CrearCourseModel} from "../../../Models/CrearCourse.model";
 import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {PeriodModel} from "../../../Models/Period.model";
-import {ErrorDialogComponent} from "../../../shared/components/dialogs/error-dialog/error-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {OkDialogComponent} from "../../../shared/components/dialogs/ok-dialog/ok-dialog.component";
 
@@ -29,11 +27,16 @@ export class administrationFacade{
   }
 
   crearCuenta(cuenta:CrearCuentaModel){
-    this.adminApi.registrarCuenta(cuenta).subscribe({next:(respuesta) => {
-        this.adminState.addCuenta(cuenta);
-      },error:(err) => {
-        console.log();
-    }})
+    this.adminApi.registrarCuenta(cuenta).subscribe(response => {
+      this.dialog.open(OkDialogComponent, {
+        data:
+          {
+            titulo: "Periodo Creado",
+            contenido: "el periodo fue creado exitosamente "
+          }
+      })
+      this.adminState.addCuenta(cuenta);
+    })
   }
 
   crearCurso(curso:CrearCourseModel): any {
@@ -88,6 +91,22 @@ export class administrationFacade{
   suscribePeriodos$()
   {
     return this.adminState.getPeriod$()
+  }
+
+  getPeriodOfTheYear(year: number)
+  {
+
+    this.adminApi.getCurrentPeriods(year).subscribe(res=>
+      {
+        console.log(res)
+        this.adminState.setPeriodosOfTheYear(res)
+      }
+    )
+  }
+
+  suscribePeriodOfTheYear$()
+  {
+    return this.adminState.getPeriodOfTheYear$()
   }
 
   createPeriod(newPeriod: PeriodModel)

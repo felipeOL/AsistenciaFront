@@ -18,3 +18,18 @@
   padding-inline-start: 1%;
   padding-inline-end: 1%;
 }
+
+.centerDivAgregarBloque{
+  display: flex;
+  justify-content: space-between;
+  max-width: 200px;
+  width: 100%;
+  max-height: 50px;
+  padding: 10px 0 ;
+}
+
+.inputYear{
+  border-radius: 3px;
+  background-color: #F0F0F0;
+  width: 80%;
+}
