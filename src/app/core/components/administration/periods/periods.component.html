@@ -52,18 +52,18 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="centerDivAgregarBloque">
-            <form class="example-form">
+            <form class="example-form" [formGroup]="yearGroupForm">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Año</mat-label>
-                <input matInput type="number" placeholder="1992">
+                <input matInput type="number" placeholder="1992" formControlName="anio">
               </mat-form-field>
             </form>
-            <button mat-flat-button color="primary">
+            <button mat-flat-button color="primary" (click)="cargarPeriodosDelAno()">
                Buscar
             </button>
           </div>
           <br/>
-          <table mat-table [dataSource]="dataSource" matSort class="tabla" *ngIf="year>0">
+          <table mat-table [dataSource]="dataSourseYear" matSort class="tabla" *ngIf="year>0">
 
             <ng-container matColumnDef="nombre">
               <th mat-header-cell *matHeaderCellDef > Nombre Periodo </th>

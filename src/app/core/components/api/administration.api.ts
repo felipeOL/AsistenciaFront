@@ -41,28 +41,12 @@ export class administrationApi {
   getAllCourses(): Observable<CourseResponseModel[]>{
     let courseList: CourseResponseModel[] = [];
     let usuario = this.authservice.getUser();
-    this.httpclient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
+    return this.httpclient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-      }).subscribe(response => {
-        response.forEach(course => {
-            let nuevoCurso: CourseResponseModel = {
-              id: course.id,
-              codigo: course.codigo,
-              nombre: course.nombre,
-              seccion: course.seccion,
-              semestre: course.semestre,
-              bloques: course.bloques,
-              anio: course.anio,
-              profesor: course.profesor
-            }
-            courseList.push(nuevoCurso)
-        })
-      }
-    )
-    return of(courseList);
+      })
   }
 
   obtenerCuentas(): Observable<CrearCuentaModel[]> {

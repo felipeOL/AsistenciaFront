@@ -40,13 +40,12 @@ export class administrationFacade{
   }
 
   crearCurso(curso:CrearCourseModel): any {
-    this.adminApi.addCourse(curso).subscribe({
-      next: (respuesta) => {
-        this.updateCourse();
-      }, error: (err) => {
-        console.log();
+    this.adminApi.addCourse(curso).subscribe(response =>
+      {
+        console.log("curso creado")
+        console.log(response)
       }
-    })
+    )
   }
 
   eliminarCuenta(cuenta:CrearCuentaModel){
