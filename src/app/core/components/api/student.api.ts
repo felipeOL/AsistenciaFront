@@ -21,28 +21,12 @@ export class studentApi{
   getAllCourses(): Observable<CourseResponseModel[]>{
     let courseList: CourseResponseModel[] = [];
     let usuario = this.authservice.getUser();
-    this.httpClient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
+    return this.httpClient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-    }).subscribe(response => {
-        response.forEach(course => {
-          let nuevoCurso: CourseResponseModel = {
-            id: course.id,
-            codigo: course.codigo,
-            nombre: course.nombre,
-            seccion: course.seccion,
-            semestre: course.semestre,
-            bloques: course.bloques,
-            anio: course.anio,
-            profesor: course.profesor
-          }
-          courseList.push(nuevoCurso)
-        })
-      }
-    )
-    return of(courseList);
+    })
   }
 
   getClases(fecha: Date): Observable<classReponse[]> {

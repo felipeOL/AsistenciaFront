@@ -39,7 +39,6 @@ export class administrationApi {
   }
 
   getAllCourses(): Observable<CourseResponseModel[]>{
-    let courseList: CourseResponseModel[] = [];
     let usuario = this.authservice.getUser();
     return this.httpclient.get<CourseResponseModel[]>(AdminURL.GET_ALL_COURSES, {
       headers: {

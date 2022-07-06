@@ -43,7 +43,6 @@ export class studentFacade
     this.studentApi.checkAssistence(idClass).subscribe({next:(respuesta)=>{
       this.updateClases(fecha);
       },error:(err) => {
-      console.log()
       }})
   }
 

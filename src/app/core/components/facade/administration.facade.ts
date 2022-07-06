@@ -27,23 +27,22 @@ export class administrationFacade{
   }
 
   crearCuenta(cuenta:CrearCuentaModel){
-    this.adminApi.registrarCuenta(cuenta).subscribe(response => {
-      this.dialog.open(OkDialogComponent, {
-        data:
-          {
-            titulo: "Periodo Creado",
-            contenido: "el periodo fue creado exitosamente "
-          }
-      })
+    this.adminApi.registrarCuenta(cuenta).subscribe(response =>
+    {
       this.adminState.addCuenta(cuenta);
     })
   }
 
-  crearCurso(curso:CrearCourseModel): any {
+  crearCurso(curso:CrearCourseModel){
     this.adminApi.addCourse(curso).subscribe(response =>
       {
-        console.log("curso creado")
-        console.log(response)
+        this.dialog.open(OkDialogComponent, {
+          data:
+            {
+              titulo: "Curso: "+curso.nombre+", Creado",
+              contenido: "el "+curso.nombre+", seccion: "+curso.seccion+", fue creado exitosamente "
+            }
+        })
       }
     )
   }
@@ -81,7 +80,6 @@ export class administrationFacade{
 
     this.adminApi.getCurrentPeriods(year).subscribe(res=>
       {
-        console.log(res)
         this.adminState.setPeriodos(res)
       }
     )
@@ -97,7 +95,6 @@ export class administrationFacade{
 
     this.adminApi.getCurrentPeriods(year).subscribe(res=>
       {
-        console.log(res)
         this.adminState.setPeriodosOfTheYear(res)
       }
     )

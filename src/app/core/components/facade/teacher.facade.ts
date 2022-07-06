@@ -50,7 +50,6 @@ export class teacherFacade
   addClase(clase:crearClaseModel){
     let result=this.teacherApi.addClass(clase)
     result.subscribe((response: any) => {
-      console.log(response)
         this.dialog.open(OkDialogComponent, {
           data:
             {
@@ -131,7 +130,6 @@ export class teacherFacade
   {
     this.teacherApi.cargarEstudiantesCursosProfesor(idcurso,correos).subscribe( response =>
     {
-      console.log(response)
       this.VisualizarRespuestas(response)
     })
   }

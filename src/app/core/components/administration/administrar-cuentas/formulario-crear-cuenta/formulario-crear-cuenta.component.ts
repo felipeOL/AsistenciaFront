@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {CrearCuentaModel} from "../../../../../Models/crearCuenta.model";
 import {CuentasService} from "../../../../../services/cuentas.service";
 import {ErrorDialogComponent} from "../../../../../shared/components/dialogs/error-dialog/error-dialog.component";
+import {OkDialogComponent} from "../../../../../shared/components/dialogs/ok-dialog/ok-dialog.component";
 
 @Component({
   selector: 'app-formulario-crear-cuenta',
@@ -45,20 +46,15 @@ export class FormularioCrearCuentaComponent implements OnInit {
     }
     console.log(nuevaCuenta);
     this.cuentasService.registrarCuenta(nuevaCuenta).subscribe( response => {
-      if(response == 'e')
-      {
-        this.dialog.open(ErrorDialogComponent, {
+        this.dialog.open(OkDialogComponent, {
           data:
             {
-              titulo: 'Error al registrar usuario ',
-              contenido: 'favor de validar que los datos sean correctos, el usuario no exista y verificar que se cuenta con internet'
+              titulo: "Cuenta: "+nuevaCuenta.email+" Creada",
+              contenido: "la Cuenta fue Creada correctamente "
             }
         })
-      }
-      else{
         this.dialogref.close();
-      }
-    })
+      })
   }
 
 }
