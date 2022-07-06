@@ -72,36 +72,14 @@ export class teacherApi {
 
   public getClases(fecha: Date): Observable<classReponse[]> {
     console.log(fecha)
-    let clases: classReponse[] = [];
     let usuario = this.authservice.getUser();
-    this.httpclient.post<classReponse[]>(TeacherURL.GET_ALL_CLASS, fecha,{
+    let fechaString:string =fecha.toLocaleDateString()
+    return this.httpclient.post<classReponse[]>(TeacherURL.GET_ALL_CLASS, {fecha:fechaString},{
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token
       }
-    }).subscribe(response => {
-      response.forEach(element => {
-        let newClass:classReponse = {
-          id: element.id,
-          sala: element.sala,
-          modalidad: element.modalidad,
-          bloque: element.bloque,
-          fecha: element.fecha,
-          asistio: element.asistio,
-          curso: element.curso = {
-            id: element.curso?.id,
-            codigo: element.curso?.codigo,
-            nombre: element.curso?.nombre,
-            seccion: element.curso?.seccion,
-            semestre: element.curso?.semestre,
-            bloques: element.curso?.bloques,
-            anio: element.curso?.anio
-          }
-        }
-        clases.push(newClass);
-      })
     })
-    return of(clases)
   }
 
   public getAttendance(idclase:number)
@@ -150,6 +128,17 @@ export class teacherApi {
   addStudent(students:string[]){
     let usuario = this.authservice.getUser();
     return this.httpclient.post<CreationStudentResponse[]>(TeacherURL.CREATE_NEW_STUDENT,students, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + usuario.token
+      }
+    })
+  }
+
+  cargarEstudiantesCursosProfesor(idCurso:number,correos:string[])
+  {
+    let usuario = this.authservice.getUser();
+    return this.httpclient.post<CreationStudentResponse[]>(TeacherURL.CRAGE_STUDENT_IN_COURSE,{idcurso:idCurso,estudiantes:correos}, {
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + usuario.token

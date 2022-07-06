@@ -28,6 +28,7 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
   profesores$: Observable<CrearCuentaModel[]>;
   periodos$: Observable<PeriodResponseModel[]>;
   list:CrearCuentaModel[] = [];
+  idperiodoActual:number =0
 
   constructor(
     public dialogref: MatDialogRef<FormularioCrearCursosComponent>,
@@ -82,6 +83,7 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
           nombre:this.crearCursoForm.value.nombre.toString(),
           seccion:this.crearCursoForm.value.seccion.toString(),
           semestre: this.periodoActual.nombre,
+          idperiodo:this.idperiodoActual,
           bloques: this.listadoBloques,
           anio: this.crearCursoForm.value.anio
         }
@@ -112,6 +114,12 @@ export class FormularioCrearCursosComponent implements OnInit,OnDestroy {
 
   onChangePeriod(event:any):void{
     this.periodoActual = event;
+    if (typeof this.periodoActual != 'undefined')
+    {
+      this.idperiodoActual = this.periodoActual.id
+    }
+    console.log(this.periodoActual)
+    console.log(this.idperiodoActual)
   }
 
   public agregarBloque():void
