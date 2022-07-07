@@ -6,6 +6,6 @@ export class AdminURL{
   public static COURSES_DELETE = "";
   public static COURSES_CHANGE = "";
   public static GET_ALL_ACCOUNT = "https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/todos";
-  public static CREATE_PERIOD = "https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/periodo/crear";
-  public static GET_PERIOD_OF_THE_YEAR ="https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/periodo/obtener";
+  public static CREATE_PERIOD = "https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/periodo/crear"
+  public static GET_PERIOD_OF_THE_YEAR ="https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/periodo/obtener"
 }

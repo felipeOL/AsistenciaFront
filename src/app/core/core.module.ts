@@ -43,6 +43,7 @@ import { PeriodsComponent } from './components/administration/periods/periods.co
 import { FormCreatePeriodComponent } from './components/administration/FormCreatePeriod/form-create-period.component';
 import {MatSortModule} from "@angular/material/sort";
 import { ResultCreationStudentsComponent } from './components/teacher/result-creation-students/result-creation-students.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { ResultCreationStudentsComponent } from './components/teacher/result-cre
         MatStepperModule,
         MatProgressSpinnerModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatExpansionModule
     ],
     exports: [
         AccountsComponent

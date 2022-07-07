@@ -4,6 +4,7 @@ import {BehaviorSubject, catchError, Observable, of} from "rxjs";
 import {CrearCuentaModel} from "../Models/crearCuenta.model";
 import {GetUsersModel} from "../Models/getUsers.model";
 import {AuthenticationService} from "./authentication.service";
+import {AdminURL} from "../Util/adminURL.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,16 @@ export class CuentasService {
 
   private cuentas$ = new BehaviorSubject<GetUsersModel[]>([])
   private cuentas : GetUsersModel[]=[]
-  private urlCrearCuenta ="https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/registrar"
-  private urlTodosLosUsuarios="https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/todos"
+  private urlCrearCuenta =AdminURL.ACCOUNT_CREATION
+  private urlTodosLosUsuarios=AdminURL.GET_ALL_COURSES
   constructor(
     private httpclient: HttpClient,
     private authservice: AuthenticationService,
   ) { }
 
-  public registrarCuenta(nuevacuenta : CrearCuentaModel): Observable<any>
+  public registrarCuenta(nuevacuenta : CrearCuentaModel)
   {
-    return this.httpclient.post(this.urlCrearCuenta,nuevacuenta,{}).pipe(
-      catchError(err => this.getlogineror(err))
-    )
-  }
-
-  private getlogineror(error: HttpErrorResponse):string {
-    return "e"
+    return this.httpclient.post(this.urlCrearCuenta,nuevacuenta,{})
   }
 
   public getAllCuentas(): BehaviorSubject<GetUsersModel[]>

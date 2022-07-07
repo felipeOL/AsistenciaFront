@@ -6,5 +6,6 @@ export class TeacherURL{
   public static SAVE_ATTENDANCE = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/clase/marcarAsistencias';
   public static GET_SCHEDULES ='https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/curso/horarios';
   public static CREATE_NEW_STUDENT = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/crearEstudiantesProfesor';
+  public static CRAGE_STUDENT_IN_COURSE = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/curso/cargarEstudiantesProfesor'
 
 }

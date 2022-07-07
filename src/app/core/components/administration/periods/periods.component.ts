@@ -5,6 +5,7 @@ import {FormCreatePeriodComponent} from "../FormCreatePeriod/form-create-period.
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {PeriodResponseModel} from "../../../../Models/PeriodResponse.model";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-periods',
@@ -13,17 +14,28 @@ import {PeriodResponseModel} from "../../../../Models/PeriodResponse.model";
 })
 export class PeriodsComponent implements OnInit, OnDestroy {
 
+  year:number=0
+  panelOpenState=false;
   displayedColumns: string[] = ['nombre', 'anio', 'fechainicio', 'fechafin'];
   dataSource: MatTableDataSource<PeriodResponseModel>;
+  dataSourseYear: MatTableDataSource<PeriodResponseModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private adminFacade:administrationFacade,
     private createPeriodDialog: MatDialog,
+    private yearForm: FormBuilder,
   )
   {
     this.dataSource = new MatTableDataSource<PeriodResponseModel>([])
+    this.dataSourseYear = new MatTableDataSource<PeriodResponseModel>([])
     this.dataSource.paginator = this.paginator
   }
+
+  yearGroupForm = this.yearForm.group(
+    {
+      anio:['']
+    }
+  )
 
   ngOnInit(): void
   {
@@ -52,6 +64,20 @@ export class PeriodsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void
   {
+  }
+
+  cargarPeriodosDelAno()
+  {
+    this.year = this.yearGroupForm.value.anio
+    if(this.year>0)
+    {
+      this.adminFacade.suscribePeriodOfTheYear$().subscribe(data =>
+      {
+        this.dataSourseYear = new MatTableDataSource<PeriodResponseModel>(data)
+      })
+      this.adminFacade.getPeriodOfTheYear(this.year)
+    }
+
   }
 
 }

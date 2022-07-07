@@ -29,7 +29,7 @@ export class HttpInterceptorService implements HttpInterceptor{
   {
     console.log(error)
     if(error.status == 401){
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
     else {
       this.dialog.open(ErrorDialogComponent, {

@@ -6,9 +6,10 @@ import {CourseResponseModel} from "../../../Models/CourseResponse.model";
 import {crearClaseModel} from "../../../Models/crearClase.model";
 import {classReponse} from "../../../Models/classReponse.model";
 import {SaveAtttendanModel} from "../../../Models/SaveAtttendan.model";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {CreationStudentResponse} from "../../../Models/creationStudentResponse.model";
 import {OkDialogComponent} from "../../../shared/components/dialogs/ok-dialog/ok-dialog.component";
+import {ResultCreationStudentsComponent} from "../teacher/result-creation-students/result-creation-students.component";
 
 @Injectable()
 
@@ -39,17 +40,21 @@ export class teacherFacade
 
   public addStudenToCourse(idCurso: number, correoEstudiante: string):any
   {
-      this.teacherApi.addStudentToCourse(idCurso,correoEstudiante).subscribe({next:(respuesta)=>{
-
-        },error:(err)=>{
-
-        }})
+      this.teacherApi.addStudentToCourse(idCurso,correoEstudiante).subscribe(response =>
+      {
+        this.dialog.open(OkDialogComponent, {
+          data:
+            {
+              titulo: "EStudiante Guardado ",
+              contenido: "El estudiante:"+correoEstudiante+", se agrego exitosamente al curso"
+            }
+        })
+      })
   }
 
   addClase(clase:crearClaseModel){
     let result=this.teacherApi.addClass(clase)
     result.subscribe((response: any) => {
-      console.log(response)
         this.dialog.open(OkDialogComponent, {
           data:
             {
@@ -126,4 +131,22 @@ export class teacherFacade
     this.teacherState.setnewStudents();
   }
 
+  public cargarEstudiantesCurso(idcurso:number,correos:string[])
+  {
+    this.teacherApi.cargarEstudiantesCursosProfesor(idcurso,correos).subscribe( response =>
+    {
+      this.VisualizarRespuestas(response)
+    })
+  }
+
+  private VisualizarRespuestas(data:CreationStudentResponse[]){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.data = data;
+    const dialogVal = this.dialog.open(ResultCreationStudentsComponent,dialogConfig);
+    dialogVal.afterClosed().subscribe( res => {
+      dialogVal.close();
+    })
+  }
 }

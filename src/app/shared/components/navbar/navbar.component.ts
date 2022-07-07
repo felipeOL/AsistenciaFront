@@ -20,12 +20,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.usuario;
     if(this.user.roles == "Teacher"){
+      this.user.roles = "Profesor";
       this.menuItems = TEACHERROUTES.filter(menuItem => menuItem);
       this.hide = false;
     }else if(this.user.roles == "Student"){
+      this.user.roles = "Estudiante";
       this.menuItems = STUDENTROUTES.filter(menuItem => menuItem);
       this.hide = false;
     }else if(this.user.roles == "Administrator"){
+      this.user.roles = "Administrador";
       this.menuItems = ADMINROUTES.filter(menuItem => menuItem);
       this.hide = false;
     }

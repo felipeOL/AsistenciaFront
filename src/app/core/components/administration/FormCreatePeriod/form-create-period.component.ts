@@ -55,14 +55,34 @@ export class FormCreatePeriodComponent implements OnInit {
     }
     else
     {
-      let newPeriod: PeriodModel = {
-        nombre: this.createPeriodForm.value.nombre,
-        anio:this.createPeriodForm.value.anio,
-        fechainicio:this.fechaInicio,
-        fechafin:this.fechaFin
+      if(typeof this.fechaFin != 'undefined' && typeof this.fechaInicio != 'undefined' )
+      {
+        this.fechaInicio = new Date(this.fechaInicio.toString())
+        this.fechaFin = new Date(this.fechaFin.toString())
+        this.fechaInicio.setDate(this.fechaInicio.getDate()+1)
+        this.fechaFin.setDate(this.fechaFin.getDate()+1)
+        this.fechaInicio.setHours(0,0,1)
+        this.fechaFin.setHours(23,59,59)
+        let newPeriod: PeriodModel = {
+          nombre: this.createPeriodForm.value.nombre,
+          anio:this.createPeriodForm.value.anio,
+          fechainicio:this.fechaInicio,
+          fechafin:this.fechaFin
+        }
+        console.log(newPeriod)
+        this.adminFacade.createPeriod(newPeriod)
+        this.closeDialog()
       }
-      this.adminFacade.createPeriod(newPeriod)
-      this.closeDialog()
+      else
+      {
+        this.dialog.open(ErrorDialogComponent, {
+          data:
+            {
+              titulo: "Fechas no validas",
+              contenido: "por favor valide que los campos de fechas esten correctamente ingresdos o seleccionados "
+            }
+        })
+      }
     }
   }
 

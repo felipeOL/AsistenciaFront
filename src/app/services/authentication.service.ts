@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {UserResponse} from "../Models/userResponse.model";
 import {catchError, Observable, of} from "rxjs";
 import {LoginRequest} from "../Models/loginRequest.model";
+import {GlobalURL} from "../Util/globalURL.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticationService
     roles : '',
     token : '',
   }
-  public url:String = "https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/login";
+  public url:String = GlobalURL.LOGIN;
 
   constructor(
     private httpclient: HttpClient
