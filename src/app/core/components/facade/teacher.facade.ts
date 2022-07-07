@@ -40,11 +40,16 @@ export class teacherFacade
 
   public addStudenToCourse(idCurso: number, correoEstudiante: string):any
   {
-      this.teacherApi.addStudentToCourse(idCurso,correoEstudiante).subscribe({next:(respuesta)=>{
-
-        },error:(err)=>{
-
-        }})
+      this.teacherApi.addStudentToCourse(idCurso,correoEstudiante).subscribe(response =>
+      {
+        this.dialog.open(OkDialogComponent, {
+          data:
+            {
+              titulo: "EStudiante Guardado ",
+              contenido: "El estudiante:"+correoEstudiante+", se agrego exitosamente al curso"
+            }
+        })
+      })
   }
 
   addClase(clase:crearClaseModel){

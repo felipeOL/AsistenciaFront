@@ -1,11 +1,11 @@
 export class TeacherURL{
-  public static Add_STUDENT_TO_COURSE='http://localhost:5000/api/curso/agregarEstudiante';
-  public static ADD_CLASS = 'http://localhost:5000/api/clase/crear';
-  public static GET_ALL_CLASS = 'http://localhost:5000/api/clase/todosDesdeFecha';
-  public static GET_ATTENDANCE_OF = 'http://localhost:5000/api/clase/obtenerAsistencias';
-  public static SAVE_ATTENDANCE = 'http://localhost:5000/api/clase/marcarAsistencias';
-  public static GET_SCHEDULES ='http://localhost:5000/api/curso/horarios';
-  public static CREATE_NEW_STUDENT = 'http://localhost:5000/api/usuario/crearEstudiantesProfesor';
-  public static CRAGE_STUDENT_IN_COURSE = 'http://localhost:5000/api/curso/cargarEstudiantesProfesor'
+  public static Add_STUDENT_TO_COURSE='https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/curso/agregarEstudiante';
+  public static ADD_CLASS = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/clase/crear';
+  public static GET_ALL_CLASS = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/clase/todosDesdeFecha';
+  public static GET_ATTENDANCE_OF = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/clase/obtenerAsistencias';
+  public static SAVE_ATTENDANCE = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/clase/marcarAsistencias';
+  public static GET_SCHEDULES ='https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/curso/horarios';
+  public static CREATE_NEW_STUDENT = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/usuario/crearEstudiantesProfesor';
+  public static CRAGE_STUDENT_IN_COURSE = 'https://asistenciaback-hdqvurrgxq-tl.a.run.app/api/curso/cargarEstudiantesProfesor'
 
 }
